@@ -1,0 +1,28 @@
+# Core AI
+anthropic>=0.40.0
+groq>=0.9.0
+python-dotenv>=1.0.0
+
+# LLM (local fallback)
+requests>=2.31.0
+
+# TTS
+edge-tts>=6.1.9
+# kokoro>=0.9.2  # Odkomentuj dla lokalnego TTS (wymaga PyTorch)
+
+# Video
+moviepy>=1.0.3
+imageio>=2.34.0
+imageio-ffmpeg>=0.4.9
+
+# Audio utils
+mutagen>=1.47.0
+
+# Text matching
+rapidfuzz>=3.9.0
+
+# UI
+streamlit>=1.35.0
+
+# Font/image
+Pillow>=10.3.0
