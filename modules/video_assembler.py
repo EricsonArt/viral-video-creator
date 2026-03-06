@@ -17,6 +17,11 @@ import os
 from pathlib import Path
 from typing import Optional, Callable
 
+# Kompatybilnosc: Pillow 10+ usunal ANTIALIAS (moviepy 1.x tego wymaga)
+from PIL import Image
+if not hasattr(Image, 'ANTIALIAS'):
+    Image.ANTIALIAS = Image.LANCZOS
+
 from config import (
     VIDEO_WIDTH, VIDEO_HEIGHT, VIDEO_FPS,
     VIDEO_CODEC, AUDIO_CODEC, VIDEO_BITRATE,
