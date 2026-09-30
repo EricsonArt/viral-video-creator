@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<link rel="stylesheet" href="assets/world.css" />
+<script src="assets/lib/gsap.min.js"></script>
+<script src="assets/lib/world.js"></script>
+<style>
+  .vid { width: 400px; height: 711px; border-radius: 12px; z-index: 3; }
+  .vid .grad { position: absolute; left: 0; right: 0; bottom: 0; height: 190px; background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.6)); }
+  .vid .cnt { position: absolute; left: 22px; bottom: 22px; display: flex; align-items: center; gap: 10px; color: #fff; font-size: 38px; font-weight: 700; }
+  .vid .cnt svg { width: 25px; height: 28px; }
+  .aud { position: absolute; border-radius: 50%; box-shadow: 0 18px 36px rgba(24,24,32,.12), 0 4px 10px rgba(24,24,32,.06); }
+  .bub { position: absolute; height: 66px; padding: 0 24px; border-radius: 33px; background: #fff; white-space: nowrap;
+         display: flex; align-items: center; justify-content: center; padding: 0; font-size: 30px; font-weight: 600; color: var(--ink); box-shadow: var(--shadow); z-index: 5; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="r09" data-start="0" data-duration="3.933333" data-width="1080" data-height="1920">
+  <div class="ground clip" id="ground" data-start="0" data-duration="3.933333"></div>
+  <div class="cam clip" id="camwrap" data-start="0" data-duration="3.933333">
+    <div class="world" id="world">
+      <div id="crowd"></div>
+      <div class="media vid" id="v1" style="left:340px;top:360px"><img src="assets/thumbs/t04.jpg" /><div class="grad"></div>
+        <div class="cnt"><svg viewBox="0 0 20 22"><path d="M2 1.5v19l16.5-9.5z" fill="#fff"/></svg>486 tys.</div></div>
+      <div class="media vid" id="v2" style="left:1740px;top:360px"><img src="assets/thumbs/t12.jpg" /><div class="grad"></div>
+        <div class="cnt"><svg viewBox="0 0 20 22"><path d="M2 1.5v19l16.5-9.5z" fill="#fff"/></svg><span id="n2">0</span>&nbsp;tys.</div></div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="camkeys">
+{"anchor":[540,715],"keys":[
+  {"t":0,"cx":540,"cy":715,"s":1},
+  {"t":0.05,"d":1.9,"ease":"sine.inOut","cx":540,"cy":715,"s":1.03},
+  {"t":2.0,"d":0.45,"ease":"power3.in","cx":1240,"cy":715,"s":1.015},
+  {"t":2.45,"d":0.6,"ease":"power3.out","cx":1940,"cy":715,"s":1.0},
+  {"t":3.1,"d":0.833333,"ease":"sine.inOut","cx":1940,"cy":715,"s":1.03}
+]}
+</script>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  W.camera(tl, "#world", W.readCam());
+  const tints = ["#F3D9CC,#E2B8A6", "#D9E3EA,#B9C8D4", "#E6E0F0,#C9BEDC", "#E3ECDD,#C2D3B8", "#F0E6D2,#DCCBA8"];
+  // audience around a card: [dx from card centre, cy, size, blur]
+  const A = [[-330, 420, 104, 0], [-420, 560, 84, 3], [-300, 700, 118, 0], [-410, 850, 92, 2], [-320, 990, 86, 0],
+             [330, 430, 98, 0], [420, 575, 80, 3], [300, 720, 120, 0], [415, 860, 90, 2], [325, 995, 86, 0]];
+  // reaction bubbles: [avatar index, text, dx offset, dy offset]
+  const B = [[0, "Ciekawe!", 0, -96, 196], [5, "Serio?!", 0, -96, 170], [4, "Nie wiedziałem", -40, 88, 296], [9, "Wow", 0, 88, 130]];
+  const crowd = document.getElementById("crowd");
+  function build(prefix, ccx) {
+    A.forEach((a, k) => {
+      const [dx, cy, sz, bl] = a;
+      const d = document.createElement("div");
+      d.className = "avatar aud " + prefix; d.id = prefix + "a" + k;
+      d.style.cssText = "left:" + (ccx + dx - sz / 2) + "px;top:" + (cy - sz / 2) + "px;width:" + sz + "px;height:" + sz + "px;background:linear-gradient(145deg," + tints[k % 5] + ");filter:blur(" + bl + "px)";
+      crowd.appendChild(d);
+    });
+    B.forEach((b, j) => {
+      const [k, txt, ox, oy, bw] = b;
+      const [dx, cy, sz] = A[k];
+      const e = document.createElement("div");
+      e.className = "bub " + prefix + "b"; e.id = prefix + "b" + j; e.textContent = txt;
+      e.style.top = (cy + oy - 33) + "px";
+      crowd.appendChild(e);
+      const w = bw; e.style.width = bw + "px";
+      let left = ccx + dx + ox - w / 2;
+      left = Math.max(ccx - 540 + 24, Math.min(left, ccx + 540 - 24 - w));
+      e.style.left = left + "px";
+    });
+  }
+  build("p", 540);
+  build("r", 1940);
+  gsap.set(".pb, .rb", { opacity: 0, scale: 0.7, y: 12 });
+  gsap.set(".r", { opacity: 0, scale: 0.6 });
+
+  // "przyciągnął ludzi": the audience drifts toward the video
+  A.forEach((a, k) => {
+    tl.fromTo("#pa" + k, { x: 0 }, { x: a[0] < 0 ? 22 : -22, duration: 1.4, ease: "sine.inOut", immediateRender: false }, 0.1);
+  });
+  // "którzy szukają ciekawostek": curiosity reactions
+  [0, 1, 2, 3].forEach((j) => {
+    tl.fromTo("#pb" + j, { opacity: 0, scale: 0.7, y: 12 }, { opacity: 1, scale: 1, y: 0, duration: 0.36, ease: "back.out(1.7)", immediateRender: false }, 1.08 + j * 0.15);
+  });
+  // "następny film może zrobić to samo": after the whip the same crowd forms around the next video
+  [2, 7, 0, 5, 3, 8, 1, 6, 4, 9].forEach((k, j) => {
+    tl.fromTo("#ra" + k, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.36, ease: "power3.out", immediateRender: false }, 2.9 + j * 0.04);
+  });
+  [0, 1, 2, 3].forEach((j) => {
+    tl.fromTo("#rb" + j, { opacity: 0, scale: 0.7, y: 12 }, { opacity: 1, scale: 1, y: 0, duration: 0.34, ease: "back.out(1.7)", immediateRender: false }, 3.3 + j * 0.1);
+  });
+  tl.fromTo("#n2", { textContent: 0 }, { textContent: 412, snap: { textContent: 1 }, duration: 0.8, ease: "steps(16)", immediateRender: false }, 3.05);
+  window.__timelines["r09"] = tl;
+</script>
+</body>
+</html>

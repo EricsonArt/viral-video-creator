@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<link rel="stylesheet" href="assets/world.css" />
+<script src="assets/lib/gsap.min.js"></script>
+<script src="assets/lib/world.js"></script>
+<style>
+  #sheet { left: 60px; top: 60px; width: 960px; height: 820px; border-radius: 40px; }
+  #sheet .ttl { position: absolute; left: 48px; top: 38px; }
+  #sheet .cnt { position: absolute; left: 404px; top: 56px; }
+  #sheet .grab { position: absolute; left: 440px; top: 14px; width: 80px; height: 8px; border-radius: 4px; background: #E4E4E1; }
+  #sheet .rule { position: absolute; left: 0; right: 0; top: 128px; height: 2px; background: var(--line); }
+  .cm { position: absolute; left: 24px; width: 912px; height: 128px; border-radius: 28px; }
+  .cm .bg { position: absolute; inset: 0; border-radius: 28px; background: var(--band); opacity: 0; }
+  .cm .bar { position: absolute; left: 0; top: 18px; bottom: 18px; width: 7px; border-radius: 4px; background: var(--clay); opacity: 0; }
+  .cm .avatar { left: 24px; top: 24px; width: 76px; height: 76px; }
+  .cm .u { position: absolute; left: 124px; top: 18px; font-size: 30px; font-weight: 700; }
+  .cm .t { position: absolute; left: 124px; top: 60px; font-size: 30px; font-weight: 400; white-space: nowrap; }
+  .cm .t b { font-weight: 600; }
+  .cm .t .k { color: var(--ink); transition: none; }
+  #badge { position: absolute; left: 836px; top: 330px; width: 150px; height: 150px; border-radius: 50%;
+           background: var(--clay); color: #fff; display: flex; align-items: center; justify-content: center;
+           font-size: 52px; font-weight: 700; box-shadow: 0 30px 60px rgba(217,119,87,.35), 0 8px 18px rgba(24,24,32,.12); }
+</style>
+</head>
+<body>
+<div id="root" class="split" data-composition-id="r04" data-start="0" data-duration="3.5" data-width="1080" data-height="1920">
+  <div class="ground clip" id="ground" data-start="0" data-duration="3.5"></div>
+  <div class="cam clip" id="camwrap" data-start="0" data-duration="3.5">
+    <div class="world" id="world">
+      <div class="card" id="sheet">
+        <div class="grab"></div>
+        <div class="ttl h2">Komentarze</div>
+        <div class="cnt label">248</div>
+        <div class="rule"></div>
+        <div class="cm" id="m1" style="top:148px"><div class="bg"></div><div class="bar"></div>
+          <div class="avatar" style="background:linear-gradient(145deg,#F3D9CC,#E2B8A6)"></div>
+          <div class="u">ola.makeup</div><div class="t"><span class="k">Ile razy w tygodniu</span> wrzucać filmy?</div></div>
+        <div class="cm" id="m2" style="top:280px"><div class="bg"></div><div class="bar"></div>
+          <div class="avatar" style="background:linear-gradient(145deg,#D9E3EA,#B9C8D4)"></div>
+          <div class="u">marek_trener</div><div class="t">Mega wartościowe, dzięki!</div></div>
+        <div class="cm" id="m3" style="top:412px"><div class="bg"></div><div class="bar"></div>
+          <div class="avatar" style="background:linear-gradient(145deg,#E6E0F0,#C9BEDC)"></div>
+          <div class="u">ania.design</div><div class="t">A <span class="k">ile filmów tygodniowo</span> publikujesz?</div></div>
+        <div class="cm" id="m4" style="top:544px"><div class="bg"></div><div class="bar"></div>
+          <div class="avatar" style="background:linear-gradient(145deg,#E3ECDD,#C2D3B8)"></div>
+          <div class="u">kuba.foto</div><div class="t">Jaki mikrofon polecasz?</div></div>
+        <div class="cm" id="m5" style="top:676px"><div class="bg"></div><div class="bar"></div>
+          <div class="avatar" style="background:linear-gradient(145deg,#F0E6D2,#DCCBA8)"></div>
+          <div class="u">bartek.biz</div><div class="t"><span class="k">Ile razy w tygodniu</span> dodajesz filmy?</div></div>
+      </div>
+      <div id="badge">×3</div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="camkeys">
+{"anchor":[540,470],"keys":[
+  {"t":0,"cx":540,"cy":470,"s":1},
+  {"t":0.05,"d":3.45,"ease":"sine.inOut","cx":540,"cy":476,"s":1.04}
+]}
+</script>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  W.camera(tl, "#world", W.readCam());
+  gsap.set("#badge", { opacity: 0, scale: 0.5 });
+
+  // "sprawdzam pytania": every question gets marked
+  [["#m1", 1.05], ["#m3", 1.14], ["#m4", 1.23], ["#m5", 1.32]].forEach(([s, t]) => {
+    tl.fromTo(s + " .bg", { opacity: 0 }, { opacity: 1, duration: 0.28, ease: "power2.out", immediateRender: false }, t);
+  });
+  // "więcej niż jeden raz": the repeated question stands out, the rest falls back
+  W.defocus(tl, "#m2", 2.2, 6, 0.35, 0.45);
+  W.defocus(tl, "#m4", 2.2, 6, 0.35, 0.45);
+  ["#m1", "#m3", "#m5"].forEach((s, k) => {
+    tl.fromTo(s + " .bar", { opacity: 0, scaleY: 0.3 }, { opacity: 1, scaleY: 1, duration: 0.3, ease: "power3.out", immediateRender: false }, 2.3 + k * 0.08);
+    tl.fromTo(s + " .k", { color: "#111111" }, { color: "#B25730", duration: 0.25, ease: "power1.out", immediateRender: false }, 2.3 + k * 0.08);
+  });
+  tl.fromTo("#badge", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)", immediateRender: false }, 2.72);
+  window.__timelines["r04"] = tl;
+</script>
+</body>
+</html>

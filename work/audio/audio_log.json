@@ -1,0 +1,188 @@
+{
+ "sfx": [
+  {
+   "t": 1.8,
+   "type": "pop",
+   "event": "R1: account card lands",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 2.5,
+   "type": "click",
+   "event": "R1: access switch flipped on",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 3.56,
+   "type": "pop",
+   "event": "R1: tile 1 of 4 lands",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 3.68,
+   "type": "pop",
+   "event": "R1: tile 2 of 4 lands",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 3.8,
+   "type": "pop",
+   "event": "R1: tile 3 of 4 lands",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 3.92,
+   "type": "pop",
+   "event": "R1: tile 4 of 4 lands",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 10.9533,
+   "type": "click",
+   "event": "R3: top video 1 selected (check)",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 11.1333,
+   "type": "click",
+   "event": "R3: top video 2 selected (check)",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 11.3133,
+   "type": "click",
+   "event": "R3: top video 3 selected (check)",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 15.9367,
+   "type": "pop",
+   "event": "R4: x3 repeated-question badge lands",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 20.97,
+   "type": "whoosh",
+   "event": "R6: whip phone -> answer card (midpoint)",
+   "variant": 0,
+   "peak_dbfs": -10.51
+  },
+  {
+   "t": 21.65,
+   "type": "chime",
+   "event": "R6: answer confirmed (green check)",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 26.9433,
+   "type": "pop",
+   "event": "R8: #1 badge lands on most popular video",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 30.4833,
+   "type": "whoosh",
+   "event": "R9: whip viral video -> next video (midpoint)",
+   "variant": 2,
+   "peak_dbfs": -10.51
+  },
+  {
+   "t": 35.4733,
+   "type": "click",
+   "event": "R11: potential client's question checked",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 36.3033,
+   "type": "click",
+   "event": "R11: record button pressed",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 41.5433,
+   "type": "pop",
+   "event": "R12: ready script card 1 lands",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 41.6833,
+   "type": "pop",
+   "event": "R12: ready script card 2 lands",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 41.8233,
+   "type": "pop",
+   "event": "R12: ready script card 3 lands",
+   "peak_dbfs": -11.51
+  },
+  {
+   "t": 46.55,
+   "type": "key",
+   "event": "CTA: key press 'l'",
+   "peak_dbfs": -17.51
+  },
+  {
+   "t": 46.595,
+   "type": "key",
+   "event": "CTA: key press 'i'",
+   "peak_dbfs": -17.51
+  },
+  {
+   "t": 46.64,
+   "type": "key",
+   "event": "CTA: key press 'n'",
+   "peak_dbfs": -17.51
+  },
+  {
+   "t": 46.685,
+   "type": "key",
+   "event": "CTA: key press 'k'",
+   "peak_dbfs": -17.51
+  },
+  {
+   "t": 46.73,
+   "type": "key",
+   "event": "CTA: key press ' '",
+   "peak_dbfs": -17.51
+  },
+  {
+   "t": 46.775,
+   "type": "key",
+   "event": "CTA: key press 'w'",
+   "peak_dbfs": -17.51
+  },
+  {
+   "t": 46.82,
+   "type": "key",
+   "event": "CTA: key press ' '",
+   "peak_dbfs": -17.51
+  },
+  {
+   "t": 46.865,
+   "type": "key",
+   "event": "CTA: key press 'b'",
+   "peak_dbfs": -17.51
+  },
+  {
+   "t": 46.91,
+   "type": "key",
+   "event": "CTA: key press 'i'",
+   "peak_dbfs": -17.51
+  },
+  {
+   "t": 46.955,
+   "type": "key",
+   "event": "CTA: key press 'o'",
+   "peak_dbfs": -17.51
+  },
+  {
+   "t": 47.017,
+   "type": "click",
+   "event": "CTA: Opublikuj button pressed",
+   "peak_dbfs": -11.51
+  }
+ ],
+ "voice_peak_dbfs": -1.5055273750245501,
+ "master_gain_db": -0.48213692077389503
+}

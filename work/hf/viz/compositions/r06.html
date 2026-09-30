@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<link rel="stylesheet" href="assets/world.css" />
+<script src="assets/lib/gsap.min.js"></script>
+<script src="assets/lib/world.js"></script>
+<style>
+  #qc { left: 90px; top: 220px; width: 900px; height: 290px; border-radius: 40px; }
+  #qc .avatar { left: 40px; top: 40px; width: 76px; height: 76px; background: linear-gradient(145deg,#F3D9CC,#E2B8A6); }
+  #qc .u { position: absolute; left: 136px; top: 50px; font-size: 30px; font-weight: 700; }
+  #qfly { position: absolute; left: 204px; top: 326px; width: 640px; padding: 12px 22px 14px; border-radius: 26px;
+          background: #fff; font-size: 52px; font-weight: 700; line-height: 1.12; letter-spacing: -0.015em;
+          transform-origin: 0 0; z-index: 5; }
+  #ph { left: 290px; top: 560px; width: 500px; height: 1000px; border-radius: 84px; background: #121214; }
+  #scr { position: absolute; left: 16px; top: 16px; width: 468px; height: 968px; border-radius: 68px; overflow: hidden; background: #333; }
+  #scr img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #scr .shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.28), rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,.5)); }
+  #rec { position: absolute; left: 30px; top: 40px; height: 52px; padding: 0 20px 0 16px; border-radius: 26px; background: rgba(0,0,0,.38);
+         display: flex; align-items: center; gap: 10px; color: #fff; font-size: 30px; font-weight: 700; }
+  #rec i { display: block; width: 18px; height: 18px; border-radius: 50%; background: var(--err); }
+  #strip { position: absolute; left: 34px; top: 846px; width: 400px; height: 90px; }
+  #strip .trk { position: absolute; left: 0; top: 60px; width: 400px; height: 12px; border-radius: 6px; background: rgba(255,255,255,.35); }
+  #strip .fill { position: absolute; left: 0; top: 60px; width: 133px; height: 12px; border-radius: 6px; background: var(--clay); transform-origin: 0 50%; }
+  #strip .tick { position: absolute; top: 56px; width: 4px; height: 20px; border-radius: 2px; background: rgba(255,255,255,.7); }
+  #strip .tc { position: absolute; left: 96px; top: 4px; color: #fff; font-size: 30px; font-weight: 700; }
+  #strip .head { position: absolute; left: 0; top: 52px; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%; background: #fff;
+                 box-shadow: 0 2px 6px rgba(0,0,0,.3); }
+  #ans { left: 1510px; top: 850px; width: 860px; height: 420px; border-radius: 40px; }
+  #ans .label { position: absolute; left: 60px; top: 64px; }
+  #ans .h1 { position: absolute; left: 56px; top: 132px; }
+  #ans .chk { left: 684px; top: 52px; width: 120px; height: 120px; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="r06" data-start="0" data-duration="4.3" data-width="1080" data-height="1920">
+  <div class="ground clip" id="ground" data-start="0" data-duration="4.3"></div>
+  <div class="cam clip" id="camwrap" data-start="0" data-duration="4.3">
+    <div class="world" id="world">
+      <div class="card" id="qc">
+        <div class="avatar"></div>
+        <div class="u">ola.makeup</div>
+      </div>
+      <div class="card phone" id="ph">
+        <div id="scr">
+          <img src="assets/thumbs/t06.jpg" />
+          <div class="shade"></div>
+          <div id="rec"><i id="recdot"></i>REC</div>
+          <div id="strip">
+            <div class="tc" id="tc">0:01</div>
+            <div class="trk"></div>
+            <div class="fill" id="fill"></div>
+            <div class="tick" style="left:131px"></div>
+            <div class="tick" style="left:264px"></div>
+            <div class="head" id="head"></div>
+          </div>
+        </div>
+      </div>
+      <div id="qfly">Ile razy w tygodniu wrzucać filmy?</div>
+      <div class="card" id="ans">
+        <div class="label">Odpowiedź</div>
+        <div class="h1">3 razy<br />w tygodniu.</div>
+        <div class="chk" id="achk"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="camkeys">
+{"anchor":[540,715],"keys":[
+  {"t":0,"cx":540,"cy":365,"s":1},
+  {"t":0.89,"d":0.55,"ease":"power3.inOut","cx":540,"cy":1060,"s":1},
+  {"t":2.52,"d":0.45,"ease":"power3.in","cx":1240,"cy":1060,"s":1},
+  {"t":2.97,"d":0.6,"ease":"power3.out","cx":1940,"cy":1060,"s":1},
+  {"t":3.6,"d":0.7,"ease":"sine.inOut","cx":1940,"cy":1060,"s":1.03}
+]}
+</script>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  W.camera(tl, "#world", W.readCam());
+  document.getElementById("achk").innerHTML = W.checkSVG;
+
+  gsap.set("#ph", { opacity: 0, y: 140 });
+  gsap.set("#fill", { scaleX: 0 });
+  gsap.set("#tc", { opacity: 0, y: 10 });
+  gsap.set("#achk", { opacity: 0, scale: 0.4 });
+
+  // "nagraj je": the phone rises in while the camera steps down, the question flies into the frame as the hook
+  tl.fromTo("#ph", { opacity: 0, y: 140 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", immediateRender: false }, 0.8);
+  tl.fromTo("#qfly", { x: 0, y: 0, scale: 1, boxShadow: "0 0 0 rgba(0,0,0,0)" },
+    { x: 131, y: 400, scale: 0.64, boxShadow: "0 18px 36px rgba(0,0,0,.22)", duration: 0.62, ease: "power3.inOut", immediateRender: false }, 0.86);
+  W.defocus(tl, "#qc", 0.95, 9, 0.4, 0.5);
+
+  // "w pierwszej sekundzie filmu": the first second of the timeline fills
+  tl.fromTo("#fill", { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "power2.inOut", immediateRender: false }, 1.62);
+  tl.fromTo("#head", { x: 0 }, { x: 133, duration: 0.55, ease: "power2.inOut", immediateRender: false }, 1.62);
+  tl.fromTo("#tc", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 1.95);
+  tl.fromTo("#qfly", { scale: 0.64 }, { scale: 0.68, duration: 0.2, ease: "power2.out", immediateRender: false }, 1.98);
+  tl.fromTo("#qfly", { scale: 0.68 }, { scale: 0.64, duration: 0.3, ease: "power2.inOut", immediateRender: false }, 2.18);
+  // REC dot blinks (deterministic)
+  [0.5, 1.5, 2.5, 3.5].forEach(t => {
+    tl.fromTo("#recdot", { opacity: 1 }, { opacity: 0.15, duration: 0.25, ease: "sine.inOut", immediateRender: false }, t);
+    tl.fromTo("#recdot", { opacity: 0.15 }, { opacity: 1, duration: 0.25, ease: "sine.inOut", immediateRender: false }, t + 0.5);
+  });
+
+  // "jedną prostą odpowiedź": after the whip, the answer confirms
+  tl.fromTo("#achk", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.36, ease: "back.out(2)", immediateRender: false }, 3.6);
+  window.__timelines["r06"] = tl;
+</script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+{
+ "end_s": 47.266666666666666,
+ "end_ms": 47266.667,
+ "end_frames_60": 2836,
+ "fps": 60,
+ "beat_s": 0.5645833333333333,
+ "bpm": 106.2730627306273,
+ "riser_end_s": 9.033333333333333,
+ "riser_dur_s": 2.5,
+ "voice_tail_fade_ms": 120,
+ "runs": [
+  {
+   "id": "R1",
+   "layout": "SPLIT",
+   "f0": 0,
+   "f1": 260,
+   "t0": 0.0,
+   "t1": 4.333333333333333,
+   "comp": "r01"
+  },
+  {
+   "id": "R2",
+   "layout": "FULLCAM",
+   "f0": 260,
+   "f1": 542,
+   "t0": 4.333333333333333,
+   "t1": 9.033333333333333,
+   "comp": null
+  },
+  {
+   "id": "R3",
+   "layout": "VISUAL",
+   "f0": 542,
+   "f1": 790,
+   "t0": 9.033333333333333,
+   "t1": 13.166666666666666,
+   "comp": "r03"
+  },
+  {
+   "id": "R4",
+   "layout": "SPLIT",
+   "f0": 790,
+   "f1": 1000,
+   "t0": 13.166666666666666,
+   "t1": 16.666666666666668,
+   "comp": "r04"
+  },
+  {
+   "id": "R5",
+   "layout": "FULLCAM",
+   "f0": 1000,
+   "f1": 1080,
+   "t0": 16.666666666666668,
+   "t1": 18.0,
+   "comp": null
+  },
+  {
+   "id": "R6",
+   "layout": "VISUAL",
+   "f0": 1080,
+   "f1": 1338,
+   "t0": 18.0,
+   "t1": 22.3,
+   "comp": "r06"
+  },
+  {
+   "id": "R7",
+   "layout": "FULLCAM",
+   "f0": 1338,
+   "f1": 1514,
+   "t0": 22.3,
+   "t1": 25.233333333333334,
+   "comp": null
+  },
+  {
+   "id": "R8",
+   "layout": "SPLIT",
+   "f0": 1514,
+   "f1": 1682,
+   "t0": 25.233333333333334,
+   "t1": 28.033333333333335,
+   "comp": "r08"
+  },
+  {
+   "id": "R9",
+   "layout": "VISUAL",
+   "f0": 1682,
+   "f1": 1918,
+   "t0": 28.033333333333335,
+   "t1": 31.966666666666665,
+   "comp": "r09"
+  },
+  {
+   "id": "R10",
+   "layout": "FULLCAM",
+   "f0": 1918,
+   "f1": 2000,
+   "t0": 31.966666666666665,
+   "t1": 33.333333333333336,
+   "comp": null
+  },
+  {
+   "id": "R11",
+   "layout": "VISUAL",
+   "f0": 2000,
+   "f1": 2246,
+   "t0": 33.333333333333336,
+   "t1": 37.43333333333333,
+   "comp": "r11"
+  },
+  {
+   "id": "R12",
+   "layout": "SPLIT",
+   "f0": 2246,
+   "f1": 2614,
+   "t0": 37.43333333333333,
+   "t1": 43.56666666666667,
+   "comp": "r12"
+  },
+  {
+   "id": "R13",
+   "layout": "FULLCAM",
+   "f0": 2614,
+   "f1": 2836,
+   "t0": 43.56666666666667,
+   "t1": 47.266666666666666,
+   "comp": null
+  }
+ ],
+ "sfx": [
+  {
+   "t": 1.8,
+   "type": "pop",
+   "event": "R1: account card lands"
+  },
+  {
+   "t": 2.5,
+   "type": "click",
+   "event": "R1: access switch flipped on"
+  },
+  {
+   "t": 3.56,
+   "type": "pop",
+   "event": "R1: tile 1 of 4 lands"
+  },
+  {
+   "t": 3.68,
+   "type": "pop",
+   "event": "R1: tile 2 of 4 lands"
+  },
+  {
+   "t": 3.8,
+   "type": "pop",
+   "event": "R1: tile 3 of 4 lands"
+  },
+  {
+   "t": 3.92,
+   "type": "pop",
+   "event": "R1: tile 4 of 4 lands"
+  },
+  {
+   "t": 10.9533,
+   "type": "click",
+   "event": "R3: top video 1 selected (check)"
+  },
+  {
+   "t": 11.1333,
+   "type": "click",
+   "event": "R3: top video 2 selected (check)"
+  },
+  {
+   "t": 11.3133,
+   "type": "click",
+   "event": "R3: top video 3 selected (check)"
+  },
+  {
+   "t": 15.9367,
+   "type": "pop",
+   "event": "R4: x3 repeated-question badge lands"
+  },
+  {
+   "t": 20.97,
+   "type": "whoosh",
+   "event": "R6: whip phone -> answer card (midpoint)",
+   "variant": 0
+  },
+  {
+   "t": 21.65,
+   "type": "chime",
+   "event": "R6: answer confirmed (green check)"
+  },
+  {
+   "t": 26.9433,
+   "type": "pop",
+   "event": "R8: #1 badge lands on most popular video"
+  },
+  {
+   "t": 30.4833,
+   "type": "whoosh",
+   "event": "R9: whip viral video -> next video (midpoint)",
+   "variant": 2
+  },
+  {
+   "t": 35.4733,
+   "type": "click",
+   "event": "R11: potential client's question checked"
+  },
+  {
+   "t": 36.3033,
+   "type": "click",
+   "event": "R11: record button pressed"
+  },
+  {
+   "t": 41.5433,
+   "type": "pop",
+   "event": "R12: ready script card 1 lands"
+  },
+  {
+   "t": 41.6833,
+   "type": "pop",
+   "event": "R12: ready script card 2 lands"
+  },
+  {
+   "t": 41.8233,
+   "type": "pop",
+   "event": "R12: ready script card 3 lands"
+  },
+  {
+   "t": 46.55,
+   "type": "key",
+   "event": "CTA: key press 'l'"
+  },
+  {
+   "t": 46.595,
+   "type": "key",
+   "event": "CTA: key press 'i'"
+  },
+  {
+   "t": 46.64,
+   "type": "key",
+   "event": "CTA: key press 'n'"
+  },
+  {
+   "t": 46.685,
+   "type": "key",
+   "event": "CTA: key press 'k'"
+  },
+  {
+   "t": 46.73,
+   "type": "key",
+   "event": "CTA: key press ' '"
+  },
+  {
+   "t": 46.775,
+   "type": "key",
+   "event": "CTA: key press 'w'"
+  },
+  {
+   "t": 46.82,
+   "type": "key",
+   "event": "CTA: key press ' '"
+  },
+  {
+   "t": 46.865,
+   "type": "key",
+   "event": "CTA: key press 'b'"
+  },
+  {
+   "t": 46.91,
+   "type": "key",
+   "event": "CTA: key press 'i'"
+  },
+  {
+   "t": 46.955,
+   "type": "key",
+   "event": "CTA: key press 'o'"
+  },
+  {
+   "t": 47.017,
+   "type": "click",
+   "event": "CTA: Opublikuj button pressed"
+  }
+ ]
+}

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<link rel="stylesheet" href="assets/world.css" />
+<script src="assets/lib/gsap.min.js"></script>
+<script src="assets/lib/world.js"></script>
+<style>
+  #hdr { left: 90px; top: 300px; width: 900px; height: 250px; }
+  #hdr .avatar { left: 44px; top: 60px; width: 130px; height: 130px; }
+  #hdr .handle { position: absolute; left: 204px; top: 54px; }
+  #hdr .acc { position: absolute; left: 206px; top: 140px; }
+  .toggle { position: absolute; left: 736px; top: 132px; width: 124px; height: 70px; border-radius: 35px; background: #E3E3E0; }
+  .toggle .on { position: absolute; inset: 0; border-radius: 35px; background: var(--ok); opacity: 0; }
+  .toggle .knob { position: absolute; left: 7px; top: 7px; width: 56px; height: 56px; border-radius: 50%; background: #fff;
+    box-shadow: 0 4px 10px rgba(24,24,32,.18), 0 1px 2px rgba(24,24,32,.10); }
+
+  #stats { left: 90px; top: 636px; width: 900px; height: 260px; }
+  .row { position: absolute; left: 0; width: 900px; height: 110px; }
+  .row .lab { position: absolute; left: 44px; top: 36px; }
+  .row .val { position: absolute; right: 44px; top: 22px; text-align: right; }
+  .row svg { position: absolute; left: 270px; top: 20px; width: 360px; height: 72px; overflow: visible; }
+  #r1 { top: 18px; }
+  #r2 { top: 132px; }
+  #band { position: absolute; left: 14px; top: 126px; width: 872px; height: 118px; border-radius: 28px; background: var(--band); opacity: 0; }
+  #zero { color: var(--ink); }
+  .div { position: absolute; left: 44px; right: 44px; top: 129px; height: 2px; background: var(--line); }
+
+  .num { width: 210px; height: 210px; top: 980px; display: flex; align-items: center; justify-content: center; }
+  .num span { font-size: 96px; font-weight: 700; letter-spacing: -0.02em; }
+  .num.clay { background: var(--clay); }
+  .num.clay span { color: #fff; }
+</style>
+</head>
+<body>
+<div id="root" class="split" data-composition-id="r01" data-start="0" data-duration="4.333333" data-width="1080" data-height="1920">
+  <div class="ground clip" data-start="0" data-duration="4.333333"></div>
+  <div class="cam clip" data-start="0" data-duration="4.333333">
+    <div class="world" id="world">
+
+      <div class="card doc" id="hdr">
+        <div class="avatar"></div>
+        <div class="handle h2">@twoje.konto</div>
+        <div class="acc label">Dostęp do konta</div>
+        <div class="toggle" id="tog"><div class="on" id="togOn"></div><div class="knob" id="knob"></div></div>
+      </div>
+
+      <div class="card doc" id="stats">
+        <div id="band"></div>
+        <div class="div"></div>
+        <div class="row" id="r1">
+          <div class="lab label">Wyświetlenia</div>
+          <svg viewBox="0 0 360 72">
+            <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#D97757" stop-opacity=".22"/><stop offset="1" stop-color="#D97757" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0,66 C60,64 110,58 160,48 S250,24 300,12 S345,3 360,2 L360,72 L0,72 Z" fill="url(#ga)"/>
+            <path id="spark" d="M0,66 C60,64 110,58 160,48 S250,24 300,12 S345,3 360,2" fill="none" stroke="#D97757" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="360" cy="2" r="9" fill="#D97757"/>
+            <circle id="pulse" cx="360" cy="2" r="9" fill="none" stroke="#D97757" stroke-width="3"/>
+          </svg>
+          <div class="val h2" style="color:var(--clayText)">1,2 mln</div>
+        </div>
+        <div class="row" id="r2">
+          <div class="lab label">Klienci</div>
+          <svg viewBox="0 0 360 72">
+            <path d="M0,62 L360,62" fill="none" stroke="#CFCFCB" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 14"/>
+            <circle cx="360" cy="62" r="9" fill="#BDBDB8"/>
+          </svg>
+          <div class="val h2" id="zero">0</div>
+        </div>
+      </div>
+
+      <div class="card tile num" id="n1" style="left:60px"><span>1</span></div>
+      <div class="card tile num" id="n2" style="left:310px"><span>2</span></div>
+      <div class="card tile num clay" id="n3" style="left:560px"><span>3</span></div>
+      <div class="card tile num clay" id="n4" style="left:810px"><span>4</span></div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="camkeys">
+{"anchor":[540,470],"keys":[
+  {"t":0,"cx":540,"cy":470,"s":1},
+  {"t":0.1,"d":1.35,"ease":"power2.inOut","cx":540,"cy":766,"s":1.12},
+  {"t":1.62,"d":1.1,"ease":"power2.inOut","cx":540,"cy":598,"s":1.0},
+  {"t":3.35,"d":0.5,"ease":"power3.inOut","cx":540,"cy":905,"s":1.03}
+]}
+</script>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  W.camera(tl, "#world", W.readCam());
+
+  // initial states
+  gsap.set("#hdr", { opacity: 0, y: 46 });
+  gsap.set(["#n1", "#n2", "#n3", "#n4"], { opacity: 0, scale: 0.86, y: 34 });
+  gsap.set("#pulse", { attr: { r: 9 }, opacity: 0.8 });
+
+  // live pulse on the views line
+  tl.fromTo("#pulse", { attr: { r: 9 }, opacity: 0.8 }, { attr: { r: 26 }, opacity: 0, duration: 0.9, ease: "power2.out", immediateRender: false }, 0.25);
+  tl.fromTo("#pulse", { attr: { r: 9 }, opacity: 0.8 }, { attr: { r: 26 }, opacity: 0, duration: 0.9, ease: "power2.out", immediateRender: false }, 1.25);
+
+  // "klientów" -> clients stay at zero: highlight the row
+  tl.fromTo("#band", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out", immediateRender: false }, 1.32);
+  tl.fromTo("#zero", { color: "#111111", scale: 1 }, { color: "#B25730", scale: 1.12, duration: 0.22, ease: "power2.out", immediateRender: false }, 1.34);
+  tl.fromTo("#zero", { scale: 1.12 }, { scale: 1, duration: 0.3, ease: "power2.inOut", immediateRender: false }, 1.56);
+
+  // "dałbyś mi swoje konto" -> the account card lands, access switch turns on
+  tl.fromTo("#hdr", { opacity: 0, y: 46 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", immediateRender: false }, 1.74);
+  tl.fromTo("#knob", { x: 0 }, { x: 54, duration: 0.26, ease: "power3.inOut", immediateRender: false }, 2.48);
+  tl.fromTo("#togOn", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out", immediateRender: false }, 2.5);
+
+  // step to the four things; the account + stats fall back in depth
+  W.defocus(tl, "#hdr", 3.35, 9, 0.4, 0.5);
+  W.defocus(tl, "#stats", 3.35, 9, 0.4, 0.5);
+  [["#n1", 3.5], ["#n2", 3.62], ["#n3", 3.74], ["#n4", 3.86]].forEach(([s, t]) => {
+    tl.fromTo(s, { opacity: 0, scale: 0.86, y: 34 }, { opacity: 1, scale: 1, y: 0, duration: 0.36, ease: "power3.out", immediateRender: false }, t);
+  });
+
+  window.__timelines["r01"] = tl;
+</script>
+</body>
+</html>

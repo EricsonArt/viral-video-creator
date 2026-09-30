@@ -1,0 +1,77 @@
+/* Luxury-tech world: shared tokens for every visual run */
+@font-face { font-family: Poppins; font-weight: 400; src: url(fonts/Poppins-Regular.ttf); }
+@font-face { font-family: Poppins; font-weight: 500; src: url(fonts/Poppins-Medium.ttf); }
+@font-face { font-family: Poppins; font-weight: 600; src: url(fonts/Poppins-SemiBold.ttf); }
+@font-face { font-family: Poppins; font-weight: 700; src: url(fonts/Poppins-Bold.ttf); }
+
+:root {
+  --ink: #111111;
+  --ink2: #6B6B70;
+  --ink3: #A3A3A8;
+  --clay: #D97757;
+  --clayText: #B25730;
+  --band: #FBEEE8;
+  --ok: #34C759;
+  --err: #FF3B30;
+  --line: #ECECEA;
+  --shadow: 0 60px 120px rgba(24,24,32,.16), 0 24px 48px rgba(24,24,32,.10), 0 4px 10px rgba(24,24,32,.06);
+  --shadowLift: 0 80px 150px rgba(24,24,32,.20), 0 30px 60px rgba(24,24,32,.12), 0 6px 14px rgba(24,24,32,.07);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #F3F3F0; }
+
+#root {
+  position: relative; width: 1080px; height: 1920px; overflow: hidden;
+  font-family: Poppins, sans-serif; color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+.ground {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 115% 78% at 50% 36%, #FFFFFF 0%, #FBFBF9 38%, #F3F3F0 100%);
+}
+/* world camera: --cx/--cy is the world point shown at the anchor (--ax/--ay), --s is zoom */
+.cam { position: absolute; inset: 0; }
+.split .cam {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0px, #000 900px, transparent 1060px);
+          mask-image: linear-gradient(to bottom, #000 0px, #000 900px, transparent 1060px);
+}
+.world {
+  position: absolute; left: 0; top: 0; width: 1080px; height: 1920px;
+  transform-origin: 0 0;
+  transform: translate(calc(var(--ax) * 1px - var(--s) * var(--cx) * 1px),
+                       calc(var(--ay) * 1px - var(--s) * var(--cy) * 1px)) scale(var(--s));
+}
+.abs { position: absolute; }
+.card { position: absolute; background: #fff; box-shadow: var(--shadow); }
+.doc { border-radius: 40px; }
+.tile { border-radius: 72px; }
+.phone { border-radius: 84px; }
+
+.h1 { font-size: 96px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
+.h2 { font-size: 52px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.15; }
+.body { font-size: 30px; font-weight: 400; line-height: 1.35; }
+.label { font-size: 30px; font-weight: 500; color: var(--ink2); line-height: 1.2; }
+.b { font-weight: 700; }
+.sb { font-weight: 600; }
+
+.avatar {
+  position: absolute; border-radius: 50%; overflow: hidden;
+  background: linear-gradient(145deg, #EDEDEA, #D9D9D5);
+}
+.avatar::after { /* neutral default silhouette */
+  content: ""; position: absolute; left: 22%; top: 16%; width: 56%; height: 56%; border-radius: 50%;
+  background: radial-gradient(circle at 50% 36%, #FFFFFF 0 27%, transparent 28%),
+              radial-gradient(ellipse 60% 44% at 50% 104%, #FFFFFF 0 98%, transparent 100%);
+  opacity: .95;
+}
+.av-img { position: absolute; border-radius: 50%; overflow: hidden; object-fit: cover; }
+.chk {
+  position: absolute; border-radius: 50%; background: var(--ok);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 24px rgba(52,199,89,.35), 0 3px 6px rgba(24,24,32,.10);
+}
+.chk svg { width: 58%; height: 58%; }
+.media { position: absolute; overflow: hidden; background: #ddd; box-shadow: var(--shadow); }
+.media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hide { opacity: 0; }

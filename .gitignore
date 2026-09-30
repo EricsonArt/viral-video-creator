@@ -6,3 +6,26 @@ temp/
 __pycache__/
 *.pyc
 .DS_Store
+
+# --- short-video edit pipeline (edit/ holds the deliverables) ---
+.venv/
+bin/
+input/
+work/node/node_modules/
+work/hf/probe/
+work/hf/viz/renders/
+work/hf/viz/snapshots/
+work/matte/*.mp4
+work/matte/*.webm
+work/matte/*.png
+work/matte/*.log
+work/audio/*.wav
+work/models/
+work/caps/
+work/*.log
+work/framediffs.json
+work/rms10ms.npy
+work/*.mp4
+work/qa/
+work/**/*.log
+work/matte/mattes.log

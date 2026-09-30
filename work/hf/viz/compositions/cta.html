@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<link rel="stylesheet" href="assets/world.css" />
+<script src="assets/lib/gsap.min.js"></script>
+<style>
+  html, body { background: transparent !important; }
+  #root { background: transparent; }
+  /* CTA region: x 43, y 330, 994 x 276 (moved above the head: portrait framing puts the mouth at the spec'd lower third) */
+  #cta { position: absolute; left: 43px; top: 330px; width: 994px; height: 276px; }
+  #cta .avatar { left: 36px; top: 86px; width: 104px; height: 104px; box-shadow: 0 14px 30px rgba(24,24,32,.16), 0 3px 8px rgba(24,24,32,.08); }
+  #box { position: absolute; left: 162px; top: 76px; width: 796px; height: 124px; border-radius: 62px; background: #fff;
+         box-shadow: 0 60px 120px rgba(24,24,32,.16), 0 24px 48px rgba(24,24,32,.10), 0 4px 10px rgba(24,24,32,.06); }
+  #txt { position: absolute; left: 40px; top: 0; height: 124px; display: flex; align-items: center;
+         font-size: 46px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; white-space: pre; }
+  #txt .c { display: none; }
+  #caret { display: inline-block; width: 4px; height: 54px; margin-left: 3px; border-radius: 2px; background: var(--clay); }
+  #post { position: absolute; left: 556px; top: 20px; width: 220px; height: 84px; border-radius: 42px; background: var(--clay);
+          color: #fff; font-size: 30px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="cta" data-start="0" data-duration="3.7" data-width="1080" data-height="1920">
+  <div id="cta" class="clip" data-start="0" data-duration="3.7">
+    <div class="avatar"></div>
+    <div id="box">
+      <div id="txt"></div>
+      <div id="post">Opublikuj</div>
+    </div>
+  </div>
+</div>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  const word = "link w bio";
+  const txt = document.getElementById("txt");
+  [...word].forEach((ch, i) => {
+    const s = document.createElement("span");
+    s.className = "c"; s.id = "c" + i; s.textContent = ch;
+    txt.appendChild(s);
+  });
+  const caret = document.createElement("span");
+  caret.id = "caret"; txt.appendChild(caret);
+
+  gsap.set("#cta", { opacity: 0, y: 30 });
+  gsap.set("#post", { opacity: 0.4 });
+  // entrance (rel 1.8333 = 45.40 s)
+  tl.fromTo("#cta", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out", immediateRender: false }, 1.8333);
+  // caret blink while waiting
+  [2.28, 2.78].forEach(t => {
+    tl.fromTo("#caret", { opacity: 1 }, { opacity: 0, duration: 0.06, immediateRender: false }, t);
+    tl.fromTo("#caret", { opacity: 0 }, { opacity: 1, duration: 0.06, immediateRender: false }, t + 0.26);
+  });
+  // typing "link w bio" with the spoken CTA (46.55 s -> 46.955 s)
+  const t0 = 2.9833, dt = 0.045;
+  [...word].forEach((ch, i) => { tl.set("#c" + i, { display: "inline" }, t0 + i * dt); });
+  tl.fromTo("#post", { opacity: 0.4 }, { opacity: 1, duration: 0.12, immediateRender: false }, t0);
+  // Post pressed (47.017 s)
+  tl.fromTo("#post", { scale: 1, backgroundColor: "#D97757" }, { scale: 0.92, backgroundColor: "#BF5F3F", duration: 0.08, ease: "power2.in", immediateRender: false }, 3.45);
+  tl.fromTo("#post", { scale: 0.92, backgroundColor: "#BF5F3F" }, { scale: 1, backgroundColor: "#D97757", duration: 0.14, ease: "power2.out", immediateRender: false }, 3.56);
+  tl.fromTo("#caret", { opacity: 1 }, { opacity: 0, duration: 0.06, immediateRender: false }, 3.46);
+  window.__timelines["cta"] = tl;
+</script>
+</body>
+</html>

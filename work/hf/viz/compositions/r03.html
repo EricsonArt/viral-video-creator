@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<link rel="stylesheet" href="assets/world.css" />
+<script src="assets/lib/gsap.min.js"></script>
+<script src="assets/lib/world.js"></script>
+<style>
+  #panel { left: 24px; top: 285px; width: 1032px; height: 860px; border-radius: 40px; }
+  #panel .avatar { left: 30px; top: 30px; width: 88px; height: 88px; }
+  #panel .handle { position: absolute; left: 138px; top: 42px; }
+  #panel .tabs { position: absolute; right: 36px; top: 54px; display: flex; gap: 28px; }
+  #panel .tabs div { font-size: 30px; font-weight: 600; color: var(--ink3); }
+  #panel .tabs .on { color: var(--ink); }
+  .vt { position: absolute; width: 181px; height: 322px; border-radius: 6px; overflow: hidden; background: #ccc;
+        box-shadow: 0 4px 10px rgba(24,24,32,.06); transform-origin: 50% 50%; }
+  .vt img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .vt .grad { position: absolute; left: 0; right: 0; bottom: 0; height: 120px;
+              background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.62)); }
+  .vt .cnt { position: absolute; left: 12px; bottom: 12px; display: flex; align-items: center; gap: 7px;
+             color: #fff; font-size: 30px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+  .vt .cnt svg { width: 20px; height: 22px; }
+  .vt .ring { position: absolute; inset: 0; border-radius: 6px; box-shadow: inset 0 0 0 5px var(--clay); opacity: 0; }
+  .vt .chk { width: 46px; height: 46px; right: 10px; top: 10px; opacity: 0; }
+  #scan { position: absolute; left: 0; top: 0; width: 181px; height: 322px; border-radius: 8px; box-shadow: 0 0 0 5px rgba(217,119,87,.9); opacity: 0; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="r03" data-start="0" data-duration="4.133333" data-width="1080" data-height="1920">
+  <div class="ground clip" id="ground" data-start="0" data-duration="4.133333"></div>
+  <div class="cam clip" id="camwrap" data-start="0" data-duration="4.133333">
+    <div class="world" id="world">
+      <div class="card" id="panel">
+        <div class="avatar"></div>
+        <div class="handle h2">@twoje.konto</div>
+        <div class="tabs"><div class="on">Filmy</div><div>Relacje</div></div>
+      </div>
+      <div id="tiles"></div>
+      <div id="scan"></div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="camkeys">
+{"anchor":[540,715],"keys":[
+  {"t":0,"cx":540,"cy":715,"s":1},
+  {"t":0.05,"d":1.8,"ease":"sine.inOut","cx":540,"cy":715,"s":1.03},
+  {"t":2.5,"d":0.7,"ease":"power2.inOut","cx":540,"cy":715,"s":1.0},
+  {"t":3.2,"d":0.93,"ease":"sine.inOut","cx":540,"cy":715,"s":1.035}
+]}
+</script>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  W.camera(tl, "#world", W.readCam());
+
+  const play = '<svg viewBox="0 0 20 22"><path d="M2 1.5v19l16.5-9.5z" fill="#fff"/></svg>';
+  const counts = ["3,2 tys.", "212 tys.", "5,8 tys.", "2,4 tys.", "486 tys.", "9,1 tys.", "4,7 tys.", "97 tys.", "1,9 tys.", "6,3 tys."];
+  const imgs = ["t00", "t05", "t02", "t07", "t04", "t09", "t10", "t13", "t06", "t11"];
+  const tints = ["", "saturate(1.1)", "brightness(1.04) saturate(.9)", "sepia(.12)", "", "hue-rotate(-8deg)", "saturate(1.15) contrast(1.03)", "", "brightness(.97)", "sepia(.08) saturate(1.05)"];
+  const box = document.getElementById("tiles");
+  const X0 = 24 + 30, Y0 = 285 + 150, TW = 181, TH = 322, G = 16;
+  const pos = [];
+  for (let i = 0; i < 10; i++) {
+    const c = i % 5, r = Math.floor(i / 5);
+    const x = X0 + c * (TW + G), y = Y0 + r * (TH + G);
+    pos.push([x, y]);
+    const d = document.createElement("div");
+    d.className = "vt"; d.id = "v" + i;
+    d.style.left = x + "px"; d.style.top = y + "px";
+    d.innerHTML = '<img src="assets/thumbs/' + imgs[i] + '.jpg" style="filter:' + tints[i] + '"><div class="grad"></div>' +
+      '<div class="cnt" id="c' + i + '">' + play + '<span>' + counts[i] + '</span></div>' +
+      '<div class="ring" id="ring' + i + '"></div><div class="chk" id="chk' + i + '">' + W.checkSVG + '</div>';
+    box.appendChild(d);
+  }
+  // counts appear as each video is checked
+  gsap.set(".vt .cnt", { opacity: 0, y: 8 });
+  gsap.set("#scan", { opacity: 0, x: pos[0][0], y: pos[0][1] });
+  tl.set("#scan", { x: pos[0][0], y: pos[0][1] }, 0);
+  tl.fromTo("#scan", { opacity: 0 }, { opacity: 1, duration: 0.12, immediateRender: false }, 0.22);
+  const step = 0.112;
+  for (let i = 0; i < 10; i++) {
+    const t = 0.26 + i * step;
+    if (i > 0) tl.fromTo("#scan", { x: pos[i - 1][0], y: pos[i - 1][1] }, { x: pos[i][0], y: pos[i][1], duration: 0.09, ease: "power2.inOut", immediateRender: false }, t - 0.09);
+    tl.fromTo("#c" + i, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, t);
+  }
+  tl.fromTo("#scan", { opacity: 1 }, { opacity: 0, duration: 0.18, immediateRender: false }, 0.26 + 9 * step + 0.12);
+
+  // "wybieram trzy": select the three best videos
+  const sel = [[4, 1.92], [1, 2.10], [7, 2.28]];
+  sel.forEach(([i, t]) => {
+    tl.fromTo("#ring" + i, { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power2.out", immediateRender: false }, t);
+    tl.fromTo("#chk" + i, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.26, ease: "back.out(2)", immediateRender: false }, t);
+    tl.fromTo("#v" + i, { scale: 1 }, { scale: 1.06, duration: 0.2, ease: "power2.out", immediateRender: false }, t);
+  });
+  // the rest falls back in depth
+  [0, 2, 3, 5, 6, 8, 9].forEach(i => W.defocus(tl, "#v" + i, 2.42, 9, 0.4, 0.45));
+  W.defocus(tl, "#panel", 2.42, 9, 0.4, 0.45);
+
+  // the three winners line up, sorted by views
+  const TW2 = 300, TH2 = 533, G2 = 36, rowY = 715 - TH2 / 2;
+  const order = [4, 1, 7];
+  order.forEach((i, k) => {
+    const tx = (1080 - (3 * TW2 + 2 * G2)) / 2 + k * (TW2 + G2);
+    const sc = TW2 / TW;
+    const dx = (tx + TW2 / 2) - (pos[i][0] + TW / 2);
+    const dy = (rowY + TH2 / 2) - (pos[i][1] + TH / 2);
+    tl.fromTo("#v" + i, { x: 0, y: 0, scale: 1.06 }, { x: dx, y: dy, scale: sc, duration: 0.62, ease: "power3.inOut", immediateRender: false }, 2.55 + k * 0.04);
+    document.getElementById("v" + i).style.zIndex = 10;
+  });
+  window.__timelines["r03"] = tl;
+</script>
+</body>
+</html>
