@@ -6,3 +6,23 @@ temp/
 __pycache__/
 *.pyc
 .DS_Store
+
+# --- video editing session (heavy intermediates stay local; deliverables in edit/ are committed)
+.venv/
+.venv_mp/
+input/
+edit/work/node_modules/
+edit/work/package-lock.json
+edit/work/hf/out/
+edit/work/hf/*/snapshots/
+edit/work/hf/*/renders/
+edit/work/hf/renders/
+edit/work/matte/
+edit/work/audio/
+edit/work/frames/
+edit/work/models/
+edit/work/libs/
+edit/work/final_video_src.mp4
+edit/work/master_mix.wav
+edit/work/qa/*.npy
+edit/work/*.log

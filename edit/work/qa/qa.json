@@ -1,0 +1,158 @@
+{
+ "probe": {
+  "width": 1080,
+  "height": 1920,
+  "fps": "60/1",
+  "codec": "h264",
+  "profile": "High",
+  "pix_fmt": "yuv420p",
+  "nb_frames": "2472",
+  "v_duration": 41.2,
+  "a_codec": "aac",
+  "a_rate": "48000",
+  "a_channels": 2,
+  "a_duration": 41.2,
+  "v_start": 0.0,
+  "a_start": 0.0,
+  "color": [
+   "bt709",
+   "bt709",
+   "bt709",
+   "tv"
+  ],
+  "size_mb": 48.9,
+  "bit_rate_mbps": 9.49
+ },
+ "loudness": {
+  "voice": {
+   "lufs": -14.0,
+   "true_peak": -1.1
+  },
+  "sfx": {
+   "lufs": -26.1,
+   "true_peak": -9.8
+  },
+  "riser": {
+   "lufs": -28.2,
+   "true_peak": -15.9
+  },
+  "master_mix_wav": {
+   "lufs": -14.0,
+   "true_peak": -2.4
+  },
+  "final_mp4_audio": {
+   "lufs": -14.0,
+   "true_peak": -2.3
+  }
+ },
+ "voice_quiet_runs_ms": [
+  [
+   100,
+   38.07
+  ],
+  [
+   100,
+   18.15
+  ],
+  [
+   80,
+   26.12
+  ],
+  [
+   80,
+   25.24
+  ],
+  [
+   80,
+   22.01
+  ]
+ ],
+ "voice_first_sound_ms": 40,
+ "voice_last_sound_s": 41.2,
+ "whoosh": {
+  "whip_midpoint_s": 16.5167,
+  "whoosh_peak_s": 16.5167,
+  "offset_ms": 0.0
+ },
+ "riser": {
+  "start_s": 1.6826,
+  "audible_end_s": 3.9666,
+  "cut_C1_s": 3.966666666666667,
+  "peak_vs_voice_peak_db": -14.0
+ },
+ "sfx_peak_vs_voice_peak_db": -7.9,
+ "frames_read": 2472,
+ "last_frames_mean": [
+  134.4,
+  134.4,
+  134.2,
+  134.3,
+  134.2,
+  134.2
+ ],
+ "last_frames_diff": [
+  0.04,
+  3.63,
+  0.03,
+  3.37,
+  0.04
+ ],
+ "first_frame_mean": 170.0,
+ "joins": {
+  "C1": {
+   "frame": 238,
+   "t": 3.9667,
+   "diff_prev_next": 78.1,
+   "mean_prev": 172.9,
+   "mean_next": 239.1
+  },
+  "C2": {
+   "frame": 625,
+   "t": 10.4167,
+   "diff_prev_next": 130.3,
+   "mean_prev": 125.3,
+   "mean_next": 99.5
+  },
+  "C3": {
+   "frame": 871,
+   "t": 14.5167,
+   "diff_prev_next": 143.1,
+   "mean_prev": 100.2,
+   "mean_next": 240.8
+  },
+  "C4": {
+   "frame": 1247,
+   "t": 20.7833,
+   "diff_prev_next": 75.0,
+   "mean_prev": 238.8,
+   "mean_next": 174.0
+  },
+  "C5": {
+   "frame": 1419,
+   "t": 23.65,
+   "diff_prev_next": 89.5,
+   "mean_prev": 175.5,
+   "mean_next": 101.2
+  },
+  "C6": {
+   "frame": 1710,
+   "t": 28.5,
+   "diff_prev_next": 138.7,
+   "mean_prev": 99.1,
+   "mean_next": 161.5
+  },
+  "C7": {
+   "frame": 2106,
+   "t": 35.1,
+   "diff_prev_next": 142.0,
+   "mean_prev": 163.0,
+   "mean_next": 100.5
+  }
+ },
+ "frame_diff_stats": {
+  "mean": 2.234,
+  "max": 143.04,
+  "max_at_frame": 871,
+  "zero_diff_frames": 249
+ }
+}

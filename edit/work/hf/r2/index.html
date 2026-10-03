@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080, height=1920"/>
+<script src="lib/gsap.min.js"></script>
+
+<style>
+@font-face{font-family:"Poppins";font-weight:400;font-style:normal;src:url("assets/fonts/Poppins-Regular.ttf") format("truetype");}
+@font-face{font-family:"Poppins";font-weight:600;font-style:normal;src:url("assets/fonts/Poppins-SemiBold.ttf") format("truetype");}
+@font-face{font-family:"Poppins";font-weight:700;font-style:normal;src:url("assets/fonts/Poppins-Bold.ttf") format("truetype");}
+@font-face{font-family:"Instrument Serif";font-weight:400;font-style:normal;src:url("assets/fonts/InstrumentSerif-Regular.ttf") format("truetype");}
+@font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;src:url("assets/fonts/JetBrainsMono-Medium.ttf") format("truetype");}
+@font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;src:url("assets/fonts/JetBrainsMono-Bold.ttf") format("truetype");}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#F3F3F0}
+#root{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;
+  background:radial-gradient(farthest-corner at 50% 36%,#FFFFFF 0%,#F3F3F0 100%);
+  font-family:"Poppins",sans-serif;color:#111111;}
+.abs{position:absolute}
+.shadow{box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+.card{position:absolute;background:#fff;box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+.fade900{-webkit-mask-image:linear-gradient(to bottom,#000 0px,#000 900px,rgba(0,0,0,0) 1060px);mask-image:linear-gradient(to bottom,#000 0px,#000 900px,rgba(0,0,0,0) 1060px)}
+.mono{font-family:"JetBrains Mono",monospace}
+svg{display:block}
+
+#cam{position:absolute;left:0;top:0;width:100%;height:100%}
+#r2-gh{left:110px;top:470px;width:860px;height:500px;border-radius:40px}
+#r2-gh .mk{position:absolute;left:64px;top:64px}
+#r2-gh .own{position:absolute;left:64px;top:232px;font-size:44px;line-height:60px;font-weight:600;color:#6B6B6B}
+#r2-gh .nm{position:absolute;left:58px;top:294px;font-size:104px;line-height:124px;font-weight:700;letter-spacing:-2px;color:#111}
+#r2-gh .pub{position:absolute;right:64px;top:74px;border:3px solid #D0D7DE;border-radius:40px;padding:6px 26px;font-size:30px;color:#57606A;font-weight:600}
+#r2-gh .ds{position:absolute;left:64px;top:430px;font-size:32px;line-height:44px;color:#57606A}
+#r2-logo{left:0;top:1100px;width:1080px;height:1920px}
+#r2-tile{position:absolute;left:410px;top:500px;width:260px;height:260px;border-radius:72px;
+  background:linear-gradient(145deg,#F0647A 0%,#E54D5E 100%);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+#r2-word{position:absolute;left:0;width:1080px;top:800px;line-height:136px;text-align:center;font-size:112px;font-weight:700;letter-spacing:-2px;color:#111}
+#r2-bgblur{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden;opacity:0}
+#r2-bgblur .dup{position:absolute;left:-900px;top:-120px;width:2865px;height:1920px;background:url("assets/logos/omniroute_dashboard.png") 0 0/100% 100% no-repeat;filter:blur(40px) saturate(.7) brightness(1.05)}
+#r2-bgblur .wash{position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(255,255,255,.93)}
+#r2-frame{position:absolute;left:24px;top:200px;width:1032px;height:1040px;border-radius:36px;background:#fff;overflow:hidden;opacity:0;
+  box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+#r2-img{position:absolute;left:0;top:0;width:1279px;height:857px;transform-origin:0 0}
+</style></head><body>
+<div id="root" data-composition-id="r2" data-start="0" data-duration="6.45000" data-width="1080" data-height="1920">
+
+<div id="r2-bgblur"><div class="dup"></div><div class="wash"></div></div>
+<div id="cam" class="clip" data-start="0" data-duration="6.45000" data-track-index="0">
+  <div id="r2-gh" class="card">
+    <div class="mk"><svg width="150" height="150" viewBox="0 0 24 24"><path fill="#111" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div>
+    <div class="pub">Public</div>
+    <div class="own">diegosouzapw /</div>
+    <div class="nm">OmniRoute</div>
+    <div class="ds">Free MIT AI gateway</div>
+  </div>
+  <div id="r2-logo" class="abs">
+    <div id="r2-tile"><svg width="150" height="150" viewBox="14 14 62 56" xmlns="http://www.w3.org/2000/svg"><g stroke="#fff" stroke-width="5.5" stroke-linecap="round" fill="none"><line x1="22" y1="42" x2="38" y2="42"/><path d="M39 42 C52 42,54 26,66 24"/><path d="M39 42 C54 42,56 42,68 42"/><path d="M39 42 C52 42,54 58,66 60"/></g><circle cx="39" cy="42" r="5.6" fill="#fff"/></svg></div>
+    <div id="r2-word">OmniRoute</div>
+  </div>
+</div>
+<div id="r2-frame"><img id="r2-img" src="assets/logos/omniroute_dashboard.png" alt="OmniRoute dashboard"/></div>
+
+</div>
+<script>
+const DUR = 6.45000;
+const tl = gsap.timeline({ paused: true });
+
+gsap.set("#r2-img",{x:-200.0,y:0,scale:1.2135});
+gsap.set("#r2-logo",{opacity:0});
+tl.set("#r2-logo",{opacity:1},2.0);
+// STEP to next item: world camera 0.5 s power3.inOut, starts 0.25 s before the name is spoken ("OmniRoute" ~2.3 s)
+tl.fromTo("#cam",{y:0},{y:-1100,duration:.5,ease:"power3.inOut"},2.05);
+// logo -> real UI reveal (frame stays stationary, only the picture inside moves)
+tl.to("#r2-logo",{opacity:0,scale:1.06,duration:.45,ease:"power2.inOut",transformOrigin:"540px 720px"},3.12);
+tl.fromTo("#r2-bgblur",{opacity:0},{opacity:1,duration:.6,ease:"power2.out"},3.12);
+tl.fromTo("#r2-frame",{opacity:0,y:50,scale:.95,transformOrigin:"540px 720px"},{opacity:1,y:0,scale:1,duration:.6,ease:"power3.out"},3.1);
+// internal camera moves 1.15x-1.4x, 0.6 s, power2.inOut
+tl.to("#r2-img",{x:-421.2,y:-133.2,scale:1.42,duration:.6,ease:"power2.inOut"},3.95);
+tl.to("#r2-img",{x:-316.0,y:-62.4,scale:1.30,duration:.6,ease:"power2.inOut"},5.25);
+
+window.__timelines["r2"] = tl;
+tl.seek(0);
+</script></body></html>

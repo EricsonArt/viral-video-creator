@@ -1,0 +1,312 @@
+[
+ {
+  "t": 1.45,
+  "sound": "dull soft pop",
+  "event": "R1: Claude Code UI card lands"
+ },
+ {
+  "t": 1.98,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.0569,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.1338,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.2108,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.2877,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.3646,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.4415,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.5185,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.5954,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.6723,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.7492,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.8262,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.9031,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 2.98,
+  "sound": "dull soft pop",
+  "event": "R1: infinity tile lands"
+ },
+ {
+  "t": 2.98,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 3.0569,
+  "sound": "key tick",
+  "event": "R1: prompt typing"
+ },
+ {
+  "t": 7.5867,
+  "sound": "dull soft pop",
+  "event": "R2: real OmniRoute UI frame lands"
+ },
+ {
+  "t": 15.8167,
+  "sound": "dull soft pop",
+  "event": "R4: LIMIT stamp lands"
+ },
+ {
+  "t": 16.5167,
+  "sound": "whoosh v1 (peak aligned to whip midpoint)",
+  "event": "R4: WHIP midpoint (camera at peak speed)"
+ },
+ {
+  "t": 17.1367,
+  "sound": "dull soft pop",
+  "event": "R4: free provider card lands"
+ },
+ {
+  "t": 17.7167,
+  "sound": "two-note chime",
+  "event": "R4: check badge confirms connection"
+ },
+ {
+  "t": 18.0667,
+  "sound": "key tick",
+  "event": "R4: session lines stream in"
+ },
+ {
+  "t": 18.4867,
+  "sound": "key tick",
+  "event": "R4: session lines stream in"
+ },
+ {
+  "t": 18.9067,
+  "sound": "key tick",
+  "event": "R4: session lines stream in"
+ },
+ {
+  "t": 19.3267,
+  "sound": "key tick",
+  "event": "R4: session lines stream in"
+ },
+ {
+  "t": 19.7467,
+  "sound": "key tick",
+  "event": "R4: session lines stream in"
+ },
+ {
+  "t": 20.1667,
+  "sound": "key tick",
+  "event": "R4: session lines stream in"
+ },
+ {
+  "t": 22.8433,
+  "sound": "dull soft pop",
+  "event": "R5: compressed prompt arrives at the model tile"
+ },
+ {
+  "t": 31.45,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 31.5214,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 31.5929,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 31.6643,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 31.7357,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 31.8071,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 31.8786,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 31.95,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 32.0214,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 32.0929,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 32.1643,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 32.2357,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 32.3071,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 32.3786,
+  "sound": "key tick",
+  "event": "R7: handle typing"
+ },
+ {
+  "t": 32.48,
+  "sound": "soft bubbly click",
+  "event": "R7: button pressed"
+ },
+ {
+  "t": 39.56,
+  "sound": "dull soft pop",
+  "event": "CTA: CTA input card lands (t relative to CTA start)"
+ },
+ {
+  "t": 39.84,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 39.9114,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 39.9829,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.0543,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.1257,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.1971,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.2686,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.34,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.4114,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.4829,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.5543,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.6257,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.6971,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.7686,
+  "sound": "key tick",
+  "event": "CTA: handle typing"
+ },
+ {
+  "t": 40.9686,
+  "sound": "soft bubbly click",
+  "event": "CTA: CTA button pressed"
+ },
+ {
+  "t": 1.4667,
+  "sound": "riser start",
+  "event": "intro riser"
+ },
+ {
+  "t": 3.9667,
+  "sound": "riser end",
+  "event": "hook -> first point cut (R1->R2)"
+ }
+]

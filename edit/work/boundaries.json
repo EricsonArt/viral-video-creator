@@ -1,0 +1,52 @@
+{
+ "B1 hook->P2": {
+  "gap_min": 3.86,
+  "prev_end": 3.87,
+  "next_onset": 3.92
+ },
+ "B2 P2->P3": {
+  "gap_min": 7.06,
+  "prev_end": 7.01,
+  "next_onset": 7.1
+ },
+ "B3 P3->P4": {
+  "gap_min": 10.25,
+  "prev_end": 10.21,
+  "next_onset": 10.36
+ },
+ "B4 P4->P5": {
+  "gap_min": 14.45,
+  "prev_end": 14.43,
+  "next_onset": 14.46
+ },
+ "B5 P5->P6": {
+  "gap_min": 18.69,
+  "prev_end": 18.6,
+  "next_onset": 18.75
+ },
+ "B6 P6->P7": {
+  "gap_min": 20.69,
+  "prev_end": 20.69,
+  "next_onset": 20.73
+ },
+ "B7 P7->P8": {
+  "gap_min": 23.59,
+  "prev_end": 23.6,
+  "next_onset": 23.6
+ },
+ "B8 P8->P9": {
+  "gap_min": 28.43,
+  "prev_end": 28.4,
+  "next_onset": 28.45
+ },
+ "B9 inside P9": {
+  "gap_min": 35.02,
+  "prev_end": 34.99,
+  "next_onset": 35.05
+ },
+ "B10 P9->P10": {
+  "gap_min": 39.37,
+  "prev_end": 39.34,
+  "next_onset": 39.4
+ }
+}

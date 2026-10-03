@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080, height=1920"/>
+<script src="lib/gsap.min.js"></script>
+
+<style>
+@font-face{font-family:"Poppins";font-weight:400;font-style:normal;src:url("assets/fonts/Poppins-Regular.ttf") format("truetype");}
+@font-face{font-family:"Poppins";font-weight:600;font-style:normal;src:url("assets/fonts/Poppins-SemiBold.ttf") format("truetype");}
+@font-face{font-family:"Poppins";font-weight:700;font-style:normal;src:url("assets/fonts/Poppins-Bold.ttf") format("truetype");}
+@font-face{font-family:"Instrument Serif";font-weight:400;font-style:normal;src:url("assets/fonts/InstrumentSerif-Regular.ttf") format("truetype");}
+@font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;src:url("assets/fonts/JetBrainsMono-Medium.ttf") format("truetype");}
+@font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;src:url("assets/fonts/JetBrainsMono-Bold.ttf") format("truetype");}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#F3F3F0}
+#root{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;
+  background:radial-gradient(farthest-corner at 50% 36%,#FFFFFF 0%,#F3F3F0 100%);
+  font-family:"Poppins",sans-serif;color:#111111;}
+.abs{position:absolute}
+.shadow{box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+.card{position:absolute;background:#fff;box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+.fade900{-webkit-mask-image:linear-gradient(to bottom,#000 0px,#000 900px,rgba(0,0,0,0) 1060px);mask-image:linear-gradient(to bottom,#000 0px,#000 900px,rgba(0,0,0,0) 1060px)}
+.mono{font-family:"JetBrains Mono",monospace}
+svg{display:block}
+
+#cam{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:540px 760px}
+#r4-a{left:110px;top:420px;width:860px;height:600px;border-radius:44px}
+#r4-b{left:1190px;top:400px;width:860px;height:760px;border-radius:44px}
+#r4-a .hd{position:absolute;left:56px;top:54px;display:flex;align-items:center;gap:22px;font-size:46px;font-weight:600}
+#r4-a .track{position:absolute;left:56px;top:250px;width:748px;height:52px;border-radius:26px;background:#EFEDE6;overflow:hidden}
+#r4-a .fill{position:absolute;left:0;top:0;height:52px;width:466px;border-radius:26px;background:#D97757}
+#r4-a .pct{position:absolute;left:56px;top:330px;font-size:112px;font-weight:700;letter-spacing:-3px;color:#111}
+#r4-stamp{position:absolute;right:56px;top:76px;border:10px solid #FF3B30;border-radius:22px;padding:2px 26px;font-size:76px;font-weight:700;color:#FF3B30;letter-spacing:2px;opacity:0;transform-origin:50% 50%}
+#r4-b .tiles{position:absolute;left:94px;top:50px;display:flex;gap:24px}
+#r4-b .tile{position:relative;width:150px;height:150px;border-radius:48px;background:#F7F6F2;display:flex;align-items:center;justify-content:center}
+#r4-b .tile img{width:84px;height:84px}
+#r4-badge{position:absolute;right:-14px;top:-14px;opacity:0}
+#r4-b .sess{position:absolute;left:56px;top:262px;width:748px;height:440px;border-radius:30px;background:#F8F7F3;overflow:hidden}
+#r4-b .row{position:absolute;left:30px;height:34px;display:flex;align-items:center;gap:16px;font-size:30px;opacity:0}
+#r4-b .row i{display:block;width:14px;height:14px;border-radius:50%;background:#34C759}
+#r4-b .row b{font-weight:600}
+#r4-b .row span{font-family:"JetBrains Mono",monospace;font-weight:500;color:#5E5D59;font-size:28px}
+#r4-b .bar{position:absolute;left:30px;height:26px;border-radius:13px;background:#D7E9DC;opacity:0}
+#r4-b .sweep{position:absolute;left:30px;top:396px;width:688px;height:10px;border-radius:5px;background:#E6E4DC;overflow:hidden}
+#r4-b .sweep div{position:absolute;left:0;top:0;width:200px;height:10px;border-radius:5px;background:#34C759}
+</style></head><body>
+<div id="root" data-composition-id="r4" data-start="0" data-duration="6.26667" data-width="1080" data-height="1920">
+
+<div id="cam" class="clip" data-start="0" data-duration="6.26667" data-track-index="0">
+  <div id="r4-a" class="card">
+    <div class="hd"><svg width="64" height="64" viewBox="0 0 24 24"><path fill="#D97757" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg><span>Claude</span></div>
+    <div class="track"><div class="fill" id="r4-fill"></div></div>
+    <div class="pct" id="r4-pct">62%</div>
+    <div id="r4-stamp">LIMIT</div>
+  </div>
+  <div id="r4-b" class="card">
+    <div class="tiles"><div class="tile"><img src="assets/logos/gemini-color.svg" alt=""/><div id=r4-badge><svg width="60" height="60" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#34C759"/><path d="M11 20.5 L17.5 27 L29.5 13.5" fill="none" stroke="#fff" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="tile"><img src="assets/logos/deepseek-color.svg" alt=""/></div><div class="tile"><img src="assets/logos/mistral-color.svg" alt=""/></div><div class="tile"><img src="assets/logos/groq.svg" alt=""/></div></div>
+    <div class="sess"><div class="row" id="r4-row0" style="top:20px"><i></i><b>Read</b><span>route.ts</span></div><div class="row" id="r4-row1" style="top:74px"><i></i><b>Write</b><span>fallback.ts</span></div><div class="row" id="r4-row2" style="top:128px"><i></i><b>Read</b><span>session.ts</span></div><div class="row" id="r4-row3" style="top:182px"><i></i><b>Write</b><span>limits.ts</span></div><div class="row" id="r4-row4" style="top:236px"><i></i><b>Read</b><span>config.ts</span></div><div class="row" id="r4-row5" style="top:290px"><i></i><b>Write</b><span>index.ts</span></div><div class="sweep"><div id="r4-sweep"></div></div></div>
+  </div>
+</div>
+</div>
+<script>
+const DUR = 6.26667;
+const tl = gsap.timeline({ paused: true });
+
+const pc = {v:62};
+tl.to(pc,{v:100,duration:.95,ease:"power2.inOut",onUpdate:()=>{document.getElementById("r4-pct").textContent=Math.round(pc.v)+"%";}},0.30);
+tl.to("#r4-fill",{width:748,duration:.95,ease:"power2.inOut"},0.30);
+tl.fromTo("#r4-stamp",{opacity:0,scale:1.9,rotation:-2},{opacity:1,scale:1,rotation:-8,duration:.2,ease:"power4.in"},1.18);
+// WHIP (max one per run): out 1.55-2.00 power3.in, in 2.00-2.60 power3.out
+tl.fromTo("#cam",{x:0},{x:-463,duration:.45,ease:"power3.in"},1.55);
+tl.to("#cam",{x:-1080,duration:.6,ease:"power3.out"},2.00);
+// DOF: the card that lost focus softens while the new hero is active
+tl.to("#r4-a",{filter:"blur(9px)",opacity:.4,duration:.5,ease:"power2.inOut"},2.00);
+// free provider card: check badge, then the session keeps streaming
+tl.fromTo("#r4-badge",{opacity:0,scale:.3},{opacity:1,scale:1,duration:.38,ease:"back.out(2)"},3.12);
+tl.fromTo("#r4-row0",{opacity:0,x:-22},{opacity:1,x:0,duration:.28,ease:"power2.out"},3.55);
+tl.fromTo("#r4-row1",{opacity:0,x:-22},{opacity:1,x:0,duration:.28,ease:"power2.out"},3.97);
+tl.fromTo("#r4-row2",{opacity:0,x:-22},{opacity:1,x:0,duration:.28,ease:"power2.out"},4.39);
+tl.fromTo("#r4-row3",{opacity:0,x:-22},{opacity:1,x:0,duration:.28,ease:"power2.out"},4.81);
+tl.fromTo("#r4-row4",{opacity:0,x:-22},{opacity:1,x:0,duration:.28,ease:"power2.out"},5.23);
+tl.fromTo("#r4-row5",{opacity:0,x:-22},{opacity:1,x:0,duration:.28,ease:"power2.out"},5.65);
+
+tl.to("#r4-sweep",{x:488,duration:1.1,ease:"sine.inOut"},3.9);
+tl.to("#r4-sweep",{x:0,duration:1.1,ease:"sine.inOut"},5.1);
+// GLIDE (scale change <= 0.04)
+tl.to("#cam",{scale:1.035,duration:2.0,ease:"sine.inOut"},4.2);
+
+window.__timelines["r4"] = tl;
+tl.seek(0);
+</script></body></html>

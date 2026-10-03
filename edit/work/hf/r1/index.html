@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080, height=1920"/>
+<script src="lib/gsap.min.js"></script>
+
+<style>
+@font-face{font-family:"Poppins";font-weight:400;font-style:normal;src:url("assets/fonts/Poppins-Regular.ttf") format("truetype");}
+@font-face{font-family:"Poppins";font-weight:600;font-style:normal;src:url("assets/fonts/Poppins-SemiBold.ttf") format("truetype");}
+@font-face{font-family:"Poppins";font-weight:700;font-style:normal;src:url("assets/fonts/Poppins-Bold.ttf") format("truetype");}
+@font-face{font-family:"Instrument Serif";font-weight:400;font-style:normal;src:url("assets/fonts/InstrumentSerif-Regular.ttf") format("truetype");}
+@font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;src:url("assets/fonts/JetBrainsMono-Medium.ttf") format("truetype");}
+@font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;src:url("assets/fonts/JetBrainsMono-Bold.ttf") format("truetype");}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#F3F3F0}
+#root{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;
+  background:radial-gradient(farthest-corner at 50% 36%,#FFFFFF 0%,#F3F3F0 100%);
+  font-family:"Poppins",sans-serif;color:#111111;}
+.abs{position:absolute}
+.shadow{box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+.card{position:absolute;background:#fff;box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+.fade900{-webkit-mask-image:linear-gradient(to bottom,#000 0px,#000 900px,rgba(0,0,0,0) 1060px);mask-image:linear-gradient(to bottom,#000 0px,#000 900px,rgba(0,0,0,0) 1060px)}
+.mono{font-family:"JetBrains Mono",monospace}
+svg{display:block}
+
+#cam{position:absolute;left:0;top:0;width:100%;height:100%}
+#r1-logo{left:110px;top:624px;width:860px;height:190px;border-radius:72px;display:flex;align-items:center;justify-content:center}
+#r1-logo img{width:640px;height:auto}
+#r1-ui{left:70px;top:252px;width:940px;height:570px;border-radius:44px;overflow:hidden;background:#FFFFFF}
+#r1-ui .hdr{position:absolute;left:0;top:0;width:100%;height:92px;border-bottom:2px solid #F0EEE8;display:flex;align-items:center;padding-left:34px;gap:18px}
+#r1-ui .hdr b{font-weight:600;font-size:34px;letter-spacing:-.2px}
+#r1-ui .dot{width:16px;height:16px;border-radius:50%;background:#34C759;position:absolute;right:38px;top:38px}
+#r1-ui .bubble{position:absolute;left:34px;top:114px;width:872px;height:90px;border-radius:30px;background:#F5F4EE;font-size:34px;font-weight:400;display:flex;align-items:center;padding-left:30px;color:#141413}
+#r1-ui .step{position:absolute;left:34px;height:60px;display:flex;align-items:center;gap:18px;font-size:32px;color:#141413}
+#r1-ui .step i{display:block;width:16px;height:16px;border-radius:50%;background:#34C759}
+#r1-ui .step b{font-weight:600}
+#r1-ui .step span.f{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:30px;color:#5E5D59}
+#r1-ui .diff{position:absolute;left:34px;top:362px;width:872px;height:160px;border-radius:24px;background:#F5F4EE;overflow:hidden}
+#r1-ui .diff .ln{position:absolute;left:0;height:42px;width:100%}
+#r1-ui .diff .ln .g{position:absolute;left:0;top:0;height:42px;background:#D7F0DD;border-left:6px solid #34C759}
+#r1-ui .diff .ln .t{position:absolute;left:26px;top:11px;height:20px;border-radius:10px;background:#8FBF9C}
+#r1-caret{display:inline-block;width:3px;height:36px;background:#D97757;margin-left:2px;vertical-align:middle;opacity:0}
+#r1-inf{left:445px;top:50px;width:190px;height:160px;border-radius:72px;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<div id="root" data-composition-id="r1" data-start="0" data-duration="3.96667" data-width="1080" data-height="1920">
+
+<div id="cam" class="clip fade900" data-start="0" data-duration="3.96667" data-track-index="0">
+  <div id="r1-logo" class="card"><img src="assets/logos/claudecode_lockup.svg" alt="Claude Code"/></div>
+  <div id="r1-ui" class="card">
+    <div class="hdr"><svg width="44" height="44" viewBox="0 0 24 24"><path fill="#D97757" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg><b>Claude Code</b><span class="dot"></span></div>
+    <div class="bubble"><span id="r1-typed"><span id="r1t-c0" style="opacity:0">D</span><span id="r1t-c1" style="opacity:0">o</span><span id="r1t-c2" style="opacity:0">d</span><span id="r1t-c3" style="opacity:0">a</span><span id="r1t-c4" style="opacity:0">j</span><span id="r1t-c5" style="opacity:0">&nbsp;</span><span id="r1t-c6" style="opacity:0">t</span><span id="r1t-c7" style="opacity:0">r</span><span id="r1t-c8" style="opacity:0">y</span><span id="r1t-c9" style="opacity:0">b</span><span id="r1t-c10" style="opacity:0">&nbsp;</span><span id="r1t-c11" style="opacity:0">c</span><span id="r1t-c12" style="opacity:0">i</span><span id="r1t-c13" style="opacity:0">e</span><span id="r1t-c14" style="opacity:0">m</span><span id="r1t-c15" style="opacity:0">n</span><span id="r1t-c16" style="opacity:0">y</span><span id="r1t-c17" style="opacity:0">&nbsp;</span><span id="r1t-c18" style="opacity:0">d</span><span id="r1t-c19" style="opacity:0">o</span><span id="r1t-c20" style="opacity:0">&nbsp;</span><span id="r1t-c21" style="opacity:0">a</span><span id="r1t-c22" style="opacity:0">p</span><span id="r1t-c23" style="opacity:0">l</span><span id="r1t-c24" style="opacity:0">i</span><span id="r1t-c25" style="opacity:0">k</span><span id="r1t-c26" style="opacity:0">a</span><span id="r1t-c27" style="opacity:0">c</span><span id="r1t-c28" style="opacity:0">j</span><span id="r1t-c29" style="opacity:0">i</span></span><span id="r1-caret"></span></div>
+    <div class="step" id="r1-s1" style="top:226px;opacity:0"><i></i><b>Read</b><span class="f">App.tsx</span></div>
+    <div class="step" id="r1-s2" style="top:290px;opacity:0"><i></i><b>Write</b><span class="f">theme.ts</span></div>
+    <div class="diff" id="r1-diff" style="opacity:0">
+      <div class="ln" style="top:10px"><div class="g" id="r1-g1" style="width:0px"></div><div class="t" id="r1-t1" style="width:0px"></div></div>
+      <div class="ln" style="top:56px"><div class="g" id="r1-g2" style="width:0px"></div><div class="t" id="r1-t2" style="width:0px"></div></div>
+      <div class="ln" style="top:102px"><div class="g" id="r1-g3" style="width:0px"></div><div class="t" id="r1-t3" style="width:0px"></div></div>
+    </div>
+  </div>
+  <div id="r1-inf" class="card" style="opacity:0">
+    <svg width="132" height="86" viewBox="0 0 180 120"><path id="r1-infp" pathLength="1" d="M30,60 C30,25 60,25 90,60 C120,95 150,95 150,60 C150,25 120,25 90,60 C60,95 30,95 30,60 Z" fill="none" stroke="#D97757" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+  </div>
+</div>
+</div>
+<script>
+const DUR = 3.96667;
+const tl = gsap.timeline({ paused: true });
+
+// start state: logo card landed (clean landing at frame 0); the rest waits
+gsap.set("#r1-ui",{opacity:0,y:70,scale:.94,transformOrigin:"50% 50%"});
+gsap.set("#r1-inf",{scale:.6,y:20});
+// logo -> UI reveal (named product intro: logo first, then the real UI)
+tl.to("#r1-logo",{opacity:0,scale:.9,y:-24,duration:.5,ease:"power2.inOut"},1.02);
+tl.to("#r1-ui",{opacity:1,y:0,scale:1,duration:.62,ease:"power3.out"},1.12);
+// typing in the prompt bubble
+tl.set("#r1t-c0",{opacity:1},1.98);
+tl.set("#r1t-c1",{opacity:1},2.0185);
+tl.set("#r1t-c2",{opacity:1},2.0569);
+tl.set("#r1t-c3",{opacity:1},2.0954);
+tl.set("#r1t-c4",{opacity:1},2.1338);
+tl.set("#r1t-c5",{opacity:1},2.1723);
+tl.set("#r1t-c6",{opacity:1},2.2108);
+tl.set("#r1t-c7",{opacity:1},2.2492);
+tl.set("#r1t-c8",{opacity:1},2.2877);
+tl.set("#r1t-c9",{opacity:1},2.3262);
+tl.set("#r1t-c10",{opacity:1},2.3646);
+tl.set("#r1t-c11",{opacity:1},2.4031);
+tl.set("#r1t-c12",{opacity:1},2.4415);
+tl.set("#r1t-c13",{opacity:1},2.48);
+tl.set("#r1t-c14",{opacity:1},2.5185);
+tl.set("#r1t-c15",{opacity:1},2.5569);
+tl.set("#r1t-c16",{opacity:1},2.5954);
+tl.set("#r1t-c17",{opacity:1},2.6338);
+tl.set("#r1t-c18",{opacity:1},2.6723);
+tl.set("#r1t-c19",{opacity:1},2.7108);
+tl.set("#r1t-c20",{opacity:1},2.7492);
+tl.set("#r1t-c21",{opacity:1},2.7877);
+tl.set("#r1t-c22",{opacity:1},2.8262);
+tl.set("#r1t-c23",{opacity:1},2.8646);
+tl.set("#r1t-c24",{opacity:1},2.9031);
+tl.set("#r1t-c25",{opacity:1},2.9415);
+tl.set("#r1t-c26",{opacity:1},2.98);
+tl.set("#r1t-c27",{opacity:1},3.0185);
+tl.set("#r1t-c28",{opacity:1},3.0569);
+tl.set("#r1t-c29",{opacity:1},3.0954);
+
+tl.set("#r1-caret",{opacity:1},1.75);
+tl.set("#r1-caret",{opacity:0},2.0);
+tl.set("#r1-caret",{opacity:1},2.25);
+tl.set("#r1-caret",{opacity:0},2.5);
+tl.set("#r1-caret",{opacity:1},2.75);
+tl.set("#r1-caret",{opacity:0},3.0);
+tl.set("#r1-caret",{opacity:1},3.25);
+tl.set("#r1-caret",{opacity:0},3.5);
+tl.set("#r1-caret",{opacity:1},3.5954);
+
+tl.set("#r1-caret",{opacity:0},3.7154000000000003);
+// tool steps stream in
+tl.fromTo("#r1-s1",{opacity:0,x:-24},{opacity:1,x:0,duration:.3,ease:"power2.out"},3.02);
+tl.fromTo("#r1-s2",{opacity:0,x:-24},{opacity:1,x:0,duration:.3,ease:"power2.out"},3.28);
+tl.fromTo("#r1-diff",{opacity:0},{opacity:1,duration:.25,ease:"power1.out"},3.46);
+tl.to("#r1-g1",{width:872,duration:.22,ease:"power2.out"},3.52);tl.to("#r1-t1",{width:560,duration:.22,ease:"power2.out"},3.52);
+tl.to("#r1-g2",{width:872,duration:.22,ease:"power2.out"},3.64);tl.to("#r1-t2",{width:420,duration:.22,ease:"power2.out"},3.64);
+tl.to("#r1-g3",{width:872,duration:.22,ease:"power2.out"},3.76);tl.to("#r1-t3",{width:640,duration:.22,ease:"power2.out"},3.76);
+// infinity tile ("niemal nieograniczonym limitem")
+tl.fromTo("#r1-inf",{opacity:0,scale:.6,y:20},{opacity:1,scale:1,y:0,duration:.5,ease:"back.out(1.5)"},2.58);
+tl.to("#r1-infp",{strokeDashoffset:0,duration:.8,ease:"power2.inOut"},2.72);
+
+window.__timelines["r1"] = tl;
+tl.seek(0);
+</script></body></html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080, height=1920"/>
+<script src="lib/gsap.min.js"></script>
+
+<style>
+@font-face{font-family:"Poppins";font-weight:400;font-style:normal;src:url("assets/fonts/Poppins-Regular.ttf") format("truetype");}
+@font-face{font-family:"Poppins";font-weight:600;font-style:normal;src:url("assets/fonts/Poppins-SemiBold.ttf") format("truetype");}
+@font-face{font-family:"Poppins";font-weight:700;font-style:normal;src:url("assets/fonts/Poppins-Bold.ttf") format("truetype");}
+@font-face{font-family:"Instrument Serif";font-weight:400;font-style:normal;src:url("assets/fonts/InstrumentSerif-Regular.ttf") format("truetype");}
+@font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;src:url("assets/fonts/JetBrainsMono-Medium.ttf") format("truetype");}
+@font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;src:url("assets/fonts/JetBrainsMono-Bold.ttf") format("truetype");}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#F3F3F0}
+#root{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;
+  background:radial-gradient(farthest-corner at 50% 36%,#FFFFFF 0%,#F3F3F0 100%);
+  font-family:"Poppins",sans-serif;color:#111111;}
+.abs{position:absolute}
+.shadow{box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+.card{position:absolute;background:#fff;box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+.fade900{-webkit-mask-image:linear-gradient(to bottom,#000 0px,#000 900px,rgba(0,0,0,0) 1060px);mask-image:linear-gradient(to bottom,#000 0px,#000 900px,rgba(0,0,0,0) 1060px)}
+.mono{font-family:"JetBrains Mono",monospace}
+svg{display:block}
+
+html,body{background:transparent!important}
+#root{background:transparent!important}
+#cta{position:absolute;left:43px;top:1612px;width:994px;height:212px;border-radius:44px;background:#fff;
+  box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+#cta .av{position:absolute;left:34px;top:58px;width:96px;height:96px;border-radius:50%;background:#E4E2DA;overflow:hidden}
+#cta .at{position:absolute;left:160px;top:62px;font-size:56px;line-height:88px;color:#767676;font-weight:600}
+#cta .tx{position:absolute;left:214px;top:62px;font-size:56px;line-height:88px;color:#111;font-weight:600;white-space:nowrap}
+#cta-caret{display:inline-block;width:4px;height:58px;background:#FF5A1F;vertical-align:middle;opacity:0;margin-left:2px}
+#cta-btn{position:absolute;right:30px;top:62px;width:96px;height:88px;border-radius:44px;background:#FF5A1F;box-shadow:0 6px 0 #D94710;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<div id="root" data-composition-id="cta" data-start="0" data-duration="1.83333" data-width="1080" data-height="1920">
+
+<div id="cta" class="clip" data-start="0" data-duration="1.83333" data-track-index="0">
+  <div class="av"><svg width="96" height="96" viewBox="0 0 96 96"><circle cx="48" cy="38" r="17" fill="#fff"/><path d="M14 96 C14 70 30 60 48 60 C66 60 82 70 82 96 Z" fill="#fff"/></svg></div>
+  <div class="at">@</div>
+  <div class="tx"><span id="cta-typed"><span id="ctat-c0" style="opacity:0">e</span><span id="ctat-c1" style="opacity:0">r</span><span id="ctat-c2" style="opacity:0">y</span><span id="ctat-c3" style="opacity:0">k</span><span id="ctat-c4" style="opacity:0">_</span><span id="ctat-c5" style="opacity:0">h</span><span id="ctat-c6" style="opacity:0">a</span><span id="ctat-c7" style="opacity:0">j</span><span id="ctat-c8" style="opacity:0">d</span><span id="ctat-c9" style="opacity:0">u</span><span id="ctat-c10" style="opacity:0">c</span><span id="ctat-c11" style="opacity:0">z</span><span id="ctat-c12" style="opacity:0">e</span><span id="ctat-c13" style="opacity:0">k</span></span><span id="cta-caret"></span></div>
+  <div id="cta-btn"><svg width="48" height="48" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+</div>
+</div>
+<script>
+const DUR = 1.83333;
+const tl = gsap.timeline({ paused: true });
+
+gsap.set("#cta",{opacity:0,y:30,scale:.94,transformOrigin:"50% 50%"});
+tl.to("#cta",{opacity:1,y:0,scale:1,duration:.3,ease:"power3.out"},0);
+tl.set("#cta-caret",{opacity:1},0.2);
+tl.set("#cta-caret",{opacity:0},0.45);
+tl.set("#cta-caret",{opacity:1},0.7);
+tl.set("#cta-caret",{opacity:0},0.95);
+tl.set("#cta-caret",{opacity:1},1.2);
+tl.set("#cta-caret",{opacity:0},1.45);
+tl.set("#cta-caret",{opacity:1},1.5586);
+
+tl.set("#ctat-c0",{opacity:1},0.48);
+tl.set("#ctat-c1",{opacity:1},0.5514);
+tl.set("#ctat-c2",{opacity:1},0.6229);
+tl.set("#ctat-c3",{opacity:1},0.6943);
+tl.set("#ctat-c4",{opacity:1},0.7657);
+tl.set("#ctat-c5",{opacity:1},0.8371);
+tl.set("#ctat-c6",{opacity:1},0.9086);
+tl.set("#ctat-c7",{opacity:1},0.98);
+tl.set("#ctat-c8",{opacity:1},1.0514);
+tl.set("#ctat-c9",{opacity:1},1.1229);
+tl.set("#ctat-c10",{opacity:1},1.1943);
+tl.set("#ctat-c11",{opacity:1},1.2657);
+tl.set("#ctat-c12",{opacity:1},1.3371);
+tl.set("#ctat-c13",{opacity:1},1.4086);
+
+tl.to("#cta-btn",{scale:.9,y:5,duration:.08,ease:"power2.out",transformOrigin:"50% 50%"},1.609);
+tl.to("#cta-btn",{scale:1,y:0,duration:.14,ease:"power2.out"},1.709);
+tl.set("#cta-caret",{opacity:0},1.609);
+
+window.__timelines["cta"] = tl;
+tl.seek(0);
+</script></body></html>

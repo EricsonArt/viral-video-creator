@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="lib/gsap.min.js"></script>
+<style>
+@font-face{font-family:"Poppins";font-weight:700;src:url("assets/fonts/Poppins-Bold.ttf") format("truetype");}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#F3F3F0}
+#root{position:absolute;left:0;top:0;width:1080px;height:1920px;background:radial-gradient(ellipse 80% 60% at 50% 36%,#fff 0%,#F3F3F0 100%);font-family:Poppins,sans-serif;overflow:hidden}
+#cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:540px 700px}
+.card{position:absolute;background:#fff;border-radius:72px;box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06);font-weight:700;font-size:96px;color:#111;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<div id="root" data-composition-id="test" data-start="0" data-duration="1" data-width="1080" data-height="1920">
+ <div id="cam" class="clip" data-start="0" data-duration="1" data-track-index="0">
+  <div class="card" id="a" style="left:100px;top:300px;width:880px;height:420px">Claude Code</div>
+  <div class="card" id="b" style="left:1250px;top:300px;width:880px;height:420px">OmniRoute</div>
+ </div>
+</div>
+<script>
+window.__timelines=window.__timelines||{};
+const tl=gsap.timeline({paused:true});
+tl.fromTo("#cam",{x:0},{x:-1150,duration:0.6,ease:"power3.inOut"},0.2);
+tl.fromTo("#a",{filter:"blur(0px)",opacity:1},{filter:"blur(9px)",opacity:.4,duration:.6,ease:"power3.inOut"},0.2);
+window.__timelines["test"]=tl; tl.seek(0);
+</script></body></html>

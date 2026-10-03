@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080, height=1920"/>
+<script src="lib/gsap.min.js"></script>
+
+<style>
+@font-face{font-family:"Poppins";font-weight:400;font-style:normal;src:url("assets/fonts/Poppins-Regular.ttf") format("truetype");}
+@font-face{font-family:"Poppins";font-weight:600;font-style:normal;src:url("assets/fonts/Poppins-SemiBold.ttf") format("truetype");}
+@font-face{font-family:"Poppins";font-weight:700;font-style:normal;src:url("assets/fonts/Poppins-Bold.ttf") format("truetype");}
+@font-face{font-family:"Instrument Serif";font-weight:400;font-style:normal;src:url("assets/fonts/InstrumentSerif-Regular.ttf") format("truetype");}
+@font-face{font-family:"JetBrains Mono";font-weight:500;font-style:normal;src:url("assets/fonts/JetBrainsMono-Medium.ttf") format("truetype");}
+@font-face{font-family:"JetBrains Mono";font-weight:700;font-style:normal;src:url("assets/fonts/JetBrainsMono-Bold.ttf") format("truetype");}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#F3F3F0}
+#root{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;
+  background:radial-gradient(farthest-corner at 50% 36%,#FFFFFF 0%,#F3F3F0 100%);
+  font-family:"Poppins",sans-serif;color:#111111;}
+.abs{position:absolute}
+.shadow{box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+.card{position:absolute;background:#fff;box-shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+.fade900{-webkit-mask-image:linear-gradient(to bottom,#000 0px,#000 900px,rgba(0,0,0,0) 1060px);mask-image:linear-gradient(to bottom,#000 0px,#000 900px,rgba(0,0,0,0) 1060px)}
+.mono{font-family:"JetBrains Mono",monospace}
+svg{display:block}
+
+#cam{position:absolute;left:0;top:0;width:100%;height:100%}
+#r5-prompt{left:230px;top:46px;width:620px;height:500px;border-radius:40px;overflow:hidden}
+#r5-prompt .ln{position:absolute;left:50px;height:24px;border-radius:12px;background:#E4E2DA;transform-origin:0% 50%}
+#r5-prompt .ln.hl{background:#EBC2B0}
+#r5-short{left:340px;top:201px;width:400px;height:190px;border-radius:40px;opacity:0}
+#r5-short .ln{position:absolute;left:44px;height:24px;border-radius:12px;background:#E4E2DA}
+#r5-short .ln.hl{background:#EBC2B0}
+#r5-wire{position:absolute;left:538px;top:391px;width:4px;height:215px;border-radius:2px;background:#E4E2DA;opacity:0;transform-origin:50% 0%}
+#r5-dot{position:absolute;left:530px;top:386px;width:20px;height:20px;border-radius:50%;background:#D97757;opacity:0}
+#r5-model{left:440px;top:600px;width:200px;height:200px;border-radius:72px;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+<div id="root" data-composition-id="r5" data-start="0" data-duration="2.86667" data-width="1080" data-height="1920">
+
+<div id="cam" class="clip fade900" data-start="0" data-duration="2.86667" data-track-index="0">
+  <div id="r5-prompt" class="card"><div class="ln" id="r5-l0" style="top:40px;width:500px"></div><div class="ln hl" id="r5-l1" style="top:83px;width:540px"></div><div class="ln" id="r5-l2" style="top:126px;width:460px"></div><div class="ln" id="r5-l3" style="top:169px;width:520px"></div><div class="ln hl" id="r5-l4" style="top:212px;width:410px"></div><div class="ln" id="r5-l5" style="top:255px;width:530px"></div><div class="ln" id="r5-l6" style="top:298px;width:480px"></div><div class="ln hl" id="r5-l7" style="top:341px;width:430px"></div><div class="ln" id="r5-l8" style="top:384px;width:500px"></div><div class="ln" id="r5-l9" style="top:427px;width:360px"></div></div>
+  <div id="r5-short" class="card"><div class="ln" style="top:44px;width:300px"></div><div class="ln hl" style="top:84px;width:330px"></div><div class="ln" style="top:124px;width:250px"></div></div>
+  <div id="r5-wire"></div><div id="r5-dot"></div>
+  <div id="r5-model" class="card"><svg id="r5-spark" width="120" height="120" viewBox="0 0 24 24"><path fill="#D97757" d="M12 1.5 C12.7 7.3 16.7 11.3 22.5 12 C16.7 12.7 12.7 16.7 12 22.5 C11.3 16.7 7.3 12.7 1.5 12 C7.3 11.3 11.3 7.3 12 1.5 Z"/></svg></div>
+</div>
+</div>
+<script>
+const DUR = 2.86667;
+const tl = gsap.timeline({ paused: true });
+tl.to("#r5-l3",{opacity:0,scaleX:.08,duration:.32,ease:"power2.in"},0.4);
+tl.to("#r5-l4",{opacity:0,scaleX:.08,duration:.32,ease:"power2.in"},0.455);
+tl.to("#r5-l5",{opacity:0,scaleX:.08,duration:.32,ease:"power2.in"},0.51);
+tl.to("#r5-l6",{opacity:0,scaleX:.08,duration:.32,ease:"power2.in"},0.565);
+tl.to("#r5-l7",{opacity:0,scaleX:.08,duration:.32,ease:"power2.in"},0.62);
+tl.to("#r5-l8",{opacity:0,scaleX:.08,duration:.32,ease:"power2.in"},0.675);
+tl.to("#r5-l9",{opacity:0,scaleX:.08,duration:.32,ease:"power2.in"},0.73);
+
+tl.to("#r5-prompt",{scaleY:.37,scaleX:.66,opacity:0,duration:.5,ease:"power2.inOut",transformOrigin:"50% 50%"},0.78);
+tl.fromTo("#r5-short",{opacity:0,scale:1.12},{opacity:1,scale:1,duration:.42,ease:"power3.out",transformOrigin:"50% 50%"},0.92);
+// the compact prompt is sent down the wire to the model tile
+tl.fromTo("#r5-wire",{opacity:0,scaleY:0},{opacity:1,scaleY:1,duration:.4,ease:"power2.out"},1.45);
+tl.fromTo("#r5-dot",{opacity:0,y:0},{opacity:1,y:0,duration:.1},1.55);
+tl.to("#r5-dot",{y:218,duration:.45,ease:"power2.in"},1.62);
+tl.to("#r5-dot",{opacity:0,scale:.2,duration:.12},2.06);
+tl.fromTo("#r5-model",{scale:1},{scale:1.07,duration:.18,ease:"power2.out",transformOrigin:"50% 50%"},2.04);
+tl.to("#r5-model",{scale:1,duration:.3,ease:"power2.inOut"},2.22);
+tl.fromTo("#r5-spark",{rotation:0},{rotation:90,duration:.7,ease:"power2.inOut",transformOrigin:"50% 50%"},2.04);
+
+window.__timelines["r5"] = tl;
+tl.seek(0);
+</script></body></html>
