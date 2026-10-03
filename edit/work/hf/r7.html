@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pl" data-resolution="portrait">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<link rel="stylesheet" href="assets/base.css"/>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/plan.js"></script>
+<script src="assets/lib.js"></script>
+<style>
+#win{left:60px;top:150px;width:960px;height:710px;transform-origin:50% 50%}
+#rows{position:absolute;left:30px;right:30px;top:112px}
+.row{position:absolute;left:0;right:0;height:72px;border-radius:22px;display:flex;align-items:center;gap:22px;padding:0 24px 0 20px;font:400 33px Inter,sans-serif;color:#111;white-space:nowrap}
+.row .n{width:46px;height:46px;border-radius:50%;background:#f1f1f1;color:#555;font:600 28px Poppins;display:flex;align-items:center;justify-content:center;flex:none}
+.row .sel{position:absolute;left:0;top:10px;bottom:10px;width:7px;border-radius:4px;background:var(--clay);opacity:0}
+#script{left:90px;top:200px;width:900px;height:600px;border-radius:40px;font-family:Inter,sans-serif;padding:0;transform-origin:50% 60%}
+#script .tt{position:absolute;left:44px;top:34px;display:flex;align-items:center;gap:18px;font:700 44px Poppins;color:#111}
+#script .ok{width:50px;height:50px;border-radius:50%;background:var(--ok);display:flex;align-items:center;justify-content:center}
+.sec{position:absolute;left:44px;right:44px}
+.sec .lb{font:600 30px Poppins;color:var(--clay-text);letter-spacing:.06em;margin-bottom:6px}
+.sec .tx{font:400 33px/1.38 Inter,sans-serif;color:#111}
+</style></head>
+<body>
+<div id="root" class="split" data-composition-id="r7" data-start="0" data-duration="5.75" data-width="1080" data-height="1920">
+ <div id="world-mask"><div id="world">
+  <div id="win" class="abs gpt">
+    <div class="bar"><div class="model"><svg viewBox="0 0 24 24"><path fill="#0d0d0d" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944z"/></svg><span>ChatGPT</span><svg viewBox="0 0 24 24" style="width:26px;height:26px"><path d="M6 9l6 6 6-6" fill="none" stroke="#8e8e8e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div style="display:flex;gap:22px;align-items:center"><div style="width:54px;height:54px;border-radius:50%;background:#f4f4f4"></div><div style="width:54px;height:54px;border-radius:50%;background:#e9e9e9"></div></div></div>
+    <div id="rows"></div>
+    <div class="comp" id="comp">
+      <div class="plus"><svg viewBox="0 0 24 24" width="40" height="40"><path d="M12 5v14M5 12h14" stroke="#555" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+      <div class="txt" id="ctext"></div>
+      <div class="send off" id="send"><svg viewBox="0 0 24 24" width="38" height="38"><path d="M12 19V6M6 11.5l6-6 6 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+  </div>
+  <div id="script" class="abs card" style="opacity:0">
+    <div class="tt"><div class="ok"><svg viewBox="0 0 24 24" width="30" height="30"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Scenariusz</span></div>
+    <div class="sec" id="s1" style="top:130px"><div class="lb">HOOK</div><div class="tx">Zrobiłem 4 mln wyświetleń jednym filmem. Zaraz pokażę Ci jak.</div></div>
+    <div class="sec" id="s2" style="top:296px"><div class="lb">ROZWINIĘCIE</div><div class="tx">Krok 1: znajdź hit w swojej niszy. Krok 2: zrób lepszą wersję.</div></div>
+    <div class="sec" id="s3" style="top:462px"><div class="lb">ZAMKNIĘCIE</div><div class="tx">Wracam do tego, co obiecałem na początku.</div></div>
+  </div>
+  <div class="cursor" id="cur"></div><div class="ring" id="ring"></div>
+ </div></div>
+</div>
+<script>
+const R=HF.run("R7"); const {E,ease,mix,clamp,setStyle,setHTML,setText,blur,$,prog}=HF;
+$("#cur").innerHTML=HF.CURSOR_SVG;
+const IDEAS=["Błąd, który zabija Twoje zasięgi","Jak zrobić hit w 7 dni","Pierwsze 3 sekundy, które wszystko zmieniają","Czego algorytm Ci nie wybaczy","Dlaczego nikt nie ogląda do końca"];
+const w=(i)=>R.W(i);
+const items=[{t0:w(95).s,t1:w(95).s+0.28,text:"Napisz"},{t0:w(101).s-0.05,t1:w(101).e,text:"kompletny"},{t0:w(102).s,t1:w(102).e,text:"scenariusz"},{t0:w(103).s,t1:w(103).e,text:"na"},{t0:w(104).s,t1:w(104).e-0.04,text:"filmik"}];
+const T_SEL=1.00, T_SEND=4.30, T_SCRIPT=4.50;
+const curP=[{t:0.15,x:960,y:560},{t:0.92,x:560,y:112+2*80+36,ease:"power2.inOut"},{t:1.4,x:560,y:112+2*80+36},{t:3.95,x:938,y:790,ease:"power2.inOut"},{t:4.5,x:938,y:790}];
+function frame(t){
+  HF.applyCam($("#world"),HF.camState({x:540,y:505,s:1},[{t0:0.1,t1:5.7,ease:"sine.inOut",to:{x:540,y:520,s:1.03}}],t),540,505);
+  // ideas list with selection of #3
+  let h=""; const su=ease("power2.out",t,T_SEL,T_SEL+0.25);
+  IDEAS.forEach((s,i)=>{ const sel=(i===2); const op=sel?1:1-0.62*su; const top=i*80;
+    const bg=sel?'rgba(251,238,232,'+su.toFixed(3)+')':'transparent';
+    h+='<div class="row" style="top:'+top+'px;opacity:'+op.toFixed(3)+';background:'+bg+'"><div class="sel" style="opacity:'+(sel?su:0).toFixed(3)+'"></div><div class="n" style="'+(sel?'background:'+(su>0.5?'#D97757':'#f1f1f1')+';color:'+(su>0.5?'#fff':'#555'):'')+'">'+(i+1)+'</div><span>'+s+'</span></div>'; });
+  setHTML($("#rows"),h);
+  // composer typing + send
+  const sent=t>=T_SEND+0.05;
+  const typing=sent?"":HF.typedWords(items,t);
+  setHTML($("#ctext"),typing?(typing+(sent?'':'<span class="caret"></span>')):'<span class="ph">Zapytaj o cokolwiek</span>');
+  $("#send").classList.toggle("off",!(typing.length>0));
+  const pr=HF.press([T_SEND],t); setStyle($("#send"),"transform","scale("+(1-0.14*pr).toFixed(3)+")");
+  // script card lands over the window (window falls back: dim + 9px blur)
+  const cu=ease("power3.out",t,T_SCRIPT,T_SCRIPT+0.5);
+  const dim=ease("power2.out",t,T_SCRIPT-0.05,T_SCRIPT+0.4);
+  blur($("#win"),9*dim,1-0.55*dim);
+  setStyle($("#script"),"opacity",clamp(cu*1.5).toFixed(3));
+  setStyle($("#script"),"transform","translateY("+mix(46,0,cu).toFixed(2)+"px) scale("+mix(0.92,1,cu).toFixed(4)+")");
+  ["#s1","#s2","#s3"].forEach((id,i)=>{ const u=ease("power2.out",t,T_SCRIPT+0.28+i*0.18,T_SCRIPT+0.58+i*0.18); setStyle($(id),"opacity",u.toFixed(3)); setStyle($(id),"transform","translateY("+mix(16,0,u).toFixed(1)+"px)"); });
+  // cursor (press on row 3, then on send)
+  const clicks=[T_SEL,T_SEND];
+  const c=HF.cursorAt(curP,t), pc=HF.press(clicks,t);
+  setStyle($("#cur"),"transform","translate("+(c.x+60-8).toFixed(2)+"px,"+(c.y+150-4).toFixed(2)+"px) scale("+(1-0.12*pc).toFixed(3)+")");
+  setStyle($("#cur"),"opacity",(t>=0.15&&t<T_SCRIPT+0.2)?"1":"0");
+  const r=HF.ringAt(clicks,t);
+  if(r){const s2=mix(10,90,E("power2.out")(r.u)); setStyle($("#ring"),"opacity",(0.9*(1-r.u)).toFixed(3)); setStyle($("#ring"),"width",s2.toFixed(1)+"px"); setStyle($("#ring"),"height",s2.toFixed(1)+"px"); setStyle($("#ring"),"transform","translate("+(c.x+60-s2/2).toFixed(1)+"px,"+(c.y+150-s2/2).toFixed(1)+"px)");} else setStyle($("#ring"),"opacity","0");
+}
+HF.mount("r7",5.75,frame);
+</script>
+</body></html>

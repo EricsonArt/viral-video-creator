@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pl" data-resolution="portrait">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<link rel="stylesheet" href="assets/base.css"/>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/plan.js"></script>
+<script src="assets/lib.js"></script>
+<style>
+.grp{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.bd{position:absolute;width:1860px;height:1874px;left:-390px;top:-217px;object-fit:cover}
+.frame{position:absolute;left:24px;top:200px;width:1032px;height:1040px;border-radius:36px;background:#fff;overflow:hidden;box-shadow:var(--shadow)}
+.inner{position:absolute;left:0;top:0;width:1032px;height:1040px;transform-origin:0 0}
+#logoTile{position:absolute;left:190px;top:580px;width:700px;height:280px;border-radius:72px;background:#fff;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center}
+#logoTile svg{width:520px;height:auto}
+/* YouTube-like page (Roboto) */
+.yt{font-family:Roboto,sans-serif;color:#0f0f0f}
+.thumb{position:absolute;left:36px;top:178px;width:960px;height:540px;border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#E58A68 0%,#D97757 45%,#B25730 100%)}
+.thumb .big{position:absolute;left:56px;top:96px;font-family:Poppins;font-weight:700;font-size:186px;line-height:1;color:#fff;letter-spacing:-.03em}
+.thumb .sub{position:absolute;left:62px;top:326px;font-family:Poppins;font-weight:600;font-size:64px;color:rgba(255,255,255,.92)}
+.thumb .dur{position:absolute;right:22px;bottom:20px;background:rgba(0,0,0,.82);color:#fff;font-weight:500;font-size:32px;padding:6px 16px;border-radius:12px}
+.thumb .arrow{position:absolute;right:44px;top:34px;width:150px;height:150px}
+.av{position:absolute;left:36px;top:746px;width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,#111,#444);color:#fff;font:600 34px Poppins;display:flex;align-items:center;justify-content:center}
+.ttl{position:absolute;left:132px;top:736px;font-weight:500;font-size:38px;line-height:1.2;white-space:nowrap}
+.meta{position:absolute;left:132px;top:786px;font-size:30px;color:#606060;white-space:nowrap}
+.pill{position:absolute;top:858px;height:76px;border-radius:38px;background:#f2f2f2;font-weight:500;font-size:32px;display:flex;align-items:center;justify-content:center;gap:12px}
+#shareDim{position:absolute;inset:0;background:rgba(0,0,0,.5)}
+#dlg{position:absolute;left:96px;top:300px;width:840px;height:330px;border-radius:36px;background:#fff;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+#dlg .h{position:absolute;left:44px;top:34px;font-size:42px;font-weight:500}
+#dlg .x{position:absolute;right:40px;top:36px;width:46px;height:46px}
+#dlg .field{position:absolute;left:44px;right:44px;top:150px;height:116px;border-radius:30px;background:#f2f2f2;border:2px solid #e3e3e3}
+#dlg .url{position:absolute;left:32px;top:0;height:112px;line-height:112px;font-size:33px;color:#0f0f0f;white-space:nowrap}
+#dlg .btn{position:absolute;right:16px;top:16px;height:80px;padding:0 38px;border-radius:40px;background:#065fd4;color:#fff;font-weight:500;font-size:33px;display:flex;align-items:center}
+#snack{position:absolute;left:36px;bottom:40px;background:#323232;color:#fff;border-radius:14px;padding:24px 36px;font-size:32px;font-weight:400}
+.pg{position:absolute;left:0;top:0;width:1032px;height:1040px}
+</style></head>
+<body>
+<div id="root" class="visual" data-composition-id="r3" data-start="0" data-duration="4.5833333" data-width="1080" data-height="1920">
+ <div id="world-mask"><div id="world">
+  <!-- ===== A: YouTube ===== -->
+  <div class="grp" id="gA"><img class="bd" id="bdA" src="assets/bd_yt.png"/></div>
+  <div class="grp" id="gB"><img class="bd" id="bdB" src="assets/bd_ytt.png"/></div>
+  <div class="grp" id="gFA">
+    <div id="logoTile"><svg style="fill:#0f0f0f" xmlns="http://www.w3.org/2000/svg" id="yt-ringo2-svg_yt7" width="93" height="20" viewBox="0 0 93 20" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+  <g>
+    <path d="M14.4848 20C14.4848 20 23.5695 20 25.8229 19.4C27.0917 19.06 28.0459 18.08 28.3808 16.87C29 14.65 29 9.98 29 9.98C29 9.98 29 5.34 28.3808 3.14C28.0459 1.9 27.0917 0.94 25.8229 0.61C23.5695 0 14.4848 0 14.4848 0C14.4848 0 5.42037 0 3.17711 0.61C1.9286 0.94 0.954148 1.9 0.59888 3.14C0 5.34 0 9.98 0 9.98C0 9.98 0 14.65 0.59888 16.87C0.954148 18.08 1.9286 19.06 3.17711 19.4C5.42037 20 14.4848 20 14.4848 20Z" fill="#FF0033"></path>
+    <path d="M19 10L11.5 5.75V14.25L19 10Z" fill="white"></path>
+  </g>
+  <g id="youtube-paths_yt7">
+    <path d="M37.1384 18.8999V13.4399L40.6084 2.09994H38.0184L36.6984 7.24994C36.3984 8.42994 36.1284 9.65994 35.9284 10.7999H35.7684C35.6584 9.79994 35.3384 8.48994 35.0184 7.22994L33.7384 2.09994H31.1484L34.5684 13.4399V18.8999H37.1384Z"></path>
+    <path d="M44.1003 6.29994C41.0703 6.29994 40.0303 8.04994 40.0303 11.8199V13.6099C40.0303 16.9899 40.6803 19.1099 44.0403 19.1099C47.3503 19.1099 48.0603 17.0899 48.0603 13.6099V11.8199C48.0603 8.44994 47.3803 6.29994 44.1003 6.29994ZM45.3903 14.7199C45.3903 16.3599 45.1003 17.3899 44.0503 17.3899C43.0203 17.3899 42.7303 16.3499 42.7303 14.7199V10.6799C42.7303 9.27994 42.9303 8.02994 44.0503 8.02994C45.2303 8.02994 45.3903 9.34994 45.3903 10.6799V14.7199Z"></path>
+    <path d="M52.2713 19.0899C53.7313 19.0899 54.6413 18.4799 55.3913 17.3799H55.5013L55.6113 18.8999H57.6012V6.53994H54.9613V16.4699C54.6812 16.9599 54.0312 17.3199 53.4212 17.3199C52.6512 17.3199 52.4113 16.7099 52.4113 15.6899V6.53994H49.7812V15.8099C49.7812 17.8199 50.3613 19.0899 52.2713 19.0899Z"></path>
+    <path d="M62.8261 18.8999V4.14994H65.8661V2.09994H57.1761V4.14994H60.2161V18.8999H62.8261Z"></path>
+    <path d="M67.8728 19.0899C69.3328 19.0899 70.2428 18.4799 70.9928 17.3799H71.1028L71.2128 18.8999H73.2028V6.53994H70.5628V16.4699C70.2828 16.9599 69.6328 17.3199 69.0228 17.3199C68.2528 17.3199 68.0128 16.7099 68.0128 15.6899V6.53994H65.3828V15.8099C65.3828 17.8199 65.9628 19.0899 67.8728 19.0899Z"></path>
+    <path d="M80.6744 6.26994C79.3944 6.26994 78.4744 6.82994 77.8644 7.73994H77.7344C77.8144 6.53994 77.8744 5.51994 77.8744 4.70994V1.43994H75.3244L75.3144 12.1799L75.3244 18.8999H77.5444L77.7344 17.6999H77.8044C78.3944 18.5099 79.3044 19.0199 80.5144 19.0199C82.5244 19.0199 83.3844 17.2899 83.3844 13.6099V11.6999C83.3844 8.25994 82.9944 6.26994 80.6744 6.26994ZM80.7644 13.6099C80.7644 15.9099 80.4244 17.2799 79.3544 17.2799C78.8544 17.2799 78.1644 17.0399 77.8544 16.5899V9.23994C78.1244 8.53994 78.7244 8.02994 79.3944 8.02994C80.4744 8.02994 80.7644 9.33994 80.7644 11.7299V13.6099Z"></path>
+    <path d="M92.6517 11.4999C92.6517 8.51994 92.3517 6.30994 88.9217 6.30994C85.6917 6.30994 84.9717 8.45994 84.9717 11.6199V13.7899C84.9717 16.8699 85.6317 19.1099 88.8417 19.1099C91.3817 19.1099 92.6917 17.8399 92.5417 15.3799L90.2917 15.2599C90.2617 16.7799 89.9117 17.3999 88.9017 17.3999C87.6317 17.3999 87.5717 16.1899 87.5717 14.3899V13.5499H92.6517V11.4999ZM88.8617 7.96994C90.0817 7.96994 90.1717 9.11994 90.1717 11.0699V12.0799H87.5717V11.0699C87.5717 9.13994 87.6517 7.96994 88.8617 7.96994Z"></path>
+  </g>
+</svg></div>
+    <div class="frame yt" id="fA"><div class="inner" id="inA">
+      <img src="assets/yt_head.png" style="position:absolute;left:0;top:0;width:1032px"/>
+      <div class="thumb"><div class="big">4,2 mln</div><div class="sub">wyświetleń w 7 dni</div>
+        <svg class="arrow" viewBox="0 0 24 24"><path d="M4 17l6-6 4 4 7-8M15 7h6v6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="dur">12:48</div></div>
+      <div class="av">ML</div><div class="ttl">Jak zrobiłem 4,2 mln wyświetleń w 7 dni</div><div class="meta">Marketing Lab • 4,2 mln wyświetleń • 5 dni temu</div>
+      <div class="pill" style="left:36px;width:250px"><svg viewBox="0 0 24 24" width="38" height="38"><path d="M7 22H4a1 1 0 01-1-1v-9a1 1 0 011-1h3m0 11V11m0 11h9.3a2 2 0 002-1.6l1.4-7A2 2 0 0016.7 11H13l.8-4.2a2.4 2.4 0 00-4.4-1.7L7 11" fill="none" stroke="#0f0f0f" stroke-width="1.8" stroke-linejoin="round"/></svg>128 tys.</div>
+      <div class="pill" id="shareBtn" style="left:306px;width:290px"><svg viewBox="0 0 24 24" width="38" height="38"><path d="M14 4l8 7.5-8 7.5v-4.5C8 14.5 5 16.5 3 20c.5-6 3.5-10 11-10.8z" fill="none" stroke="#0f0f0f" stroke-width="1.8" stroke-linejoin="round"/></svg>Udostępnij</div>
+      <div class="pill" style="left:616px;width:230px">Zapisz</div>
+      <div id="shareDim"></div>
+      <div id="dlg"><div class="h">Udostępnij</div>
+        <svg class="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="#0f0f0f" stroke-width="2" stroke-linecap="round"/></svg>
+        <div class="field"><div class="url">https://youtu.be/hV3Qm2Zr8Kc</div><div class="btn" id="copyBtn">Kopiuj</div></div></div>
+      <div id="snack">Link skopiowany do schowka</div>
+      <div class="cursor" id="curA"></div><div class="ring" id="ringA"></div>
+    </div></div>
+  </div>
+  <!-- ===== B: youtubetranscript.com (real capture states) ===== -->
+  <div class="grp" id="gFB">
+    <div class="frame" id="fB"><div class="inner" id="inB">
+      <img class="pg" id="pgIdle" src="assets/ytt_idle.png"/>
+      <img class="pg" id="pgPasted" src="assets/ytt_pasted.png"/>
+      <img class="pg" id="pgGo" src="assets/ytt_go.png"/>
+      <div class="cursor" id="curB"></div><div class="ring" id="ringB"></div>
+    </div></div>
+  </div>
+ </div></div>
+</div>
+<script>
+const R=HF.run("R3"); const {E,ease,mix,clamp,setStyle,blur,$,prog}=HF;
+const D=1160;
+const world=$("#world"), gB=$("#gB"), fA=$("#fA"), inA=$("#inA"), inB=$("#inB"), logoTile=$("#logoTile");
+gB.style.transform="translateX("+D+"px)"; $("#gFB").style.transform="translateX("+D+"px)";
+$("#curA").innerHTML=HF.CURSOR_SVG; $("#curB").innerHTML=HF.CURSOR_SVG;
+inB.style.transformOrigin="438px 377px";
+const T_LAND=0.74, T_SHARE=1.95, T_DLG=1.99, T_COPY=2.40, T_WH=2.50, WH_OUT=0.45, WH_IN=0.60;
+const T_FOCUS=3.76, T_PASTE=3.80, T_GO=4.30;
+const curA=[{t:1.10,x:980,y:1000},{t:1.90,x:452,y:890,ease:"power2.inOut"},{t:2.04,x:452,y:890},{t:2.36,x:790,y:512,ease:"power2.inOut"},{t:2.9,x:790,y:512}];
+const clicksA=[T_SHARE,T_COPY];
+const curB=[{t:3.40,x:900,y:700},{t:3.74,x:430,y:392,ease:"power2.inOut"},{t:3.9,x:430,y:392},{t:4.26,x:742,y:392,ease:"power2.inOut"},{t:4.6,x:742,y:392}];
+const clicksB=[T_FOCUS,T_GO];
+function camX(t){ const a=T_WH,m=a+WH_OUT,e=m+WH_IN;
+  if(t<=a) return 0; if(t>=e) return -D;
+  if(t<m) return -D/2*E("power3.in")((t-a)/WH_OUT);
+  return -D/2-D/2*E("power3.out")((t-m)/WH_IN); }
+function cursor(el,ring,pts,clicks,t,vis){
+  const c=HF.cursorAt(pts,t), p=HF.press(clicks,t);
+  setStyle(el,"transform","translate("+(c.x-8).toFixed(2)+"px,"+(c.y-4).toFixed(2)+"px) scale("+(1-0.12*p).toFixed(3)+")");
+  setStyle(el,"opacity",vis?"1":"0");
+  const r=HF.ringAt(clicks,t);
+  if(r&&vis){ const s=mix(10,86,E("power2.out")(r.u)); setStyle(ring,"opacity",(0.9*(1-r.u)).toFixed(3)); setStyle(ring,"width",s.toFixed(1)+"px"); setStyle(ring,"height",s.toFixed(1)+"px"); setStyle(ring,"transform","translate("+(c.x-s/2).toFixed(1)+"px,"+(c.y-s/2).toFixed(1)+"px)"); }
+  else setStyle(ring,"opacity","0");
+}
+function frame(t){
+  setStyle(world,"transform","translate3d("+camX(t).toFixed(3)+"px,0,0)");
+  // logo tile = hero until frame A lands, then falls back (9px/40%) and leaves
+  const lu=ease("power2.inOut",t,T_LAND-0.05,T_LAND+0.4);
+  setStyle(logoTile,"transform","scale("+mix(1,0.82,lu).toFixed(4)+")");
+  blur(logoTile,9*lu, lu<1?(1-0.6*lu):0.4); if(t>T_LAND+0.55) setStyle(logoTile,"opacity","0");
+  // frame A landing
+  const fu=ease("power3.out",t,T_LAND,T_LAND+0.5);
+  setStyle(fA,"opacity",clamp(fu*1.5).toFixed(3));
+  setStyle(fA,"transform","translateY("+mix(44,0,fu).toFixed(3)+"px) scale("+mix(0.95,1,fu).toFixed(4)+")");
+  const bx=ease("sine.inOut",t,T_WH+0.25,T_WH+0.95);
+  setStyle($("#bdA"),"opacity",(clamp(fu*1.5)*(1-bx)).toFixed(3));
+  setStyle($("#bdB"),"opacity",bx.toFixed(3));
+  // share dialog
+  const du=ease("power3.out",t,T_DLG,T_DLG+0.22);
+  setStyle($("#shareDim"),"opacity",du.toFixed(3));
+  setStyle($("#dlg"),"opacity",du.toFixed(3)); setStyle($("#dlg"),"transform","scale("+mix(0.92,1,du).toFixed(4)+")");
+  const pc=HF.press([T_COPY],t);
+  setStyle($("#copyBtn"),"transform","scale("+(1-0.06*pc).toFixed(3)+")"); setStyle($("#copyBtn"),"background",t>=T_COPY+0.04?"#0b4fb3":"#065fd4");
+  const su=ease("power3.out",t,T_COPY+0.05,T_COPY+0.3);
+  setStyle($("#snack"),"opacity",su.toFixed(3)); setStyle($("#snack"),"transform","translateY("+mix(30,0,su).toFixed(2)+"px)");
+  cursor($("#curA"),$("#ringA"),curA,clicksA,t,t>=1.10&&t<T_WH+WH_OUT+0.3);
+  // frame B: real page states + internal camera
+  const zu=ease("power2.inOut",t,3.62,4.22);
+  setStyle(inB,"transform","scale("+mix(1,1.2,zu).toFixed(4)+")");
+  setStyle($("#pgPasted"),"opacity",clamp((t-T_PASTE)/0.05).toFixed(2));
+  setStyle($("#pgGo"),"opacity",clamp((t-T_GO)/0.05).toFixed(2));
+  cursor($("#curB"),$("#ringB"),curB,clicksB,t,t>=3.40);
+}
+HF.mount("r3",4.5833333,frame);
+</script>
+</body></html>

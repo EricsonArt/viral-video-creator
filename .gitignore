@@ -6,3 +6,22 @@ temp/
 __pycache__/
 *.pyc
 .DS_Store
+
+# --- edit/ pipeline: keep sources + deliverables, drop heavy intermediates
+edit/work/venv/
+edit/work/hf/node_modules/
+edit/work/hf/renders/
+edit/work/gfx/
+edit/work/matte/
+edit/work/matte2/
+edit/work/matte3/
+edit/work/qa/
+edit/work/prev/
+edit/work/caps/
+edit/work/libs/
+edit/work/models/
+edit/work/__pycache__/
+edit/work/*.wav
+edit/work/*.npy
+edit/work/hf/t1.html
+edit/work/hf/t2.html

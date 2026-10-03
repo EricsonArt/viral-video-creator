@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pl" data-resolution="portrait">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<link rel="stylesheet" href="assets/base.css"/>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/plan.js"></script>
+<script src="assets/lib.js"></script>
+<style>
+#doc{left:60px;top:150px;width:960px;height:710px;border-radius:40px;overflow:hidden;font-family:Inter,sans-serif;transform-origin:50% 50%}
+#doc .hd{position:absolute;left:0;right:0;top:0;height:112px;border-bottom:1.5px solid #ececec;display:flex;align-items:center;justify-content:space-between;padding:0 36px}
+#doc .hd .l{display:flex;align-items:center;gap:18px;font:600 40px Poppins;color:#111}
+#doc .hd .play{width:62px;height:44px;border-radius:12px;background:#FF0033;display:flex;align-items:center;justify-content:center}
+#copy{height:70px;padding:0 28px;border-radius:35px;background:#f2f2f2;display:flex;align-items:center;gap:12px;font:500 32px Inter;color:#111;transform-origin:50% 50%}
+#lines{position:absolute;left:36px;right:36px;top:136px;bottom:24px;overflow:hidden}
+.ln{display:flex;gap:26px;height:92px;align-items:flex-start;font-size:33px;line-height:1.35;color:#111}
+.ln .ts{color:#8a8a8a;font-weight:500;min-width:86px}
+.ln .tx{flex:1}
+#fadeb{position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(to top,#fff,rgba(255,255,255,0))}
+</style></head>
+<body>
+<div id="root" class="split" data-composition-id="r4" data-start="0" data-duration="3.2" data-width="1080" data-height="1920">
+ <div id="world-mask"><div id="world">
+  <div id="doc" class="abs card">
+    <div class="hd"><div class="l"><div class="play"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="#fff"/></svg></div><span>Transkrypcja</span></div>
+      <div id="copy"><svg viewBox="0 0 24 24" width="36" height="36"><rect x="8" y="8" width="12" height="12" rx="2.5" fill="none" stroke="#111" stroke-width="2"/><path d="M16 8V6.5A2.5 2.5 0 0 0 13.5 4H6.5A2.5 2.5 0 0 0 4 6.5v7A2.5 2.5 0 0 0 6.5 16H8" fill="none" stroke="#111" stroke-width="2"/></svg><span id="copyTxt">Kopiuj</span></div></div>
+    <div id="lines"></div><div id="fadeb"></div>
+  </div>
+  <div class="cursor" id="cur"></div><div class="ring" id="ring"></div>
+ </div></div>
+</div>
+<script>
+const R=HF.run("R4"); const {E,ease,mix,clamp,setStyle,setHTML,setText,$,prog}=HF;
+$("#cur").innerHTML=HF.CURSOR_SVG;
+const LINES=[["0:00","Cześć, dzisiaj pokażę wam, jak zdobyć"],["0:04","pierwsze sto tysięcy wyświetleń w tydzień."],["0:09","Większość osób robi ten sam błąd na"],["0:14","samym początku filmu. Zaraz go wam pokażę."],["0:19","Najpierw hook, potem obietnica, a na końcu"],["0:24","zamykamy pętlę, którą otworzyliśmy."],["0:29","Krok pierwszy: zrozum, co ogląda Twoja"],["0:34","grupa i dlaczego zostaje do samego końca."]];
+// lines 1-3 are already present at frame 0 (clean landing); the rest streams in with the narration
+const T0=[ -1,-1,-1, 0.30,0.62,0.94,1.26,1.58 ];
+const T_COPY=2.86;
+const curP=[{t:1.9,x:1010,y:520},{t:2.80,x:845,y:206,ease:"power2.inOut"},{t:3.2,x:845,y:206}];
+function frame(t){
+  // world camera: gentle glide, small push to the copy button before the click
+  const g=ease("sine.inOut",t,0.1,3.1);
+  const cam=HF.camState({x:540,y:505,s:1},[{t0:0.1,t1:3.1,ease:"sine.inOut",to:{x:540,y:505,s:1.03}}],t);
+  HF.applyCam($("#world"),cam,540,505);
+  // lines: scroll up as new ones arrive
+  let h="";
+  const shown=LINES.map((l,i)=>({l,i,u:T0[i]<0?1:ease("power2.out",t,T0[i],T0[i]+0.26)}));
+  const count=shown.filter(s=>s.u>0.001).length;
+  const scroll=Math.max(0,count-5)*92;
+  shown.forEach(s=>{ if(s.u>0.001) h+='<div class="ln" style="opacity:'+s.u.toFixed(3)+';transform:translateY('+mix(18,0,s.u).toFixed(1)+'px)"><div class="ts">'+s.l[0]+'</div><div class="tx">'+s.l[1]+'</div></div>'; });
+  setHTML($("#lines"),'<div style="transform:translateY(-'+scroll+'px)">'+h+'</div>');
+  // copy button press -> green confirmation
+  const pr=HF.press([T_COPY],t);
+  const ok=t>=T_COPY+0.03;
+  setStyle($("#copy"),"transform","scale("+(1-0.08*pr).toFixed(3)+")");
+  setStyle($("#copy"),"background",ok?"#34C759":"#f2f2f2"); setStyle($("#copy"),"color",ok?"#fff":"#111");
+  setText($("#copyTxt"),ok?"Skopiowano":"Kopiuj");
+  const c=HF.cursorAt(curP,t);
+  setStyle($("#cur"),"transform","translate("+(c.x-8).toFixed(2)+"px,"+(c.y-4).toFixed(2)+"px) scale("+(1-0.12*pr).toFixed(3)+")");
+  setStyle($("#cur"),"opacity",t>=1.9?"1":"0");
+  const r=HF.ringAt([T_COPY],t);
+  if(r){const s2=mix(10,90,E("power2.out")(r.u)); setStyle($("#ring"),"opacity",(0.9*(1-r.u)).toFixed(3)); setStyle($("#ring"),"width",s2.toFixed(1)+"px"); setStyle($("#ring"),"height",s2.toFixed(1)+"px"); setStyle($("#ring"),"transform","translate("+(c.x-s2/2).toFixed(1)+"px,"+(c.y-s2/2).toFixed(1)+"px)");} else setStyle($("#ring"),"opacity","0");
+}
+HF.mount("r4",3.2,frame);
+</script>
+</body></html>

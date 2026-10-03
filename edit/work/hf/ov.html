@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pl" data-resolution="portrait">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<link rel="stylesheet" href="assets/fonts/fonts.css"/>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/plan.js"></script>
+<script src="assets/lib.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent}
+#root{position:relative;width:1080px;height:1920px;background:transparent;font-family:Poppins,sans-serif;color:#111}
+:root{--shadow:0 60px 120px rgba(24,24,32,.16),0 24px 48px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.06)}
+/* cover (frame 0 only) */
+#cover{position:absolute;left:0;right:0;top:262px;height:341px;display:flex;align-items:center;justify-content:center}
+#cover .box{background:#fff;border-radius:30px;box-shadow:var(--shadow);padding:44px 50px;text-align:center;font:700 110px/1.14 Poppins;color:#000;letter-spacing:-.01em}
+/* captions */
+#cap{position:absolute;left:0;top:0;width:1080px;height:0;text-align:center;white-space:nowrap}
+#capi{position:absolute;left:0;width:1080px;text-align:center;transform-origin:50% 50%;word-spacing:14px}
+#capi span.w{font:700 74px/1.2 Poppins;color:#fff;-webkit-text-stroke:15px #000;paint-order:stroke fill;stroke-linejoin:round}
+#capi span.hl{font:italic 700 88px/1.1 "Instrument Serif",serif;color:#FFFF00;-webkit-text-stroke:15px #000;paint-order:stroke fill;stroke-linejoin:round}
+/* CTA card (outro): input + button, same structure as the product page */
+#cta{position:absolute;left:43px;top:208px;width:994px;height:262px;transform-origin:50% 50%}
+#cta .inp{position:absolute;left:0;top:0;width:994px;height:132px;background:#fff;border-radius:66px;box-shadow:var(--shadow);display:flex;align-items:center;padding:0 24px;gap:22px}
+#cta .av{width:88px;height:88px;border-radius:50%;background:#e3e3e3;flex:none;position:relative;overflow:hidden}
+#cta .av:before{content:"";position:absolute;left:28px;top:15px;width:32px;height:32px;border-radius:50%;background:#fff}
+#cta .av:after{content:"";position:absolute;left:14px;top:54px;width:60px;height:46px;border-radius:30px 30px 0 0;background:#fff}
+#cta .txt{flex:1;font:600 50px Poppins;color:#111;white-space:nowrap}
+#cta .txt .at{color:#9a9a9a;margin-right:10px;font-weight:500}
+#cta .btn{position:absolute;left:0;top:152px;width:994px;height:110px;border-radius:55px;background:#FF5A1F;color:#fff;font:600 42px Poppins;display:flex;align-items:center;justify-content:center;white-space:nowrap;transform-origin:50% 50%;box-shadow:0 10px 24px rgba(255,90,31,.35)}
+.caretb{display:inline-block;width:4px;height:56px;background:#111;vertical-align:-10px;margin-left:4px;border-radius:2px}
+#cur{position:absolute;left:0;top:0;width:54px;height:54px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.3))}
+#ring{position:absolute;border-radius:50%;border:3px solid rgba(255,255,255,.9);pointer-events:none;opacity:0}
+</style></head>
+<body>
+<div id="root" data-composition-id="ov" data-start="0" data-duration="39.7333333" data-width="1080" data-height="1920">
+  <div id="cap"><div id="capi"></div></div>
+  <div id="cta" style="opacity:0"><div class="inp"><div class="av"></div><div class="txt" id="ctaTxt"></div></div><div class="btn" id="ctaBtn">Chcę moje 3 filmy&nbsp;&nbsp;→</div></div>
+  <div id="cur" style="opacity:0"></div><div id="ring"></div>
+  <div id="cover"><div class="box">Źle używasz<br>czata GPT</div></div>
+</div>
+<script>
+const {E,ease,mix,clamp,setStyle,setHTML,setText,$}=HF;
+$("#cur").innerHTML=HF.CURSOR_SVG;
+const RUNS=Object.values(PLAN.runs);
+const CH=PLAN.chunks, WD=PLAN.words;
+const R9=PLAN.runs.R9, T9=R9.t0;
+// caption y-centre by layout / run
+function capY(runId,t){
+  const r=PLAN.runs[runId];
+  if(r.layout==="split") return 910;
+  if(r.layout==="visual") return 1390;
+  if(runId==="R9") return 545;     // outro: above the baked-in "albo tu" label, below the CTA card
+  return 400;                      // full-cam: free wall area above the head
+}
+function runAt(t){ for(const r of RUNS) if(t>=r.t0-0.0011 && t<r.t1-0.0011) return r.id; return "R9"; }  // renderer rounds frame time to ms
+const NICK="eryk_hajduczek";
+let lastKey=null;
+function frame(t){
+  // ---- cover: frame 0 only
+  setStyle($("#cover"),"opacity",(t<0.0085)?"1":"0");
+  // ---- captions
+  let ch=null; for(const c of CH){ if(t>=c.t0-1e-9 && t<c.t1-1e-9){ ch=c; break; } }
+  if(t<0.0085) ch=null;
+  const capi=$("#capi");
+  if(!ch){ setStyle(capi,"opacity","0"); }
+  else{
+    const key=ch.k; 
+    if(key!==lastKey){
+      const hl=new Set(ch.hl);
+      let h=""; ch.words.forEach((wi,j)=>{ const w=WD[wi].w; h+=(j?" ":"")+'<span class="'+(hl.has(wi)?"hl":"w")+'">'+w+'</span>'; });
+      capi.innerHTML=h; lastKey=key; capi._w=null;
+    }
+    // fit width
+    if(!capi._w){ capi.style.display="inline-block"; capi.style.width="auto"; capi._w=capi.getBoundingClientRect().width; capi.style.display=""; capi.style.width="1080px"; }
+    const fit=Math.min(1,940/capi._w);
+    const y=capY(runAt(t),t);
+    const u=ease("power3.out",t,ch.t0,ch.t0+0.11);
+    const sc=fit*mix(0.9,1,u);
+    setStyle(capi,"top",(y-58)+"px");
+    setStyle(capi,"opacity","1");
+    setStyle(capi,"transform","scale("+sc.toFixed(4)+")");
+  }
+  // ---- CTA card (outro), local time from R9 start
+  const lt=t-T9;
+  const T_IN=1.10, T_TYPE0=1.62, T_TYPE1=2.12, T_PRESS=2.62;
+  const iu=ease("power3.out",lt,T_IN,T_IN+0.28);
+  setStyle($("#cta"),"opacity",(lt>=T_IN?clamp(iu*1.6):0).toFixed(3));
+  setStyle($("#cta"),"transform","translateY("+mix(30,0,iu).toFixed(2)+"px) scale("+mix(0.94,1,iu).toFixed(4)+")");
+  const typed=NICK.slice(0,Math.floor(clamp((lt-T_TYPE0)/(T_TYPE1-T_TYPE0))*NICK.length+1e-6));
+  const caretOn=(lt<T_TYPE0)?true:(lt<T_TYPE1)?true:(Math.floor((lt-T_TYPE1)*2.4)%2===0);
+  const showCaret=lt>=T_IN && lt<T_PRESS+0.05 && caretOn;
+  setHTML($("#ctaTxt"),'<span class="at">@</span>'+typed+(showCaret?'<span class="caretb"></span>':'<span style="display:inline-block;width:4px;margin-left:4px"></span>'));
+  const pr=HF.press([T_PRESS],lt);
+  setStyle($("#ctaBtn"),"transform","scale("+(1-0.07*pr).toFixed(3)+")");
+  setStyle($("#ctaBtn"),"background",lt>=T_PRESS+0.03?"#E0480F":"#FF5A1F");
+  // cursor travels to the button
+  const bx=620, by=208+152+55;       // button centre
+  const cp=[{t:1.95,x:1000,y:560},{t:2.55,x:bx,y:by+8,ease:"power2.inOut"},{t:3.0,x:bx,y:by+8}];
+  const c=HF.cursorAt(cp,lt);
+  setStyle($("#cur"),"transform","translate("+(c.x-8).toFixed(2)+"px,"+(c.y-4).toFixed(2)+"px) scale("+(1-0.12*pr).toFixed(3)+")");
+  setStyle($("#cur"),"opacity",(lt>=1.95)?"1":"0");
+  const rg=HF.ringAt([T_PRESS],lt);
+  if(rg){const s2=mix(10,100,E("power2.out")(rg.u)); setStyle($("#ring"),"opacity",(0.9*(1-rg.u)).toFixed(3)); setStyle($("#ring"),"width",s2.toFixed(1)+"px"); setStyle($("#ring"),"height",s2.toFixed(1)+"px"); setStyle($("#ring"),"transform","translate("+(c.x-s2/2).toFixed(1)+"px,"+(c.y-s2/2).toFixed(1)+"px)");} else setStyle($("#ring"),"opacity","0");
+}
+HF.mount("ov",39.7333333,frame);
+</script>
+</body></html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pl" data-resolution="portrait">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<link rel="stylesheet" href="assets/base.css"/>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/plan.js"></script>
+<script src="assets/lib.js"></script>
+<style>
+.bd{position:absolute;width:1860px;height:1874px;left:-390px;top:-217px;object-fit:cover}
+.frame{position:absolute;left:24px;top:200px;width:1032px;height:1040px;border-radius:36px;background:#fff;overflow:hidden;box-shadow:var(--shadow)}
+#page{position:absolute;left:0;top:0;width:1032px;height:1235px;transform-origin:0 0}
+#page img{position:absolute;left:0;top:0;width:1032px;height:1235px}
+.hl{position:absolute;border-radius:8px;background:rgba(217,119,87,.62);mix-blend-mode:screen;opacity:0}
+</style></head>
+<body>
+<div id="root" class="visual" data-composition-id="r8" data-start="0" data-duration="6.9833333" data-width="1080" data-height="1920">
+ <div id="world-mask"><div id="world">
+  <img class="bd" src="assets/bd_sk.png"/>
+  <div class="frame" id="fr"><div id="page"><img src="assets/systemskala_3x.png"/>
+     <div class="hl" id="h1"></div><div class="hl" id="h2"></div></div></div>
+ </div></div>
+</div>
+<script>
+const {E,ease,mix,clamp,setStyle,$}=HF;
+const S0=1032/733;           // screenshot px -> frame px
+const AX=516, AY=520;        // frame anchor
+// highlight rects in screenshot px
+function place(el,x0,y0,x1,y1){ el.style.left=(x0*S0)+"px"; el.style.top=(y0*S0)+"px"; el.style.width=((x1-x0)*S0)+"px"; el.style.height=((y1-y0)*S0)+"px"; }
+place($("#h1"),64,451,249,478);   // "hamuje Twoje konto,"
+place($("#h2"),198,426,500,451);  // "prawdziwych hitach z Twojej niszy."
+// internal camera keyframes: focus in screenshot px + zoom
+const K=(u,v,z)=>({x:u*S0,y:v*S0,s:z});
+const init=K(366,369,1.0);
+const segs=[
+ {t0:0.85,t1:1.45,ease:"power2.inOut",to:K(270,368,1.25)},
+ {t0:2.05,t1:2.70,ease:"power2.inOut",to:K(350,452,1.30)},
+ {t0:3.55,t1:4.15,ease:"power2.inOut",to:K(270,368,1.25)},
+ {t0:4.95,t1:5.55,ease:"power2.inOut",to:K(345,445,1.32)},
+ {t0:6.25,t1:6.95,ease:"power2.inOut",to:K(366,369,1.0)}];
+function clampCam(c){ const hw=AX/c.s, hh=AY/c.s; return {x:clamp(c.x,hw,1032-hw),y:clamp(c.y,hh,1235-hh),s:c.s}; }
+function frame(t){
+  const c=clampCam(HF.camState(init,segs,t));
+  HF.applyCam($("#page"),c,AX,AY);
+  const a1=ease("power2.out",t,2.85,3.15)*(1-ease("power2.in",t,3.95,4.25));
+  const a2=ease("power2.out",t,5.35,5.65);
+  setStyle($("#h1"),"opacity",a1.toFixed(3)); setStyle($("#h2"),"opacity",a2.toFixed(3));
+}
+HF.mount("r8",6.9833333,frame);
+</script>
+</body></html>

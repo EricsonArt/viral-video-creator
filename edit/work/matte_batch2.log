@@ -1,0 +1,23 @@
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+WARNING: Logging before InitGoogle() is written to STDERR
+W0000 00:00:1791054114.040532    3649 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+0 452 2 2s
+25 452 27 15s
+50 452 52 28s
+75 452 77 40s
+100 452 102 53s
+125 452 127 66s
+150 452 152 78s
+175 452 394 91s
+200 452 419 103s
+225 452 444 117s
+250 452 469 130s
+275 452 727 142s
+300 452 752 155s
+325 452 777 168s
+350 452 802 181s
+375 452 827 194s
+400 452 852 206s
+425 452 877 227s
+450 452 902 240s
+done 240.9985089302063

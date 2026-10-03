@@ -1,0 +1,22 @@
+== r1 19:20:08
+[hyperframes] browserGpuMode probe → software (WebGL unavailable)
+4.933333,1184
+== r3 19:21:14
+[INFO] [Compiler] Fetched 11 font face(s) for "Poppins" from Google Fonts (cached to /root/.cache/hyperframes/fonts/poppins)
+[INFO] [Compiler] Injected deterministic @font-face rules for 2 requested font families
+[hyperframes] browserGpuMode probe → software (WebGL unavailable)
+4.583333,1100
+== r5 19:22:18
+[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+[hyperframes] browserGpuMode probe → software (WebGL unavailable)
+4.100000,984
+== r7 19:23:03
+[INFO] [Compiler] Fetched 11 font face(s) for "Inter" from Google Fonts (cached to /root/.cache/hyperframes/fonts/inter)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+[hyperframes] browserGpuMode probe → software (WebGL unavailable)
+5.750000,1380
+== r8 19:24:39
+[hyperframes] browserGpuMode probe → software (WebGL unavailable)
+6.983333,1676
+ALL DONE 19:26:02
