@@ -1,0 +1,12 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+lang pl 0.9992790818214417
+0.0 3.12  Sonet 5.5 jest lepszy w kodowaniu niż Opus 5.5.
+3.16 4.36  Kosztuje o połowę taniej.
+4.38 8.0  Ponad 70% w Terminal Bench, a Opus ma 66,4%.
+8.0 10.62  Dla porównania Sonet 5.5 miał tylko 10,3%.
+10.62 13.82  Cena bez porównania 2$ za input, 10$ za output.
+14.02 15.46  To połowa tego co kosztuje Opus.
+15.6 21.04  Plus generuje output o 30% szybciej i o 30% taniej na zadanie, bo używa mniej tokenów.
+21.06 24.64  Najmocniejszy jest w kodowaniu, bugach, dokumentach, slajdach i spreadsheetach.
+24.68 28.78  Opus zostaje do ciężkich zadań i uwaga, nikt o tym nie mówi, ale możesz to przetestować za darmo.
+28.78 40.9  Sonet 5.5 jest również dla darmowych planów, a jeśli chcesz pełną analizę twojego całego profilu, chcesz wiedzieć co cię blokuje i chcesz gotowe viralowe filmiki na podstawie tego co już działa w twojej niszy, kompletnie za darmo, to wejdź w ich bio i wpisz nick swojego profilu.

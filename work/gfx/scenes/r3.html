@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<link rel="stylesheet" href="fonts.css"><link rel="stylesheet" href="lib/base.css">
+<script src="lib/gsap.min.js"></script><script src="lib/world.js"></script>
+<style>
+.pc{width:900px;height:690px;border-radius:72px;top:130px}
+.pc .hd{position:absolute;left:56px;top:48px;display:flex;align-items:center;gap:22px}
+.pc .hd b{font-weight:700;font-size:52px;letter-spacing:-.01em}
+.pc .per{position:absolute;right:56px;top:66px;font-size:30px;color:#77776f}
+.pc hr{position:absolute;left:56px;right:56px;top:156px;border:0;height:2px;background:#ECECE8;margin:0}
+.blk{position:absolute;top:196px;width:380px;height:440px;border-radius:56px}
+.blk .band{position:absolute;inset:0;border-radius:56px;background:var(--band);opacity:0}
+.blk .lab{position:absolute;left:36px;top:36px;font-size:30px;color:#77776f;font-weight:500}
+.blk .val{position:absolute;left:30px;top:96px;font-size:176px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.blk .unit{position:absolute;left:36px;top:300px;font-size:30px;color:#77776f}
+.b1{left:56px}.b2{left:468px}
+.x2{position:absolute;right:-30px;top:-40px;height:96px;padding:0 38px;border-radius:48px;background:var(--clay);color:#fff;font-weight:700;font-size:64px;line-height:96px;box-shadow:var(--sh);opacity:0}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs><filter id="mb" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB"><feGaussianBlur id="mbf" stdDeviation="0.0001 0.0001"/></filter></defs></svg>
+<div id="root" data-composition-id="r3" data-width="1080" data-height="1920" data-duration="4.9" data-fps="60">
+  <div id="clipper" style="-webkit-mask-image:linear-gradient(to bottom,#000 0,#000 900px,transparent 1060px);mask-image:linear-gradient(to bottom,#000 0,#000 900px,transparent 1060px)">
+    <div id="stage"><div id="world">
+      <div class="card pc" id="son" style="left:90px">
+        <div class="hd"><span id="i1"></span><b>Sonnet 5.5</b></div><div class="per">per 1M tokens</div><hr>
+        <div class="blk b1"><div class="band" id="bandA"></div><div class="lab">Input</div><div class="val">$2</div><div class="unit">USD</div></div>
+        <div class="blk b2"><div class="band" id="bandB"></div><div class="lab">Output</div><div class="val">$10</div><div class="unit">USD</div></div>
+      </div>
+      <div class="card pc" id="opu" style="left:1090px">
+        <div class="hd"><span id="i2"></span><b>Opus 5.5</b></div><div class="per">per 1M tokens</div><hr>
+        <div class="blk b1"><div class="lab">Input</div><div class="val" style="color:#4a4a45">$4</div><div class="unit">USD</div></div>
+        <div class="blk b2"><div class="lab">Output</div><div class="val" style="color:#4a4a45">$20</div><div class="unit">USD</div></div>
+        <div class="x2" id="x2">2&times;</div>
+      </div>
+    </div></div>
+  </div>
+  <div id="dither"></div>
+</div>
+<script type="application/json" id="events">[{"t":3.24,"type":"whoosh","note":"whip to the Opus price card: loudest point on the whip midpoint"},{"t":3.95,"type":"pop","note":"2x badge lands on the Opus price card"}]</script>
+<script>
+document.getElementById('i1').innerHTML = HFW.spark(76, '#D97757');
+document.getElementById('i2').innerHTML = HFW.spark(76, '#B9B9B2');
+const tl = gsap.timeline({ paused: true });
+HFW.init(tl, { cx: 540, cy: 475, cam: { x: 540, y: 475, s: 1 } });
+HFW.setFocus('#opu', 'far');
+/* highlight band: Input ($2) on "dwa dolary" (0.9), moves to Output ($10) on "dziesięć dolarów" (2.0) */
+tl.fromTo('#bandA', { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: .3, ease: 'power2.out' }, 0.82);
+tl.to('#bandA', { opacity: 0, duration: .25, ease: 'sine.inOut' }, 1.92);
+tl.fromTo('#bandB', { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: .3, ease: 'power2.out' }, 1.92);
+HFW.cam(0, 2.79, { x: 556, y: 475, s: 1.02 }, 'sine.inOut');
+/* WHIP to the Opus price card; midpoint 3.24 = "To połowa tego co kosztuje Opus" */
+const mid = HFW.whip(2.79, [1, 0], 2600, { x: 1556, y: 475, s: 1.0 });
+tl.set('#son', { opacity: 0 }, mid);
+tl.set('#opu', { filter: 'blur(0px)', opacity: 1 }, mid);
+HFW.cam(3.84, 1.06, { x: 1572, y: 475, s: 1.03 }, 'sine.inOut');
+gsap.set('#x2', { scale: .6 });
+tl.fromTo('#x2', { y: -60, opacity: 0, scale: 1.2 }, { y: 0, opacity: 1, scale: 1, duration: .26, ease: 'power3.in' }, 3.69);
+tl.to('#x2', { y: -9, duration: .08, ease: 'sine.out' }, 3.95).to('#x2', { y: 0, duration: .13, ease: 'sine.in' }, 4.03);
+window.__timelines['r3'] = tl;
+</script></body></html>

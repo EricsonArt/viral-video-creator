@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<link rel="stylesheet" href="fonts.css"><link rel="stylesheet" href="lib/base.css">
+<script src="lib/gsap.min.js"></script><script src="lib/world.js"></script>
+<style>
+.model{width:510px;height:760px;border-radius:72px;overflow:visible}
+.model .ico{position:absolute;left:0;right:0;top:96px;display:flex;justify-content:center}
+.model .nm{position:absolute;left:44px;top:496px;font-weight:700;font-size:56px;letter-spacing:-.01em;white-space:nowrap}
+.model .sub{position:absolute;left:46px;top:566px;font-size:30px;font-weight:400;color:#77776f;white-space:nowrap}
+.bars{position:absolute;left:44px;right:44px;top:630px}
+.bar{height:22px;border-radius:11px;margin-bottom:14px;background:#ECECE8;position:relative;overflow:hidden}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:11px;width:0}
+#sonnet .bar i{background:#E9B9A5}
+#opus .bar i{background:#CFCFC9}
+.check{position:absolute;right:44px;top:508px;width:64px;height:64px;border-radius:50%;background:var(--ok);display:grid;place-items:center;opacity:0}
+.tag{position:absolute;left:340px;top:96px;height:88px;padding:0 36px;border-radius:44px;background:var(--clay);color:#fff;font-weight:700;font-size:56px;line-height:88px;box-shadow:var(--sh);opacity:0}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs><filter id="mb" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB"><feGaussianBlur id="mbf" stdDeviation="0.0001 0.0001"/></filter></defs></svg>
+<div id="root" data-composition-id="r1" data-width="1080" data-height="1920" data-duration="4.4667" data-fps="60">
+  <div id="clipper" style="-webkit-mask-image:linear-gradient(to bottom,#000 0,#000 900px,transparent 1060px);mask-image:linear-gradient(to bottom,#000 0,#000 900px,transparent 1060px)">
+    <div id="stage"><div id="world">
+      <div class="card model" id="sonnet" style="left:24px;top:130px">
+        <div class="ico" id="ico1"></div><div class="nm">Sonnet 5.5</div><div class="sub">coding</div>
+        <div class="check" id="chk"><svg width="34" height="34" viewBox="0 0 34 34"><path d="M7 18l7 7 13-15" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="bars"><div class="bar"><i id="b1" style="--w:100%"></i></div><div class="bar" style="width:72%"><i id="b2"></i></div><div class="bar" style="width:86%"><i id="b3"></i></div></div>
+      </div>
+      <div class="card model" id="opus" style="left:546px;top:130px">
+        <div class="ico" id="ico2"></div><div class="nm" style="color:#4a4a45">Opus 5.5</div><div class="sub">coding</div>
+        <div class="bars"><div class="bar"><i id="o1"></i></div><div class="bar" style="width:72%"><i id="o2"></i></div><div class="bar" style="width:86%"><i id="o3"></i></div></div>
+      </div>
+      <div class="tag" id="tag">&minus;50%</div>
+    </div></div>
+  </div>
+  <div id="dither"></div>
+</div>
+<script type="application/json" id="events">[{"t":2.24,"type":"whoosh","note":"whip to Opus: loudest point on the whip midpoint"},{"t":3.62,"type":"pop","note":"-50% price tag lands on the Sonnet card"}]</script>
+<script>
+document.getElementById('ico1').innerHTML = HFW.spark(250, '#D97757');
+document.getElementById('ico2').innerHTML = HFW.spark(250, '#B9B9B2');
+const tl = gsap.timeline({ paused: true });
+HFW.init(tl, { cx: 540, cy: 510, cam: { x: 540, y: 510, s: 1 } });
+HFW.setFocus('#opus', 'near');
+/* code bars: Sonnet draws in on "lepszy w kodowaniu", Opus bars are already full (static) */
+gsap.set(['#o1','#o2','#o3'], { width: '100%' });
+tl.fromTo('#b1', { width: '0%' }, { width: '100%', duration: .5, ease: 'power2.out' }, 1.15);
+tl.fromTo('#b2', { width: '0%' }, { width: '100%', duration: .5, ease: 'power2.out' }, 1.3);
+tl.fromTo('#b3', { width: '0%' }, { width: '100%', duration: .5, ease: 'power2.out' }, 1.45);
+gsap.set('#chk', { scale: .6 });
+tl.to('#chk', { opacity: 1, scale: 1, duration: .35, ease: 'back.out(2)' }, 1.95);
+/* world camera: glide -> step to Opus (named at 2.24) -> hold glide -> step back to Sonnet -> glide */
+HFW.cam(0.0, 1.79, { x: 556, y: 510, s: 1.03 }, 'sine.inOut');
+/* WHIP to Opus: 0.45 s out (power3.in) + 0.6 s in (power3.out); midpoint 2.24 = the moment "Opus" is named */
+const mid = HFW.whip(1.79, [1, 0], 2400, { x: 801, y: 510, s: 1.02 });
+tl.set('#sonnet', { opacity: 0, filter: 'blur(9px)' }, mid);
+tl.set('#opus', { filter: 'blur(0px)', opacity: 1 }, mid);
+tl.to('#sonnet', { opacity: 0.4, duration: .22, ease: 'sine.inOut' }, 2.80);
+HFW.cam(2.84, 0.21, { x: 812, y: 510, s: 1.04 }, 'sine.inOut');
+HFW.cam(3.05, 0.5, { x: 540, y: 510, s: 1.0 }, 'power3.inOut');
+HFW.focus('#sonnet', 3.05, 'active', .5); HFW.focus('#opus', 3.05, 'near', .5);
+HFW.cam(3.55, 0.9167, { x: 548, y: 510, s: 1.03 }, 'sine.inOut');
+/* -50% tag lands (touchdown 3.62) */
+tl.fromTo('#tag', { y: -70, scale: 1.25, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: .28, ease: 'power3.in' }, 3.34);
+tl.to('#tag', { y: -10, duration: .09, ease: 'sine.out' }, 3.62).to('#tag', { y: 0, duration: .14, ease: 'sine.in' }, 3.71);
+window.__timelines['r1'] = tl;
+</script></body></html>

@@ -6,3 +6,20 @@ temp/
 __pycache__/
 *.pyc
 .DS_Store
+
+# video-edit workspace: heavy intermediates and tooling
+input/
+work/venv/
+work/hf/
+work/models/
+work/matte/
+work/tmp_asm/
+work/captures/
+work/frames/
+work/audio/
+work/assets/
+work/gfx/runs/
+work/gfx/out/
+work/gfx/_t/
+work/final_small.mp4
+work/*.png

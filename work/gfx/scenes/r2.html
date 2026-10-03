@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<link rel="stylesheet" href="fonts.css"><link rel="stylesheet" href="lib/base.css">
+<script src="lib/gsap.min.js"></script><script src="lib/world.js"></script>
+<style>
+#dup{position:absolute;left:24px;top:200px;width:1032px;height:1040px;filter:blur(40px) saturate(.7) brightness(1.05);transform:scale(2.1);transform-origin:50% 50%}
+#dupwrap{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden}
+#wash{position:absolute;left:0;top:0;width:1080px;height:1920px;background:rgba(255,255,255,.72)}
+#frame{left:24px;top:200px;width:1032px;height:1040px;border-radius:36px;overflow:hidden;background:#fff}
+.pg{position:absolute;left:0;top:0;width:1032px;height:1040px;overflow:hidden;background:#FAF9F5}
+.cam{position:absolute;left:0;top:0;width:1032px;height:1040px;transform-origin:0 0}
+.url{position:absolute;left:0;right:0;top:0;height:92px;background:#F4F2EC;border-bottom:2px solid #E7E4DB;display:flex;align-items:center;padding:0 28px;gap:16px}
+.url .p{height:56px;border-radius:28px;background:#fff;border:2px solid #E7E4DB;padding:0 26px;display:flex;align-items:center;gap:12px;font-size:30px;color:#57574f;font-weight:500;white-space:nowrap}
+.ttl{position:absolute;left:44px;top:128px;font-size:44px;font-weight:700;letter-spacing:-.02em;line-height:1.1;color:#141413;white-space:nowrap}
+.dt{position:absolute;left:46px;top:190px;font-size:30px;color:#77776f}
+.tb{position:absolute;left:28px;top:440px;width:1000px}
+.th{display:flex;height:96px;align-items:center;border-bottom:2px solid #DAD6CB}
+.tr{display:flex;height:300px;align-items:center;position:relative}
+.c0{width:312px;padding-left:16px;flex:none}
+.cv{width:216px;flex:none;position:relative;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-left:18px}
+.th .cv{height:auto;display:block;font-size:30px;font-weight:600;color:#3d3d3a;padding-left:18px;white-space:nowrap}
+.cat{font-size:30px;color:#77776f;line-height:1.2}.lab{font-size:30px;font-weight:600;line-height:1.25;color:#141413}
+.v{font-size:62px;font-weight:700;letter-spacing:-.03em;line-height:1;color:#141413;position:relative;z-index:2}
+.v sup{font-size:30px;font-weight:500;margin-left:2px;vertical-align:top}
+.barw{width:168px;height:22px;border-radius:11px;background:#ECE9DF;margin-top:22px;position:relative;overflow:hidden;z-index:2}
+.barw i{position:absolute;left:0;top:0;bottom:0;border-radius:11px;width:0}
+.hl{position:absolute;left:0;right:0;top:34px;bottom:34px;border-radius:36px;background:var(--band);opacity:0;z-index:1}
+.dim{opacity:1}
+.gpt{position:absolute;left:1004px;top:0;font-size:30px;color:#a5a29a}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs><filter id="mb" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB"><feGaussianBlur id="mbf" stdDeviation="0.0001 0.0001"/></filter></defs></svg>
+<div id="root" data-composition-id="r2" data-width="1080" data-height="1920" data-duration="6.4167" data-fps="60">
+  <div id="clipper">
+    <div id="stage"><div id="world">
+      <div id="dupwrap"><div id="dup"><div class="pg"></div></div><div id="wash"></div></div>
+      <div class="card" id="frame"><div class="pg" id="pgmain"></div></div>
+    </div></div>
+  </div>
+  <div id="dither"></div>
+</div>
+<script type="application/json" id="events">[]</script>
+<script>
+const PAGE = `
+<div class="cam">
+  <div class="url"><div class="p"><svg width="26" height="26" viewBox="0 0 26 26"><rect x="4" y="11" width="18" height="12" rx="3" fill="#77776f"/><path d="M8 11V8a5 5 0 0110 0v3" fill="none" stroke="#77776f" stroke-width="3"/></svg>anthropic.com/claude-sonnet-5-5</div></div>
+  <div class="ttl">Introducing Claude Sonnet 5.5</div><div class="dt">September 28, 2026</div>
+  <div class="tb">
+    <div class="th"><div class="c0"></div><div class="cv">Sonnet 5.5</div><div class="cv">Sonnet 5</div><div class="cv">Opus 5.5</div></div>
+    <div class="tr">
+      <div class="c0"><div class="cat">Agentic coding</div><div class="lab">Terminal-Bench 4.0</div></div>
+      <div class="cv"><div class="hl hlA"></div><div class="v">70.6%</div><div class="barw"><i class="fA" style="background:#D97757"></i></div></div>
+      <div class="cv"><div class="hl hlC"></div><div class="v vC">10.3%</div><div class="barw"><i class="fC" style="background:#B8B5AB"></i></div></div>
+      <div class="cv"><div class="hl hlB"></div><div class="v vB">66.4%<sup>1</sup></div><div class="barw"><i class="fB" style="background:#B8B5AB"></i></div></div>
+    </div>
+  </div>
+</div>`;
+document.getElementById('pgmain').innerHTML = PAGE;
+document.querySelector('#dup .pg').innerHTML = PAGE;
+const tl = gsap.timeline({ paused: true });
+HFW.init(tl, { cx: 540, cy: 720, cam: { x: 540, y: 720, s: 1 } });
+/* inner-page camera (applies to BOTH the sharp frame and the blurred duplicate: class .cam) */
+const C = '.cam';
+/* positions in page px: columns centres: Sonnet5.5 ~ x 28+316+114=458, Sonnet5 ~686, Opus5.5 ~914 ; row centre y ~ 330+96+150=576 */
+function focusOn(fx, fy, k) { return { scale: k, x: Math.min(0, Math.max(1032 - 1032 * k, 516 - fx * k)), y: Math.min(0, Math.max(1040 - 1040 * k, 520 - fy * k)) }; }
+gsap.set(C, { x: 0, y: 0, scale: 1 });
+/* 70% (named 0.25): push in to the Sonnet 5.5 cell */
+tl.to(C, Object.assign({ duration: .7, ease: 'power2.inOut' }, focusOn(520, 640, 1.28)), 0.05);
+tl.to('.hlA', { opacity: 1, duration: .3, ease: 'power2.out' }, 0.3);
+tl.fromTo('.fA', { width: '0%' }, { width: '70.6%', duration: .7, ease: 'power3.out' }, 0.35);
+/* "a Opus ma 66,4%" (1.8): step to the Opus column */
+tl.to(C, Object.assign({ duration: .5, ease: 'power2.inOut' }, focusOn(880, 640, 1.28)), 1.6);
+tl.to('.hlA', { opacity: 0, duration: .25 }, 1.65);
+tl.to('.hlB', { opacity: 1, duration: .3, ease: 'power2.out' }, 1.95);
+tl.fromTo('.fB', { width: '0%' }, { width: '66.4%', duration: .7, ease: 'power3.out' }, 1.95);
+/* "Sonnet 5 ... 10,3%" (4.23): step to the Sonnet 5 column */
+tl.to(C, Object.assign({ duration: .5, ease: 'power2.inOut' }, focusOn(690, 640, 1.34)), 3.98);
+tl.to('.hlB', { opacity: 0, duration: .25 }, 4.0);
+tl.to('.hlC', { opacity: 1, duration: .3, ease: 'power2.out' }, 4.45);
+tl.fromTo('.fC', { width: '0%' }, { width: '10.3%', duration: .6, ease: 'power3.out' }, 4.5);
+/* pull back to show the whole table at the end */
+tl.to(C, { x: 0, y: 0, scale: 1.0, duration: 1.0, ease: 'power2.inOut' }, 5.2);
+window.__timelines['r2'] = tl;
+</script></body></html>

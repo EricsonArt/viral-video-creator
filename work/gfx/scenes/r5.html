@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<link rel="stylesheet" href="fonts.css"><link rel="stylesheet" href="lib/base.css">
+<script src="lib/gsap.min.js"></script><script src="lib/world.js"></script>
+<style>
+.w{width:700px;height:640px;top:320px;border-radius:40px;overflow:hidden}
+.tb{height:84px;display:flex;align-items:center;gap:12px;padding:0 30px;border-bottom:2px solid #EEEBE3;background:#FBFAF7;font-size:30px;color:#77776f;font-weight:500}
+.tb i{width:18px;height:18px;border-radius:50%;background:#E4E1D8}
+.tb span{margin-left:14px}
+.code{padding:34px 30px;font-family:'JetBrains Mono',monospace;font-size:33px;line-height:1.62;color:#2a2a28}
+.ln{display:flex;gap:26px;white-space:pre}
+.ln b{color:#b9b6ac;font-weight:400;width:26px;text-align:right;flex:none}
+.ln .t{overflow:hidden;display:inline-block;white-space:pre}
+.kw{color:#B25730}.fn{color:#2f6f4f}.nm{color:#6a5acd}.cm{color:#9a978c}
+.caret{display:inline-block;width:3px;height:36px;background:#D97757;vertical-align:-6px;margin-left:2px}
+.diff{padding:34px 30px;font-family:'JetBrains Mono',monospace;font-size:31px;line-height:1.5}
+.dl{height:84px;border-radius:22px;display:flex;align-items:center;padding:0 22px;gap:18px;margin-bottom:18px;white-space:pre}
+.dl.rm{background:#FDECEA;color:#B3261E}.dl.ad{background:#E9F8EE;color:#1E7A3A}
+.dl em{font-style:normal;font-weight:700;width:22px}
+.bigchk{position:absolute;right:44px;bottom:40px;width:120px;height:120px;border-radius:50%;background:var(--ok);display:grid;place-items:center;box-shadow:0 20px 40px -12px rgba(52,199,89,.55)}
+.doc{padding:50px 56px}
+.bar{height:22px;border-radius:11px;background:#ECE9DF;margin-bottom:22px}
+.slide{margin:40px 40px 0;height:350px;border-radius:26px;background:#FBFAF7;border:2px solid #EEEBE3;position:relative;overflow:hidden}
+.grid{display:grid;grid-template-columns:90px 1fr 1fr 1fr;font-family:'JetBrains Mono',monospace;font-size:31px}
+.grid div{height:80px;display:flex;align-items:center;justify-content:flex-end;padding:0 18px;border-bottom:2px solid #EEEBE3;border-right:2px solid #EEEBE3}
+.grid .h{background:#F4F2EC;color:#77776f;justify-content:center}
+.grid .r{background:#F4F2EC;color:#77776f;justify-content:center}
+.grid .sum{background:#E9F8EE;color:#1E7A3A;font-weight:700}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs><filter id="mb" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB"><feGaussianBlur id="mbf" stdDeviation="0.0001 0.0001"/></filter></defs></svg>
+<div id="root" data-composition-id="r5" data-width="1080" data-height="1920" data-duration="3.6333" data-fps="60">
+  <div id="clipper"><div id="stage"><div id="world">
+    <!-- 1 code -->
+    <div class="card w" id="k1" style="left:190px"><div class="tb"><i></i><i></i><i></i><span>total.ts</span></div>
+      <div class="code">
+        <div class="ln"><b>1</b><span class="t" id="l1"><span class="kw">function</span> <span class="fn">total</span>(items) {</span></div>
+        <div class="ln"><b>2</b><span class="t" id="l2">  <span class="kw">let</span> sum = <span class="nm">0</span>;</span></div>
+        <div class="ln"><b>3</b><span class="t" id="l3">  <span class="kw">for</span> (<span class="kw">const</span> i <span class="kw">of</span> items)</span></div>
+        <div class="ln"><b>4</b><span class="t" id="l4">    sum += i.price;</span></div>
+        <div class="ln"><b>5</b><span class="t" id="l5">  <span class="kw">return</span> sum;</span></div>
+        <div class="ln"><b>6</b><span class="t" id="l6">}<span class="caret" id="caret"></span></span></div>
+      </div></div>
+    <!-- 2 bug fix -->
+    <div class="card w" id="k2" style="left:950px"><div class="tb"><i></i><i></i><i></i><span>auth.js</span></div>
+      <div class="diff">
+        <div class="dl rm"><em>&minus;</em>if (user = null)</div>
+        <div class="dl ad"><em>+</em>if (user === null)</div>
+        <div class="dl" style="color:#9a978c">  return login();</div>
+      </div>
+      <div class="bigchk"><svg width="66" height="66" viewBox="0 0 34 34"><path d="M7 18l7 7 13-15" fill="none" stroke="#fff" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+    <!-- 3 document -->
+    <div class="card w" id="k3" style="left:1710px"><div class="tb"><i></i><i></i><i></i><span>Report.docx</span></div>
+      <div class="doc"><div class="bar" style="height:34px;width:62%;background:#2a2a28;border-radius:17px;margin-bottom:34px"></div>
+        <div class="bar" style="width:100%"></div><div class="bar" style="width:94%"></div><div class="bar" style="width:98%"></div><div class="bar" style="width:70%;margin-bottom:46px"></div>
+        <div class="bar" style="width:40%;height:28px;background:#E9B9A5;border-radius:14px;margin-bottom:34px"></div>
+        <div class="bar" style="width:100%"></div><div class="bar" style="width:92%"></div><div class="bar" style="width:55%"></div></div></div>
+    <!-- 4 slides -->
+    <div class="card w" id="k4" style="left:2470px"><div class="tb"><i></i><i></i><i></i><span>Deck.pptx</span></div>
+      <div class="slide"><div class="abs" style="left:40px;top:40px;width:320px;height:34px;border-radius:17px;background:#2a2a28"></div>
+        <div class="abs" style="left:40px;top:96px;width:240px;height:22px;border-radius:11px;background:#ECE9DF"></div>
+        <div class="abs" style="left:40px;top:134px;width:200px;height:22px;border-radius:11px;background:#ECE9DF"></div>
+        <div class="abs" style="left:390px;bottom:40px;width:56px;height:110px;border-radius:12px;background:#ECE9DF"></div>
+        <div class="abs" style="left:468px;bottom:40px;width:56px;height:170px;border-radius:12px;background:#E9B9A5"></div>
+        <div class="abs" style="left:546px;bottom:40px;width:56px;height:240px;border-radius:12px;background:#D97757"></div></div>
+      <div class="abs" style="left:40px;right:40px;top:508px;display:flex;gap:18px"><div style="flex:1;height:90px;border-radius:20px;background:#F4F2EC"></div><div style="flex:1;height:90px;border-radius:20px;background:#F4F2EC"></div><div style="flex:1;height:90px;border-radius:20px;background:#F4F2EC"></div></div></div>
+    <!-- 5 spreadsheet -->
+    <div class="card w" id="k5" style="left:3230px"><div class="tb"><i></i><i></i><i></i><span>Budget.xlsx</span></div>
+      <div class="grid" style="margin-top:20px">
+        <div class="h"></div><div class="h">A</div><div class="h">B</div><div class="h">C</div>
+        <div class="r">1</div><div>120</div><div>340</div><div>275</div>
+        <div class="r">2</div><div>95</div><div>410</div><div>180</div>
+        <div class="r">3</div><div>230</div><div>150</div><div>365</div>
+        <div class="r">4</div><div>310</div><div>275</div><div>90</div>
+        <div class="r">5</div><div class="sum" style="grid-column:2/5;justify-content:flex-end;font-size:44px;height:100px" id="sum">3 235</div>
+      </div></div>
+  </div></div></div>
+  <div id="dither"></div>
+</div>
+<script type="application/json" id="events">[{"t":0.55,"type":"ticks","dur":0.55,"note":"code line streams in (typing)"}]</script>
+<script>
+const tl = gsap.timeline({ paused: true });
+HFW.init(tl, { cx: 540, cy: 720, cam: { x: 540, y: 640, s: 1.25 } });
+const X = [540, 1300, 2060, 2820, 3580];           /* card centres */
+['#k2','#k3','#k4','#k5'].forEach(s => HFW.setFocus(s, 'far'));
+/* code card: lines 1-4 already typed at frame 0, lines 5-7 stream in on "kodowaniu" */
+gsap.set(['#l5','#l6'], { width: 0 });
+tl.to('#l5', { width: 'auto', duration: .01 }, 0.0);
+const w5 = 15, w6 = 1;
+gsap.set('#l5', { clipPath: 'inset(0 100% 0 0)' }); gsap.set('#l6', { clipPath: 'inset(0 100% 0 0)', width: 'auto' }); gsap.set('#l5', { width: 'auto' });
+tl.to('#l5', { clipPath: 'inset(0 0% 0 0)', duration: .36, ease: 'steps(14)' }, 0.55);
+tl.to('#l6', { clipPath: 'inset(0 0% 0 0)', duration: .12, ease: 'steps(2)' }, 0.95);
+tl.fromTo('#caret', { opacity: 1 }, { opacity: 0, duration: .01, repeat: 7, yoyo: true, repeatDelay: .22 }, 0.0);
+/* world camera: gentle glide, then four steps (0.5 s, power3.inOut), each starting 0.25 s before the item is named */
+HFW.cam(0, 1.18, { x: 556, y: 640, s: 1.27 }, 'sine.inOut');
+const stepAt = [1.18, 1.70, 2.25, 2.75];
+stepAt.forEach((t, i) => {
+  HFW.cam(t, 0.5, { x: X[i + 1], y: 640, s: 1.25 }, 'power3.inOut');
+  HFW.focus('#k' + (i + 1), t, 'prev', .5); HFW.focus('#k' + (i + 2), t, 'active', .5);
+});
+HFW.cam(3.25, 0.3833, { x: X[4] + 8, y: 640, s: 1.27 }, 'sine.inOut');
+window.__timelines['r5'] = tl;
+</script></body></html>

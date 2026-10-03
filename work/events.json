@@ -1,0 +1,82 @@
+[
+ {
+  "t": 2.24,
+  "type": "whoosh",
+  "note": "whip to Opus: loudest point on the whip midpoint",
+  "run": "R1"
+ },
+ {
+  "t": 3.62,
+  "type": "pop",
+  "note": "-50% price tag lands on the Sonnet card",
+  "run": "R1"
+ },
+ {
+  "t": 14.1233,
+  "type": "whoosh",
+  "note": "whip to the Opus price card: loudest point on the whip midpoint",
+  "run": "R3"
+ },
+ {
+  "t": 14.8333,
+  "type": "pop",
+  "note": "2x badge lands on the Opus price card",
+  "run": "R3"
+ },
+ {
+  "t": 21.7167,
+  "type": "ticks",
+  "dur": 0.55,
+  "note": "code line streams in (typing)",
+  "run": "R5"
+ },
+ {
+  "t": 29.7833,
+  "type": "click",
+  "note": "cursor presses the model pill",
+  "run": "R7"
+ },
+ {
+  "t": 30.4833,
+  "type": "chime",
+  "note": "Free plan confirmed (green check)",
+  "run": "R7"
+ },
+ {
+  "t": 32.3333,
+  "type": "whoosh_soft",
+  "note": "logo lockup resolves into the product UI (single tasteful whoosh)",
+  "run": "R8"
+ },
+ {
+  "t": 39.98,
+  "type": "key",
+  "run": "R9"
+ },
+ {
+  "t": 40.07,
+  "type": "key",
+  "run": "R9"
+ },
+ {
+  "t": 40.16,
+  "type": "key",
+  "run": "R9"
+ },
+ {
+  "t": 40.25,
+  "type": "key",
+  "run": "R9"
+ },
+ {
+  "t": 40.34,
+  "type": "key",
+  "run": "R9"
+ },
+ {
+  "t": 40.66,
+  "type": "click",
+  "note": "Post pressed in the CTA comment box",
+  "run": "R9"
+ }
+]
