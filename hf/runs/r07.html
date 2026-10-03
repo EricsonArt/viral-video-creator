@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<title>r07 - AI look to editorial site</title>
+<meta name="viewport" content="width=1080, height=1920">
+<link rel="stylesheet" href="../kit/kit.css">
+<script src="../vendor/gsap.min.js"></script>
+<script src="../kit/world.js"></script>
+<style>
+/* ---------- browser window ---------- */
+#win{position:absolute;left:90px;top:70px;width:900px;height:760px;border-radius:40px;background:#fff;overflow:hidden}
+#chrome{position:absolute;left:0;top:0;width:900px;height:70px;background:#FAFAF8;border-bottom:1px solid #ECEBE7}
+.dot{position:absolute;top:25px;width:20px;height:20px;border-radius:10px;background:#DCDCD8}
+#addr{position:absolute;left:170px;top:16px;width:560px;height:38px;border-radius:19px;background:#F0EFEB}
+#view{position:absolute;left:0;top:70px;width:900px;height:690px;overflow:hidden}
+#pg{position:absolute;left:0;top:0;width:900px;height:690px;transform-origin:0 0}
+.layer{position:absolute;left:0;top:0;width:900px;height:690px;overflow:hidden}
+
+/* ---------- AI-generated look (deliberately generic) ---------- */
+#slop{font-family:system-ui,Arial,Helvetica,sans-serif;background:#F3F0FF;z-index:3}
+.sl-hero{position:absolute;left:0;top:0;width:900px;height:412px;
+  background:radial-gradient(circle at 12% 18%,rgba(236,72,153,.55),rgba(236,72,153,0) 42%),
+             radial-gradient(circle at 90% 78%,rgba(34,211,238,.45),rgba(34,211,238,0) 46%),
+             linear-gradient(135deg,#7C3AED 0%,#5B3FE0 45%,#3B82F6 100%)}
+.sl-logo{position:absolute;left:44px;top:26px;color:#fff;font-weight:800;font-size:24px;letter-spacing:-.01em}
+.sl-links{position:absolute;right:130px;top:30px;color:rgba(255,255,255,.85);font-size:18px;font-weight:500;word-spacing:26px}
+.sl-h{position:absolute;left:100px;width:700px;top:96px;text-align:center;color:#fff;font-weight:800;font-size:60px;line-height:1.08;letter-spacing:-.02em;text-shadow:0 4px 24px rgba(30,10,90,.35)}
+.sl-p{position:absolute;left:100px;width:700px;top:262px;text-align:center;color:rgba(255,255,255,.88);font-size:23px;font-weight:400}
+.sl-btn{position:absolute;left:330px;top:322px;width:240px;height:64px;border-radius:32px;text-align:center;color:#fff;font-weight:700;font-size:25px;line-height:64px;
+  background:linear-gradient(180deg,#F9A8D4 0%,#C026D3 52%,#7E22CE 100%);
+  box-shadow:0 0 0 3px rgba(255,255,255,.28),0 0 38px 8px rgba(217,70,239,.75),0 12px 26px rgba(76,29,149,.55)}
+.sl-btn::before{content:'';position:absolute;left:12px;right:12px;top:4px;height:26px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0))}
+.sl-c{position:absolute;top:446px;width:250px;height:214px;border-radius:30px;background:#fff;box-shadow:0 14px 34px rgba(124,58,237,.18)}
+.sl-ic{position:absolute;left:24px;top:22px;width:58px;height:58px;border-radius:29px;background:linear-gradient(135deg,#EDE9FE,#DBEAFE)}
+.sl-ic svg{position:absolute;left:9px;top:9px;width:40px;height:40px}
+.sl-t{position:absolute;left:24px;top:94px;font-size:23px;font-weight:700;color:#1E1B4B}
+.sl-d{position:absolute;left:24px;top:132px;width:200px;font-size:16px;line-height:1.35;color:#6B7280}
+#audit{position:absolute;left:0;top:0;width:900px;height:690px}
+#xmark{position:absolute;left:830px;top:12px;width:60px;height:60px;border-radius:30px;background:#FF3B30;box-shadow:0 8px 20px rgba(255,59,48,.35)}
+#xmark svg{position:absolute;left:0;top:0;width:60px;height:60px}
+
+/* ---------- refined editorial site (our palette) ---------- */
+#fresh{background:#FBFAF6;z-index:1}
+#f-nav{position:absolute;left:0;top:0;width:900px;height:86px}
+#f-rule{position:absolute;left:70px;top:86px;width:760px;height:1.5px;background:#ECE9E2}
+#f-glyph{position:absolute;left:70px;top:28px;width:30px;height:30px;border-radius:15px;background:#D97757}
+#f-brand{position:absolute;left:114px;top:22px;height:42px;line-height:42px;font-size:30px;font-weight:600;letter-spacing:-.01em}
+#f-contact{position:absolute;left:670px;top:18px;width:160px;height:50px;border-radius:25px;border:1.5px solid #E3E0D8;text-align:center;line-height:47px;font-size:30px;font-weight:500;color:#222}
+#f-h{position:absolute;left:70px;top:114px;width:400px}
+#f-h .hl{display:block;font-size:70px;line-height:72px;font-weight:700;letter-spacing:-.03em;color:#111;white-space:nowrap}
+#f-h .hl.cl{color:#B25730}
+#f-p{position:absolute;left:70px;top:350px;width:370px;font-size:30px;line-height:40px;font-weight:400;color:#5C5C61}
+#f-btn{position:absolute;left:70px;top:458px;height:64px;padding:0 38px;border-radius:32px;background:#111;color:#fff;font-size:30px;font-weight:600;line-height:64px;white-space:nowrap}
+#f-card{position:absolute;left:478px;top:150px;width:352px;height:360px;border-radius:28px;background:#fff;border:1px solid #ECE9E2;
+  box-shadow:0 28px 64px rgba(24,24,32,.10),0 6px 14px rgba(24,24,32,.05)}
+#f-lbl{position:absolute;left:28px;top:22px;font-size:30px;font-weight:500;color:#77777C;line-height:40px}
+#f-val{position:absolute;left:28px;top:60px;font-size:48px;font-weight:700;letter-spacing:-.02em;line-height:60px;white-space:nowrap}
+#f-dl{position:absolute;left:28px;top:122px;font-size:30px;font-weight:600;color:#1C9A45;line-height:40px;white-space:nowrap}
+#f-dl svg{position:absolute;left:0;top:11px;width:20px;height:20px}
+#f-dl span{margin-left:28px}
+#f-chart{position:absolute;left:28px;top:176px;width:292px;height:150px;overflow:visible}
+#f-ok{position:absolute;left:478px;top:548px;width:262px;height:68px;border-radius:34px;background:#fff;border:1.5px solid #D9F0E0;
+  box-shadow:0 18px 40px rgba(24,24,32,.10),0 4px 10px rgba(24,24,32,.05);white-space:nowrap}
+#f-ok .t{position:absolute;left:72px;top:0;height:68px;line-height:66px;font-size:30px;font-weight:600;color:#111}
+#f-ok .c{position:absolute;left:14px;top:12px;width:44px;height:44px}
+#scanw{position:absolute;left:0;top:-4px;width:900px;height:4px;z-index:9;opacity:0}
+#scanw .ln{position:absolute;left:0;top:0;width:900px;height:3px;background:#D97757}
+#scanw .tr{position:absolute;left:0;top:-90px;width:900px;height:90px;background:linear-gradient(to bottom,rgba(217,119,87,0),rgba(217,119,87,.11))}
+</style></head>
+<body class="split-fade">
+<div id="root" data-composition-id="r07" data-start="0" data-duration="4.3" data-width="1080" data-height="1920">
+  <div id="stage"><div id="world-mask"><div id="world">
+
+    <div id="win" class="float">
+      <div id="chrome"><div class="dot" style="left:30px"></div><div class="dot" style="left:60px"></div><div class="dot" style="left:90px"></div><div id="addr"></div></div>
+      <div id="view"><div id="pg">
+
+        <!-- REFINED (beneath) -->
+        <div id="fresh" class="layer">
+          <div id="f-nav"><div id="f-rule"></div><div id="f-glyph"></div><div id="f-brand">Atelier</div><div id="f-contact">Kontakt</div></div>
+          <div id="f-h"><span class="hl" id="h1">Strony,</span><span class="hl" id="h2">które mają</span><span class="hl cl" id="h3">charakter.</span></div>
+          <div id="f-p">Spokojny układ i wyraźna typografia.</div>
+          <div id="f-btn">Zacznij projekt</div>
+          <div id="f-card">
+            <div id="f-lbl">Przychód</div>
+            <div id="f-val">48 210 zł</div>
+            <div id="f-dl"><svg viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4.5 9.5 10 4l5.5 5.5" stroke="#1C9A45" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>12,4%</span></div>
+            <svg id="f-chart" viewBox="0 0 292 150" fill="none">
+              <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D97757" stop-opacity=".20"/><stop offset="1" stop-color="#D97757" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0 149.5H292" stroke="#ECE9E2" stroke-width="1.5"/>
+              <path d="M0 100H292" stroke="#F3F1EC" stroke-width="1.5"/>
+              <path d="M0 50H292" stroke="#F3F1EC" stroke-width="1.5"/>
+              <path id="c-area" d="M0 118C30 114 52 96 82 100S134 76 164 82 218 52 244 44 280 24 292 18V150H0Z" fill="url(#ag)"/>
+              <path id="c-line" pathLength="1" d="M0 118C30 114 52 96 82 100S134 76 164 82 218 52 244 44 280 24 292 18" stroke="#111" stroke-width="4" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1"/>
+              <g id="c-dot"><circle cx="292" cy="18" r="13" fill="#fff"/><circle cx="292" cy="18" r="7.5" fill="#D97757"/></g>
+            </svg>
+          </div>
+          <div id="f-ok">
+            <svg class="c" viewBox="0 0 44 44" fill="none"><circle id="ok-c" cx="22" cy="22" r="22" fill="#34C759"/><path id="ok-p" d="M12.5 23 19.5 30 32 14.5" stroke="#fff" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="34" stroke-dashoffset="34"/></svg>
+            <div class="t">Wdrożone</div>
+          </div>
+        </div>
+
+        <!-- AI-GENERATED LOOK (on top, wiped away top->bottom) -->
+        <div id="slop" class="layer">
+          <div class="sl-hero"></div>
+          <div class="sl-logo">&#9679; Acme AI</div>
+          <div class="sl-links">Features Pricing About</div>
+          <div class="sl-h">Revolutionize your workflow</div>
+          <div class="sl-p">The all-in-one AI-powered platform for modern teams</div>
+          <div class="sl-btn">Get Started</div>
+
+          <div class="sl-c" style="left:50px"><div class="sl-ic"><svg viewBox="0 0 40 40"><path d="M20 3C28 10 28 23 24 31H16C12 23 12 10 20 3Z" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1.5"/><path d="M20 3C23 6 25 9 25.5 13H14.5C15 9 17 6 20 3Z" fill="#EF4444"/><circle cx="20" cy="18" r="3.6" fill="#60A5FA" stroke="#fff" stroke-width="1.5"/><path d="M13 22 7 30l7-2ZM27 22l6 8-7-2Z" fill="#EF4444"/><path d="M17 32h6l-3 6Z" fill="#F59E0B"/></svg></div><div class="sl-t">Lightning Fast</div><div class="sl-d">Lorem ipsum dolor sit amet consectetur adipiscing elit.</div></div>
+          <div class="sl-c" style="left:325px"><div class="sl-ic"><svg viewBox="0 0 40 40"><path d="M23 2 8 23h10l-4 15 18-23H21Z" fill="#FBBF24" stroke="#F59E0B" stroke-width="1.5" stroke-linejoin="round"/></svg></div><div class="sl-t">Super Smart</div><div class="sl-d">Lorem ipsum dolor sit amet consectetur adipiscing elit.</div></div>
+          <div class="sl-c" style="left:600px"><div class="sl-ic"><svg viewBox="0 0 40 40"><path d="M13 19v-5a7 7 0 0 1 14 0v5" stroke="#9CA3AF" stroke-width="4" fill="none"/><rect x="8" y="18" width="24" height="18" rx="5" fill="#FBBF24" stroke="#F59E0B" stroke-width="1.5"/><circle cx="20" cy="26" r="2.6" fill="#92400E"/></svg></div><div class="sl-t">Secure Always</div><div class="sl-d">Lorem ipsum dolor sit amet consectetur adipiscing elit.</div></div>
+
+          <svg id="audit" viewBox="0 0 900 690" fill="none"><rect id="aud-r" x="14" y="14" width="872" height="662" rx="26" stroke="#FF3B30" stroke-width="4.5" stroke-dasharray="3040" stroke-dashoffset="3040"/></svg>
+          <div id="xmark"><svg viewBox="0 0 60 60" fill="none"><path d="M20 20 40 40M40 20 20 40" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/></svg></div>
+        </div>
+
+        <div id="scanw"><div class="tr"></div><div class="ln"></div></div>
+      </div></div>
+    </div>
+
+  </div></div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+const cam = WorldKit.Camera(tl, { cx: 540, cy: 960, s: 1 });   // product window is the subject -> world camera stays still
+
+gsap.set('#pg', { transformOrigin: '0 0', x: 0, y: 0, scale: 1 });
+gsap.set('#xmark', { opacity: 0, scale: 0.4, transformOrigin: '50% 50%' });
+
+/* ---- 1. the AI look gets marked (0.8 - 1.7): thin red outline traces the page, small X stamps the corner ---- */
+tl.to('#aud-r', { strokeDashoffset: 0, duration: 0.7, ease: 'power2.inOut' }, 0.82);
+tl.to('#xmark', { opacity: 1, scale: 1, duration: 0.38, ease: 'back.out(2.2)' }, 1.4);
+
+/* ---- 2. rebuild (wipe top->bottom 1.82 - 3.12) ---- */
+const W0 = 1.82, WD = 1.3, PH = 690;
+const wipeEase = gsap.parseEase('sine.inOut');
+function tAt(y) { let lo = 0, hi = 1; for (let i = 0; i < 28; i++) { const m = (lo + hi) / 2; if (wipeEase(m) * PH < y) lo = m; else hi = m; } return W0 + hi * WD; }
+
+tl.fromTo('#slop', { clipPath: 'inset(0px 0px 0px 0px)' }, { clipPath: 'inset(' + PH + 'px 0px 0px 0px)', duration: WD, ease: 'sine.inOut', immediateRender: false }, W0);
+tl.fromTo('#scanw', { y: 0 }, { y: PH, duration: WD, ease: 'sine.inOut', immediateRender: false }, W0);
+tl.set('#scanw', { opacity: 1 }, W0 - 0.001);
+tl.set('#scanw', { opacity: 0 }, W0 + WD + 0.001);
+
+function rise(sel, y, dy, dur) {
+  const t = tAt(y) - 0.02;
+  tl.fromTo(sel, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: dur || 0.5, ease: 'power3.out', immediateRender: false }, t);
+  return t;
+}
+gsap.set(['#f-nav', '#h1', '#h2', '#h3', '#f-p', '#f-btn', '#f-card', '#f-ok'], { opacity: 0 });
+rise('#f-nav', 30, 14, 0.4);
+rise('#h1', 118, 26);
+rise('#h2', 190, 26);
+rise('#h3', 262, 26);
+const tc = rise('#f-card', 156, 34, 0.55);
+gsap.set('#c-line', { opacity: 0 });
+tl.set('#c-line', { opacity: 1 }, tc + 0.3);
+tl.to('#c-line', { strokeDashoffset: 0, duration: 0.75, ease: 'power2.inOut' }, tc + 0.3);
+gsap.set('#c-area', { opacity: 0 }); gsap.set('#c-dot', { opacity: 0, scale: 0.3, transformOrigin: '292px 18px' });
+tl.to('#c-area', { opacity: 1, duration: 0.6, ease: 'sine.inOut' }, tc + 0.7);
+tl.to('#c-dot', { opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(2)' }, tc + 1.0);
+rise('#f-p', 354, 22);
+rise('#f-btn', 462, 22);
+
+/* ---- 3. inner camera follows the rebuild (transform on #pg) ---- */
+const S1 = 1.15, X0 = 58;
+tl.fromTo('#pg', { x: 0, y: 0, scale: 1 }, { x: -X0 * S1, y: 0, scale: S1, duration: 0.55, ease: 'power2.inOut', immediateRender: false }, 1.72);
+tl.fromTo('#pg', { x: -X0 * S1, y: 0 }, { y: -90 * S1, duration: 0.55, ease: 'power2.inOut', immediateRender: false }, 2.55);
+tl.fromTo('#pg', { x: -X0 * S1, y: -90 * S1, scale: S1 }, { x: 0, y: 0, scale: 1, duration: 0.55, ease: 'power2.inOut', immediateRender: false }, 3.25);
+
+/* ---- 4. deploy confirmation (last ~0.9 s) ---- */
+gsap.set('#f-ok', { scale: 0.86, transformOrigin: '0% 50%' });
+tl.to('#f-ok', { opacity: 1, scale: 1, duration: 0.42, ease: 'back.out(1.8)' }, 3.58);
+gsap.set('#ok-p', { opacity: 0 });
+tl.set('#ok-p', { opacity: 1 }, 3.78);
+tl.to('#ok-p', { strokeDashoffset: 0, duration: 0.3, ease: 'power2.out' }, 3.78);
+
+window.__timelines['r07'] = tl;
+</script>
+</body></html>

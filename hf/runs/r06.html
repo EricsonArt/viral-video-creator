@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>r06 plugin card</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<script src="../vendor/gsap.min.js"></script>
+<script src="../kit/world.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+.repo{position:absolute;left:70px;top:372px;width:940px;height:504px;border-radius:40px;background:#fff;box-shadow:var(--shadow)}
+.repo .hd{position:absolute;left:52px;top:52px;right:52px;height:96px;display:flex;align-items:center;gap:26px}
+.repo .tile{flex:0 0 96px;width:96px;height:96px;border-radius:28px;background:#FBEEE8;color:#B25730;display:flex;align-items:center;justify-content:center}
+.repo .tile svg{width:54px;height:54px}
+.repo .txt{display:flex;flex-direction:column;justify-content:center}
+.repo .ttl{font-weight:600;font-size:48px;line-height:54px;letter-spacing:-.015em;white-space:nowrap;color:#111}
+.repo .ttl .own,.repo .ttl .sl{color:#8D8982}
+.repo .sub{font-weight:400;font-size:30px;line-height:38px;color:#5E5B57;white-space:nowrap;margin-top:2px}
+.repo .band{position:absolute;left:52px;right:52px;top:192px;height:260px;border-radius:28px;background:#FBEEE8}
+.repo .crow{position:absolute;left:var(--rowx);top:0;height:260px;width:560px;display:flex;align-items:center;gap:26px}
+.repo .star{position:relative;flex:0 0 136px;width:136px;height:136px;transform-origin:50% 54%}
+.repo .star svg{position:absolute;left:0;top:0;width:136px;height:136px;display:block}
+.repo .s-base path{fill:#E7CFC3}
+.repo .s-fill path{fill:#D97757}
+.repo .s-fill{opacity:0}
+.repo .num{position:relative;flex:1 1 auto;height:164px;transform-origin:0 50%}
+.repo .nv{position:absolute;left:0;top:0;white-space:nowrap;font-weight:700;font-size:164px;line-height:164px;letter-spacing:-.03em;color:#111;font-variant-numeric:tabular-nums;opacity:0}
+
+#card{--rowx:150px}
+#pill{position:absolute;left:138px;top:1026px;width:804px;height:200px;border-radius:100px;background:#fff;box-shadow:var(--shadow);opacity:0}
+#pill .pt{position:absolute;left:40px;top:40px;width:120px;height:120px;border-radius:34px;background:#D97757;display:flex;align-items:center;justify-content:center}
+#pill .pt svg{width:66px;height:auto;display:block}
+#pill .wm{position:absolute;left:194px;top:74px;width:470px;height:52.6px;display:block}
+#pill .vb{position:absolute;right:40px;top:66px;width:68px;height:68px;display:block}
+</style></head>
+<body>
+<div id="root" data-composition-id="r06" data-start="0" data-duration="4.3" data-width="1080" data-height="1920">
+  <div id="stage"><div id="world">
+    <div id="card" class="card repo ">
+        <div class="hd"><div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19.5V5.5A2.5 2.5 0 0 1 7.5 3H19v14H7.5A2.5 2.5 0 0 0 5 19.5Zm0 0A2.5 2.5 0 0 0 7.5 22H19v-5"/><path d="M9.5 7.5h5.5"/></svg></div>
+          <div class="txt"><div class="ttl"><span class="own">anthropics</span><span class="sl"> / </span>frontend-design</div><div class="sub">Claude Code plugin</div></div></div>
+        <div class="band"><div class="crow">
+          <div class="star"><svg viewBox="0 0 16 16" class="s-base"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg><svg viewBox="0 0 16 16" class="s-fill"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg></div>
+          <div class="num"><span id="num-main" style="position:absolute;left:0;top:0"></span></div></div></div>
+      </div>
+    <div id="pill">
+      <div class="pt"><svg viewBox="0 0 46 32" fill="#fff"><path d="M32.73 0H25.7846L38.4499 32H45.3953L32.73 0Z"/><path d="M12.6653 0L0 32H7.08167L9.67193 25.28H22.9219L25.5122 32H32.5939L19.9286 0H12.6653ZM11.9626 19.3371L16.2969 8.09143L20.6313 19.3371H11.9626Z"/></svg></div>
+      <img class="wm" src="../assets_r06/anthropic_wordmark.svg" alt="">
+      <svg class="vb" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="#D97757"/><path id="vcheck" d="M17.5 31.5L26 40L43 21.5" stroke="#fff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="52" stroke-dashoffset="52"/></svg>
+    </div>
+  </div></div>
+</div>
+<script>
+
+const FPS=60;
+function buildCounter(tl,total,t0,t1,power){
+  const box=document.getElementById('num-main');
+  const f0=Math.round(t0*FPS), f1=Math.round(t1*FPS);
+  const label=v=>v===0?'0':v+'k';
+  const mk=(txt)=>{const s=document.createElement('span');s.className='nv';s.textContent=txt;box.appendChild(s);return s;};
+  let cur=mk(label(0)); cur.style.opacity=1; let prev=0;
+  for(let f=f0;f<=f1;f++){
+    const p=Math.min(1,(f-f0)/(f1-f0));
+    let v=Math.round(total*(1-Math.pow(1-p,power)));
+    if(f===f1) v=total;
+    if(v===prev) continue;
+    const t=(f-0.5)/FPS;           // value is visible from frame f on (frame f is sampled at f/60)
+    const s=mk(label(v));
+    tl.set(cur,{opacity:0},t); tl.set(s,{opacity:1},t);
+    cur=s; prev=v;
+  }
+}
+function starFill(tl,t){            // star turns clay with a small pop
+  tl.fromTo('#card .s-fill',{opacity:0},{opacity:1,duration:.16,ease:'power1.out'},t);
+  tl.fromTo('#card .star',{scale:1},{scale:1.2,duration:.2,ease:'power2.out'},t);
+  tl.to('#card .star',{scale:1,duration:.5,ease:'back.out(2.2)'},t+.2);
+}
+function landPulse(tl,t){           // band tint + number nudge when the final value lands
+  tl.fromTo('#card .band',{backgroundColor:'#FBEEE8'},{backgroundColor:'#F8DFD3',duration:.18,ease:'sine.out'},t);
+  tl.to('#card .band',{backgroundColor:'#FBEEE8',duration:.7,ease:'sine.inOut'},t+.18);
+  tl.fromTo('#card .num',{scale:1},{scale:1.045,duration:.2,ease:'power2.out'},t);
+  tl.to('#card .num',{scale:1,duration:.55,ease:'back.out(2)'},t+.2);
+}
+
+const tl=gsap.timeline({paused:true});
+const cam=WorldKit.Camera(tl,{cx:540,cy:960,s:1});
+
+// counter: "277" spoken at 0.82 s, exactly 277k at 2.28 s (gwiazdek starts 2.30 s)
+buildCounter(tl,277,0.82,2.28,2.2);
+starFill(tl,0.76);
+landPulse(tl,2.28);
+
+// camera: gentle glide toward the counter, then STEP (starts 0.25 s before "Stworzona") to the Anthropic byline pill
+cam.glide(0.12,2.7,{cx:540,cy:915,s:1.04});
+cam.step(3.0,{cx:540,cy:1226,s:1});
+cam.glide(3.55,0.75,{cx:540,cy:1216,s:1.03});
+WorldKit.dof(tl,'#card','back',3.0,0.5);
+
+// the pill arrives with the step and settles; the verified check draws right after
+tl.fromTo('#pill',{opacity:0,y:44},{opacity:1,y:0,duration:.55,ease:'power3.out'},3.0);
+tl.fromTo('#vcheck',{strokeDashoffset:52},{strokeDashoffset:0,duration:.32,ease:'power2.out'},3.5);
+tl.fromTo('#pill .vb',{scale:.7},{scale:1,duration:.4,ease:'back.out(2.4)',transformOrigin:'50% 50%'},3.46);
+
+window.__timelines['r06']=tl;
+</script>
+</body></html>

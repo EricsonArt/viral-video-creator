@@ -1,0 +1,7 @@
+{"run":"r08","events":[
+ {"t":1.12,"type":"pop","note":"diff card lands under the Code Review chip"},
+ {"t0":1.38,"type":"ticks","t1":1.95,"note":"five agents light up one after another"},
+ {"t0":2.92,"type":"ticks","t1":3.9,"note":"each agent projects its scan band onto a different part of the diff"},
+ {"t":5.25,"type":"whip","note":"midpoint of the whip = cam.whip() return value (bug lane -> history lane)"},
+ {"t":6.3,"type":"chime","note":"5/5 confirmation lands"}
+]}

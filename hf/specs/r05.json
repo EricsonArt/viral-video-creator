@@ -1,0 +1,46 @@
+{
+ "id": "r05",
+ "layout": "FULLCAM",
+ "frames": 82,
+ "duration_s": 1.366667,
+ "fps": 60,
+ "run_start_on_output_timeline_s": 11.6667,
+ "words_relative_to_run_start": [
+  {
+   "w": "Druga",
+   "t0": -0.034,
+   "t1": 0.106
+  },
+  {
+   "w": "wtyczka,",
+   "t0": 0.106,
+   "t1": 0.526
+  },
+  {
+   "w": "może",
+   "t0": 0.526,
+   "t1": 0.746
+  },
+  {
+   "w": "już",
+   "t0": 0.746,
+   "t1": 0.866
+  },
+  {
+   "w": "tobie",
+   "t0": 0.866,
+   "t1": 1.086
+  },
+  {
+   "w": "znana",
+   "t0": 1.086,
+   "t1": 1.346
+  },
+  {
+   "w": "Frontend",
+   "t0": 1.346,
+   "t1": 1.866
+  }
+ ],
+ "note": "negative t0 = the word begins before the picture cut (J-cut)."
+}

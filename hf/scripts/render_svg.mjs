@@ -1,0 +1,10 @@
+import { chromium } from 'playwright-core';
+import fs from 'fs';
+const [,, svgPath, out, w='1000', bg='#ffffff'] = process.argv;
+const svg = fs.readFileSync(svgPath, 'utf8');
+const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-sandbox'] });
+const page = await browser.newPage({ viewport: { width: +w + 80, height: 300 } });
+await page.setContent(`<body style="margin:0;background:${bg};padding:40px"><img src="data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}" style="width:${w}px"></body>`);
+await page.screenshot({ path: out });
+await browser.close();
+console.log('ok', out);

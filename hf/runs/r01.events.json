@@ -1,0 +1,10 @@
+{
+ "run": "r01",
+ "events": [
+  {
+   "t": 2.12,
+   "type": "pop",
+   "note": "sixth developer tile lands on the spoken \"6\" - the team of six settles (one sound for the group)"
+  }
+ ]
+}

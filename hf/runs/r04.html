@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<title>r04 - Superpowers task list</title>
+<meta name="viewport" content="width=1080, height=1920">
+<link rel="stylesheet" href="../kit/kit.css">
+<script src="../vendor/gsap.min.js"></script>
+<script src="../kit/world.js"></script>
+<style>
+
+/* ---------- task card ---------- */
+#card{position:absolute;left:110px;top:250px;width:860px;height:570px;border-radius:40px;background:#fff;overflow:hidden}
+#head{position:absolute;left:0;top:0;width:860px;height:120px}
+#mark{position:absolute;left:48px;top:34px;width:52px;height:52px}
+#title{position:absolute;left:118px;top:0;height:120px;line-height:120px;font-size:40px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+#cnt{position:absolute;right:48px;top:0;width:140px;height:120px}
+#cnt span{position:absolute;right:0;top:0;height:120px;line-height:120px;font-size:38px;font-weight:600;color:#9B9B97;opacity:0;font-variant-numeric:tabular-nums}
+#cnt span.c0{opacity:1}
+#cnt span.c3{color:var(--ok)}
+#track{position:absolute;left:0;top:118px;width:860px;height:4px;background:#F0F0EC}
+#fill{position:absolute;left:0;top:118px;width:860px;height:4px;background:var(--ok);transform-origin:0 50%}
+#band{position:absolute;left:20px;top:144px;width:820px;height:118px;border-radius:28px;background:var(--band)}
+.row{position:absolute;left:0;width:860px;height:134px}
+.cb{position:absolute;left:56px;top:35px;width:64px;height:64px;border-radius:19px;border:4px solid #CFCFCA;background:#fff}
+.cbf{position:absolute;left:56px;top:35px;width:64px;height:64px;border-radius:19px;background:var(--ok);opacity:0}
+.cbc{position:absolute;left:56px;top:35px;width:64px;height:64px}
+.rt{position:absolute;left:148px;top:0;height:134px;line-height:134px;font-size:48px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+</style></head>
+<body class="split-fade">
+<div id="root" data-composition-id="r04" data-start="0" data-duration="2.933333" data-width="1080" data-height="1920">
+  <div id="stage"><div id="world-mask"><div id="world">
+
+    <div id="card" class="float">
+      <div id="head">
+        <img id="mark" src="../assets_r04/claude_mark.svg" alt="">
+        <div id="title">Zadania</div>
+        <div id="cnt"><span class="c0">0/3</span><span class="c1">1/3</span><span class="c2">2/3</span><span class="c3">3/3</span></div>
+      </div>
+      <div id="track"></div><div id="fill"></div>
+      <div id="band"></div>
+
+      <div class="row" style="top:136px">
+        <div class="cb" id="cb1" style="border-color:var(--clay)"></div><div class="cbf" id="cbf1"></div>
+        <svg class="cbc" viewBox="0 0 64 64" fill="none"><path id="ck1" d="M18 33 L28 43 L46 22" stroke="#fff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="46" stroke-dashoffset="46"/></svg>
+        <div class="rt" id="rt1">Plan</div>
+      </div>
+      <div class="row" style="top:270px">
+        <div class="cb" id="cb2"></div><div class="cbf" id="cbf2"></div>
+        <svg class="cbc" viewBox="0 0 64 64" fill="none"><path id="ck2" d="M18 33 L28 43 L46 22" stroke="#fff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="46" stroke-dashoffset="46"/></svg>
+        <div class="rt" id="rt2">Testy</div>
+      </div>
+      <div class="row" style="top:404px">
+        <div class="cb" id="cb3"></div><div class="cbf" id="cbf3"></div>
+        <svg class="cbc" viewBox="0 0 64 64" fill="none"><path id="ck3" d="M18 33 L28 43 L46 22" stroke="#fff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="46" stroke-dashoffset="46"/></svg>
+        <div class="rt" id="rt3">Przegląd</div>
+      </div>
+    </div>
+
+  </div></div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+const cam = WorldKit.Camera(tl, { cx: 540, cy: 960, s: 1 });
+
+gsap.set('#fill', { scaleX: 0 });
+gsap.set(['#ck1', '#ck2', '#ck3'], { opacity: 0 });
+gsap.set('#mark', { rotation: 0, transformOrigin: '50% 50%' });
+
+// camera: one subtle, slow glide (product window = still world)
+cam.glide(0.1, 2.7, { cx: 540, cy: 944, s: 1.032 });
+
+// tick times - land just after each phrase starts (planowac .34 / pisac .96 / sprawdzac 1.76)
+const T = [0.44, 1.06, 1.86];
+const ROW_Y = [144, 278, 412];       // band top for rows 1..3
+
+T.forEach((t, i) => {
+  const n = i + 1;
+  // checkbox: border -> green, fill pops, check draws, tap pulse
+  tl.to('#cb' + n, { borderColor: '#34C759', duration: 0.18, ease: 'power1.out' }, t);
+  tl.to('#cb' + n, { scale: 1.1, duration: 0.14, ease: 'power2.out', transformOrigin: '50% 50%' }, t);
+  tl.to('#cb' + n, { scale: 1, duration: 0.26, ease: 'power2.inOut' }, t + 0.14);
+  tl.fromTo('#cbf' + n, { scale: 0.55, opacity: 0, transformOrigin: '50% 50%' },
+                         { scale: 1, opacity: 1, duration: 0.24, ease: 'back.out(2.2)', immediateRender: false }, t);
+  tl.to('#cbf' + n, { scale: 1.1, duration: 0.14, ease: 'power2.out' }, t + 0.24);
+  tl.to('#cbf' + n, { scale: 1, duration: 0.26, ease: 'power2.inOut' }, t + 0.38);
+  tl.set('#ck' + n, { opacity: 1 }, t + 0.08);
+  tl.to('#ck' + n, { strokeDashoffset: 0, duration: 0.26, ease: 'power2.out' }, t + 0.08);
+  // text ink -> muted
+  tl.to('#rt' + n, { color: '#9B9B97', duration: 0.32, ease: 'sine.inOut' }, t + 0.12);
+  // counter + progress
+  tl.set('#cnt .c' + i, { opacity: 0 }, t + 0.28);
+  tl.set('#cnt .c' + n, { opacity: 1 }, t + 0.28);
+  tl.to('#mark', { rotation: n * 45, duration: 0.55, ease: 'power2.out' }, t);
+  tl.to('#fill', { scaleX: n / 3, duration: 0.34, ease: 'power2.out' }, t + 0.1);
+});
+
+// band steps down: row1 -> row2 -> row3, then releases
+tl.fromTo('#band', { y: 0 }, { y: ROW_Y[1] - ROW_Y[0], duration: 0.34, ease: 'power3.inOut', immediateRender: false }, 0.70);
+tl.to('#cb2', { borderColor: '#D97757', duration: 0.25, ease: 'sine.out' }, 0.78);
+tl.fromTo('#band', { y: ROW_Y[1] - ROW_Y[0] }, { y: ROW_Y[2] - ROW_Y[0], duration: 0.34, ease: 'power3.inOut', immediateRender: false }, 1.34);
+tl.to('#cb3', { borderColor: '#D97757', duration: 0.25, ease: 'sine.out' }, 1.42);
+tl.to('#band', { opacity: 0, duration: 0.4, ease: 'sine.inOut' }, 2.2);
+
+window.__timelines['r04'] = tl;
+</script>
+</body></html>

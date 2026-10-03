@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>r08 Code Review</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+@font-face{font-family:'JetBrains Mono';font-weight:400;font-style:normal;src:url('../assets_r08/fonts/JetBrainsMono-400.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:700;font-style:normal;src:url('../assets_r08/fonts/JetBrainsMono-700.woff2') format('woff2')}
+#root{position:relative;width:100%;height:100%}
+
+/* ---- intro tile -> header chip ---- */
+#tile{position:absolute;left:160px;top:480px;width:760px;height:280px;border-radius:72px;background:#fff;box-shadow:var(--shadow);
+  display:flex;align-items:center;justify-content:center;gap:30px;z-index:7}
+#tile img{width:116px;height:116px;display:block}
+#tile .nm{font-weight:700;font-size:80px;letter-spacing:-.025em;line-height:1;white-space:nowrap}
+
+/* ---- agents ---- */
+.ag{position:absolute;top:220px;width:140px;height:140px;border-radius:50%;background:#fff;z-index:4;
+  box-shadow:0 30px 60px rgba(24,24,32,.13),0 10px 20px rgba(24,24,32,.09),0 2px 5px rgba(24,24,32,.06)}
+.ag .gl{position:absolute;left:38px;top:38px;width:64px;height:64px;color:#C4C4BF;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ag .ring{position:absolute;left:0;top:0;width:140px;height:140px;fill:none;stroke-width:5}
+.ag .full{transform:rotate(-90deg)}
+.ag .full circle{stroke-dasharray:408.4;stroke-dashoffset:408.4}
+.ag .spin{position:absolute;left:0;top:0;width:140px;height:140px;opacity:0}
+.ag .spin circle{stroke-dasharray:104 304.4;stroke-linecap:round}
+.stem{position:absolute;top:366px;width:3px;height:64px;border-radius:2px;z-index:1;opacity:0;transform-origin:50% 0}
+
+/* ---- diff card ---- */
+#card{position:absolute;left:90px;top:430px;width:900px;height:730px;border-radius:40px;background:#fff;box-shadow:var(--shadow);overflow:hidden;z-index:2}
+#card .hdr{position:absolute;left:0;top:0;width:900px;height:80px;border-bottom:1px solid #EEEEEA;display:flex;align-items:center;gap:16px;padding-left:34px;z-index:3;background:#fff}
+#card .hdr span{font-weight:600;font-size:30px;letter-spacing:-.01em;color:#111}
+#card .hdr svg{width:34px;height:34px;fill:none;stroke:#9B9BA0;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#gut{position:absolute;left:0;top:80px;width:214px;height:650px;background:#FAFAF7;border-right:1px solid #EEEEEA}
+#gband{position:absolute;left:0;top:80px;width:214px;height:650px;background:rgba(17,17,17,.055);clip-path:inset(0 0 100% 0)}
+#gfront{position:absolute;left:0;top:80px;width:214px;height:3px;background:#111;opacity:0}
+.band{position:absolute;left:8px;width:884px;border-radius:14px;clip-path:inset(0 100% 0 0 round 14px)}
+.band .bar{position:absolute;left:0;top:0;bottom:0;width:6px}
+.front{position:absolute;top:0;width:3px;border-radius:2px;opacity:0}
+.ln{position:absolute;left:0;width:900px;height:52px;font-family:'JetBrains Mono',monospace;font-size:30px;line-height:52px;z-index:2}
+.ln .no{position:absolute;left:158px;width:46px;text-align:right;color:#C2C2BD;font-size:26px}
+.ln .mk{position:absolute;left:212px;width:20px;color:#A9A9A4;font-size:28px}
+.ln .code{position:absolute;left:234px;white-space:pre;color:#1B1B1F}
+.k{color:#B25730}.s{color:#248A3D}.c{color:#9B9BA0}.f{font-weight:700}.t{color:#7A7A80}
+.sq{position:relative;display:inline-block}
+.sq svg{position:absolute;left:0;bottom:2px;width:100%;height:10px;fill:none;stroke:#FF3B30;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.sq svg path{stroke-dasharray:1;stroke-dashoffset:1}
+.bl{position:absolute;left:0;width:214px;opacity:0;z-index:3}
+.bl .av{position:absolute;left:18px;width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:30px;letter-spacing:-.01em}
+.bl .tm{position:absolute;left:100px;width:64px;font-weight:500;font-size:30px;color:#6B6B70}
+.hair{position:absolute;left:0;width:214px;height:1px;background:#E8E8E3;opacity:0;z-index:3}
+#bugbadge{position:absolute;left:802px;top:565px;width:48px;height:48px;border-radius:50%;background:#FF3B30;z-index:4;opacity:0}
+#bugbadge svg{position:absolute;left:10px;top:10px;width:28px;height:28px;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---- header chip lives in tile; confirmation pill ---- */
+#pill{position:absolute;left:586px;top:1098px;width:372px;height:100px;border-radius:50px;background:#fff;box-shadow:var(--shadow);display:flex;align-items:center;gap:22px;padding-left:18px;z-index:5;opacity:0}
+#pill .ck{width:64px;height:64px;border-radius:50%;background:#34C759;position:relative}
+#pill .ck svg{position:absolute;left:0;top:0;width:64px;height:64px;fill:none;stroke:#fff;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round}
+#pill .ck path{stroke-dasharray:1;stroke-dashoffset:1}
+#pill .tx{font-weight:700;font-size:56px;letter-spacing:-.02em;line-height:1;color:#111}
+</style>
+<script src="../vendor/gsap.min.js"></script>
+<script src="../kit/world.js"></script>
+</head>
+<body>
+<div id="root" data-composition-id="r08" data-start="0" data-duration="6.666667" data-width="1080" data-height="1920">
+ <div id="stage"><div id="world">
+
+  <div id="tile"><img src="../assets_r08/claude_mark.svg" alt=""><span class="nm">Code Review</span></div>
+
+  <!-- stems (agent -> card) -->
+  <div class="stem" id="stem0" style="left:178.5px;background:#111"></div>
+  <div class="stem" id="stem1" style="left:358.5px;background:#D97757"></div>
+  <div class="stem" id="stem2" style="left:538.5px;background:#8E8E93"></div>
+  <div class="stem" id="stem3" style="left:718.5px;background:#34C759"></div>
+  <div class="stem" id="stem4" style="left:898.5px;background:#B25730"></div>
+
+  <!-- the five agents -->
+  <div class="ag" id="ag0" style="left:110px"><svg class="gl" viewBox="0 0 24 24"><path d="M3.6 12a8.4 8.4 0 1 0 2.5-6"/><path d="M3.4 4.2v4.3h4.3"/><path d="M12 7.6V12l3 1.9"/></svg>
+    <svg class="ring full" viewBox="0 0 140 140" stroke="#2A2A2E"><circle cx="70" cy="70" r="65"/></svg><div class="spin"><svg class="ring" viewBox="0 0 140 140" stroke="#2A2A2E"><circle cx="70" cy="70" r="65"/></svg></div></div>
+  <div class="ag" id="ag1" style="left:290px"><svg class="gl" viewBox="0 0 24 24"><path d="M6.5 3h7.2L18.5 7.8V19.5a1.5 1.5 0 0 1-1.5 1.5H6.5A1.5 1.5 0 0 1 5 19.5V4.5A1.5 1.5 0 0 1 6.5 3z"/><path d="M13.5 3.2v4.6h4.8"/><path d="M8.5 12.5h7M8.5 16h5"/></svg>
+    <svg class="ring full" viewBox="0 0 140 140" stroke="#D97757"><circle cx="70" cy="70" r="65"/></svg><div class="spin"><svg class="ring" viewBox="0 0 140 140" stroke="#D97757"><circle cx="70" cy="70" r="65"/></svg></div></div>
+  <div class="ag" id="ag2" style="left:470px"><svg class="gl" viewBox="0 0 24 24"><path d="M5.5 4.5h13a2 2 0 0 1 2 2v8.5a2 2 0 0 1-2 2H11l-4.2 3.3V17H5.5a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2z"/><path d="M8 9h8M8 12.5h5"/></svg>
+    <svg class="ring full" viewBox="0 0 140 140" stroke="#8E8E93"><circle cx="70" cy="70" r="65"/></svg><div class="spin"><svg class="ring" viewBox="0 0 140 140" stroke="#8E8E93"><circle cx="70" cy="70" r="65"/></svg></div></div>
+  <div class="ag" id="ag3" style="left:650px"><svg class="gl" viewBox="0 0 24 24"><circle cx="6" cy="5.5" r="2.3"/><circle cx="6" cy="18.5" r="2.3"/><circle cx="18" cy="18.5" r="2.3"/><path d="M6 7.8v8.4"/><path d="M18 16.2V9.5a3 3 0 0 0-3-3h-3.2"/><path d="M13.8 4.2l-2.2 2.3 2.2 2.3"/></svg>
+    <svg class="ring full" viewBox="0 0 140 140" stroke="#34C759"><circle cx="70" cy="70" r="65"/></svg><div class="spin"><svg class="ring" viewBox="0 0 140 140" stroke="#34C759"><circle cx="70" cy="70" r="65"/></svg></div></div>
+  <div class="ag" id="ag4" style="left:830px"><svg class="gl" viewBox="0 0 24 24"><rect x="7.5" y="8" width="9" height="11.5" rx="4.5"/><path d="M9.3 8a2.7 2.7 0 0 1 5.4 0"/><path d="M12 10.5v9"/><path d="M7.5 12.5H4M16.5 12.5H20M7.8 16.5H4.8M16.2 16.5h3M8.6 9.5 5.8 7M15.4 9.5 18.2 7"/><path d="M10 4.6 8.8 3M14 4.6 15.2 3"/></svg>
+    <svg class="ring full" viewBox="0 0 140 140" stroke="#B25730"><circle cx="70" cy="70" r="65"/></svg><div class="spin"><svg class="ring" viewBox="0 0 140 140" stroke="#B25730"><circle cx="70" cy="70" r="65"/></svg></div></div>
+
+  <!-- pull-request diff -->
+  <div id="card">
+    <div id="gut"></div><div id="gband"></div><div id="gfront"></div>
+    <div class="hdr"><svg viewBox="0 0 24 24"><path d="M6.5 3h7.2L18.5 7.8V19.5a1.5 1.5 0 0 1-1.5 1.5H6.5A1.5 1.5 0 0 1 5 19.5V4.5A1.5 1.5 0 0 1 6.5 3z"/><path d="M13.5 3.2v4.6h4.8"/></svg><span>login.ts</span></div>
+
+    <div class="band" id="band_doc"  style="top:92px;height:48px;background:#FBEEE8"><div class="bar" style="background:#D97757"></div></div>
+    <div class="band" id="band_cmt"  style="top:196px;height:48px;background:rgba(142,142,147,.17)"><div class="bar" style="background:#8E8E93"></div></div>
+    <div class="band" id="band_pr"   style="top:248px;height:204px;background:rgba(52,199,89,.105)"><div class="bar" style="background:#34C759"></div></div>
+    <div class="band" id="band_bug"  style="top:560px;height:48px;background:rgba(178,87,48,.12)"><div class="bar" style="background:#B25730"></div></div>
+    <div class="front" id="fr_doc" style="left:8px;top:92px;height:48px;background:#D97757"></div>
+    <div class="front" id="fr_cmt" style="left:8px;top:196px;height:48px;background:#8E8E93"></div>
+    <div class="front" id="fr_pr"  style="left:8px;top:248px;height:204px;background:#34C759"></div>
+    <div class="front" id="fr_bug" style="left:8px;top:560px;height:48px;background:#B25730"></div>
+
+    <div id="rows"></div>
+    <div id="blame"></div>
+    <div id="bugbadge"><svg viewBox="0 0 24 24"><rect x="7.5" y="8" width="9" height="11.5" rx="4.5"/><path d="M9.3 8a2.7 2.7 0 0 1 5.4 0"/><path d="M12 10.5v9"/><path d="M7.5 12.5H4M16.5 12.5H20M7.8 16.5H4.8M16.2 16.5h3M8.6 9.5 5.8 7M15.4 9.5 18.2 7"/></svg></div>
+  </div>
+
+  <div id="pill"><div class="ck"><svg viewBox="0 0 64 64"><path pathLength="1" d="M19 33.5l8.5 8.5L45 23.5"/></svg></div><div class="tx">5/5</div></div>
+
+ </div></div>
+</div>
+
+<script>
+/* ---------- build the diff rows (static, deterministic) ---------- */
+const ROWS = [
+  '<span class="k">import</span> db <span class="k">from</span> <span class="s">"./db"</span>;',
+  '',
+  '<span class="c">// Throws if user not found</span>',
+  '<span class="k">export async function</span> <span class="f">login</span>(',
+  '  email: <span class="t">string</span>,',
+  '  pass: <span class="t">string</span>',
+  ') {',
+  '  <span class="k">const</span> u = <span class="k">await</span> db.<span class="f">find</span>(email);',
+  '  <span class="k">if</span> (!u) <span class="k">return</span> <span class="k">null</span>;',
+  '  <span class="k">if</span> (<span class="sq" id="sqwrap">u.pass = pass<svg viewBox="0 0 234 10" preserveAspectRatio="none"><path id="sqpath" pathLength="1" d="__SQ__"/></svg></span>) {',
+  '    <span class="k">return</span> u;',
+  '  }'
+];
+(function(){
+  // squiggle (13 chars * 18px = 234px)
+  let d = 'M0 5', up = false;
+  for (let x = 6.5; x <= 234.01; x += 6.5) { d += ' L' + x.toFixed(1) + ' ' + (up ? 2 : 8); up = !up; }
+  const rows = document.getElementById('rows');
+  ROWS.forEach((h, i) => {
+    const r = document.createElement('div');
+    r.className = 'ln';
+    r.style.top = (90 + i * 52) + 'px';
+    r.innerHTML = '<span class="no">' + (i + 1) + '</span>' + (i >= 7 ? '<span class="mk">+</span>' : '') +
+                  '<span class="code">' + h.replace('__SQ__', d) + '</span>';
+    rows.appendChild(r);
+  });
+  // blame rail (3 groups: lines 1-3, 4-5, 6-7)
+  const G = [
+    {top: 90,  h: 156, ini: 'AK', tm: '8mo', bg: '#F6DDD2', fg: '#B25730'},
+    {top: 246, h: 104, ini: 'MW', tm: '2w',  bg: '#E7E7EA', fg: '#3A3A3F'},
+    {top: 350, h: 104, ini: 'TJ', tm: '3d',  bg: '#111111', fg: '#FFFFFF'}
+  ];
+  const bl = document.getElementById('blame');
+  G.forEach((g, i) => {
+    const e = document.createElement('div');
+    e.className = 'bl'; e.id = 'bl' + i; e.style.top = g.top + 'px'; e.style.height = g.h + 'px';
+    const cy = g.h / 2;
+    e.innerHTML = '<div class="av" style="top:' + (cy - 36) + 'px;background:' + g.bg + ';color:' + g.fg + '">' + g.ini + '</div>' +
+                  '<div class="tm" style="top:' + (cy - 22) + 'px;line-height:44px">' + g.tm + '</div>';
+    bl.appendChild(e);
+  });
+  [246, 350, 454].forEach((y, i) => {
+    const h = document.createElement('div'); h.className = 'hair'; h.id = 'hair' + i; h.style.top = y + 'px'; bl.appendChild(h);
+  });
+})();
+
+/* ---------- timeline ---------- */
+const tl = gsap.timeline({ paused: true });
+const cam = WorldKit.Camera(tl, { cx: 540, cy: 640, s: 1 }, { ay: 640 });
+
+const AG = [
+  { id: '#ag0', stem: '#stem0', tint: '#2A2A2E' },   // history  (gutter)
+  { id: '#ag1', stem: '#stem1', tint: '#D97757' },   // CLAUDE.md
+  { id: '#ag2', stem: '#stem2', tint: '#8E8E93' },   // comments
+  { id: '#ag3', stem: '#stem3', tint: '#34C759' },   // previous PRs
+  { id: '#ag4', stem: '#stem4', tint: '#B25730' }    // bug scan
+];
+
+// initial states
+gsap.set('#card', { opacity: 0, y: 90, scale: .97, transformOrigin: '50% 100%' });
+AG.forEach(a => gsap.set(a.id, { opacity: 0, scale: .8, filter: 'blur(9px)' }));
+gsap.set('.stem', { scaleY: 0 });
+gsap.set('#pill', { y: 26, scale: .92 });
+gsap.set('#bugbadge', { scale: .4 });
+gsap.set('.bl', { x: -18 });
+
+/* A  intro tile -> header chip, diff card lands */
+tl.to('#tile', { y: -510, scale: .5, duration: .58, ease: 'power3.inOut' }, .62);
+tl.to('#card', { opacity: 1, duration: .4, ease: 'power2.out' }, .74);
+tl.to('#card', { y: 0, scale: 1, duration: .66, ease: 'power3.out' }, .74);
+
+/* B  five agents appear (dim), then light up one by one, then all work in parallel */
+AG.forEach((a, i) => {
+  const tin = 1.04 + i * .11, tlit = 1.36 + i * .13;
+  tl.to(a.id, { opacity: .4, scale: 1, duration: .3, ease: 'power3.out' }, tin);
+  WorldKit.dof(tl, a.id, 'focus', tlit, .4);                                   // sharp + opaque = lit
+  tl.to(a.id + ' .gl', { color: a.tint, duration: .4, ease: 'sine.inOut' }, tlit);
+  tl.set(a.id + ' .spin', { opacity: 1 }, tlit);
+  const tproj = 2.74 + i * .2;
+  tl.fromTo(a.id + ' .spin', { rotation: 0 }, { rotation: 360 * 2.4, duration: tproj - tlit, ease: 'none', immediateRender: false }, tlit);
+  tl.to(a.id + ' .spin', { opacity: 0, duration: .18, ease: 'sine.in' }, tproj - .12);
+  tl.to(a.id + ' .full circle', { strokeDashoffset: 0, duration: .5, ease: 'power2.out' }, tproj - .12);
+});
+
+/* C  each agent projects onto its own part of the diff (staggered) */
+const wipeX = (band, front, t, dur, w) => {
+  tl.fromTo(band, { clipPath: 'inset(0 100% 0 0 round 14px)' }, { clipPath: 'inset(0 0% 0 0 round 14px)', duration: dur, ease: 'power2.inOut', immediateRender: false }, t);
+  tl.set(front, { opacity: .9, x: 0 }, t);
+  tl.to(front, { x: w, duration: dur, ease: 'power2.inOut' }, t);
+  tl.to(front, { opacity: 0, duration: .18 }, t + dur - .08);
+};
+const stem = (id, t) => {
+  tl.set(id, { opacity: .55 }, t);
+  tl.to(id, { scaleY: 1, duration: .22, ease: 'power2.out' }, t);
+  tl.to(id, { opacity: 0, duration: .3, ease: 'sine.in' }, t + .42);
+};
+// order = left->right in the agent row
+{
+  const T = i => 2.74 + i * .2;
+  // 0 history: tinted gutter (top -> bottom)
+  stem('#stem0', T(0) + .02);
+  tl.fromTo('#gband', { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: .5, ease: 'power2.inOut', immediateRender: false }, T(0) + .2);
+  tl.set('#gfront', { opacity: .8, y: 0 }, T(0) + .2);
+  tl.to('#gfront', { y: 648, duration: .5, ease: 'power2.inOut' }, T(0) + .2);
+  tl.to('#gfront', { opacity: 0, duration: .18 }, T(0) + .6);
+  // 1 CLAUDE.md -> line 1
+  stem('#stem1', T(1) + .02); wipeX('#band_doc', '#fr_doc', T(1) + .2, .4, 876);
+  // 2 comments -> line 3
+  stem('#stem2', T(2) + .02); wipeX('#band_cmt', '#fr_cmt', T(2) + .2, .4, 876);
+  // 3 previous PRs -> lines 4-7
+  stem('#stem3', T(3) + .02); wipeX('#band_pr', '#fr_pr', T(3) + .2, .42, 876);
+  // 4 bug scan -> line 10
+  stem('#stem4', T(4) + .02); wipeX('#band_bug', '#fr_bug', T(4) + .2, .42, 876);
+}
+
+/* camera: slow push from the overview into the bug lane */
+cam.push(2.7, 1.9, { cx: 610, cy: 975, s: 1.3 });
+
+/* bug found: red squiggle + red tint + badge */
+tl.to('#sqpath', { strokeDashoffset: 0, duration: .36, ease: 'power2.inOut' }, 4.38);
+tl.to('#band_bug', { backgroundColor: 'rgba(255,59,48,.10)', duration: .3, ease: 'sine.inOut' }, 4.38);
+tl.to('#band_bug .bar', { backgroundColor: '#FF3B30', duration: .3, ease: 'sine.inOut' }, 4.38);
+tl.to('#bugbadge', { opacity: 1, scale: 1, duration: .32, ease: 'back.out(1.7)' }, 4.58);
+
+/* ONE WHIP: bug lane -> history lane */
+const whipMid = cam.whip(4.8, { cx: 400, cy: 690, s: 1.3 }, { in: .5 });
+// depth of field: history agent stays sharp, the others fall back while we are on the history lane
+[1, 2, 3, 4].forEach(i => WorldKit.dof(tl, AG[i].id, 'near', 5.0, .5));
+
+/* history rail fills in (author + age) */
+tl.to('.hair', { opacity: 1, duration: .3 }, 5.4);
+[0, 1, 2].forEach(i => {
+  tl.to('#bl' + i, { opacity: 1, x: 0, duration: .34, ease: 'power3.out' }, 5.42 + i * .12);
+});
+// history agent pings once as the rail lands
+tl.to('#ag0', { scale: 1.08, duration: .2, ease: 'sine.out' }, 5.4);
+tl.to('#ag0', { scale: 1, duration: .3, ease: 'sine.inOut' }, 5.61);
+
+/* D  pull back: all five agents lit, 5/5 */
+cam.pull(5.78, .72, { cx: 540, cy: 640, s: 1 });
+AG.forEach((a, i) => { if (i) WorldKit.dof(tl, a.id, 'focus', 5.8, .5); });
+tl.to('.ag', { scale: 1.065, duration: .22, ease: 'sine.out' }, 6.02);
+tl.to('.ag', { scale: 1, duration: .32, ease: 'sine.inOut' }, 6.24);
+tl.to('#pill', { opacity: 1, duration: .3, ease: 'power2.out' }, 6.18);
+tl.to('#pill', { y: 0, scale: 1, duration: .5, ease: 'power3.out' }, 6.18);
+tl.to('#pill .ck path', { strokeDashoffset: 0, duration: .26, ease: 'power2.out' }, 6.26);
+
+window.__timelines = window.__timelines || {};
+window.__timelines['r08'] = tl;
+window.__r08 = { whipMid, moves: window.__camMoves };
+</script>
+</body></html>

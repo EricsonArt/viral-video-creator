@@ -1,0 +1,165 @@
+[
+ {
+  "t": 2.12,
+  "type": "pop",
+  "run": "r01",
+  "event": "sixth developer tile lands on the spoken \"6\" - the team of six settles (one sound for the group)"
+ },
+ {
+  "t": 4.1667,
+  "type": "tick stream 1.40s",
+  "run": "r02",
+  "event": "star counter rising 0 -> 127k"
+ },
+ {
+  "t": 10.7933,
+  "type": "chime",
+  "run": "r04",
+  "event": "last tick (Przeglad) lands - all three tasks done"
+ },
+ {
+  "t": 13.8533,
+  "type": "tick stream 1.46s",
+  "run": "r06",
+  "event": "star counter rising 0 -> 277k"
+ },
+ {
+  "t": 16.3333,
+  "type": "pop",
+  "run": "r06",
+  "event": "Anthropic byline pill arrives and settles after the camera step"
+ },
+ {
+  "t": 19.2333,
+  "type": "tick stream 1.15s",
+  "run": "r07",
+  "event": "page is rebuilt top-to-bottom (generation stream)"
+ },
+ {
+  "t": 21.1733,
+  "type": "chime",
+  "run": "r07",
+  "event": "green check on 'Wdrozone' deploy confirmation"
+ },
+ {
+  "t": 22.7533,
+  "type": "pop",
+  "run": "r08",
+  "event": "diff card lands under the Code Review chip"
+ },
+ {
+  "t": 23.0133,
+  "type": "tick stream 0.57s",
+  "run": "r08",
+  "event": "five agents light up one after another"
+ },
+ {
+  "t": 24.5533,
+  "type": "tick stream 0.98s",
+  "run": "r08",
+  "event": "each agent projects its scan band onto a different part of the diff"
+ },
+ {
+  "t": 26.8833,
+  "type": "whoosh v0",
+  "run": "r08",
+  "event": "midpoint of the whip = cam.whip() return value (bug lane -> history lane)",
+  "peak_offset_in_sound_s": 0.4499
+ },
+ {
+  "t": 27.9333,
+  "type": "chime",
+  "run": "r08",
+  "event": "5/5 confirmation lands"
+ },
+ {
+  "t": 29.5867,
+  "type": "tick stream 1.18s",
+  "run": "r10",
+  "event": "scan band sweeps the file line by line"
+ },
+ {
+  "t": 32.4267,
+  "type": "typing x12",
+  "run": "r10",
+  "event": "secret string is swapped in place for process.env.API_KEY (character flips)"
+ },
+ {
+  "t": 32.9867,
+  "type": "chime",
+  "run": "r10",
+  "event": "red turns green, shield-with-check lands"
+ },
+ {
+  "t": 34.0867,
+  "type": "click",
+  "run": "r10",
+  "event": "Publish button pressed"
+ },
+ {
+  "t": 44.6333,
+  "type": "typing x9",
+  "run": "r12",
+  "event": "twoj_nick typed char by char into the real nick input (9 chars, 4.90..5.51)"
+ },
+ {
+  "t": 45.3933,
+  "type": "click",
+  "run": "r12",
+  "event": "orange 'Chce moje 3 filmy' button pressed (released 5.80)"
+ },
+ {
+  "t": 46.6533,
+  "type": "pop",
+  "run": "r13",
+  "event": "byline card (GT / Garry Tan / Y Combinator) lands under the gstack tile on \"Stworzona przez\""
+ },
+ {
+  "t": 50.4867,
+  "type": "typing x11",
+  "run": "r14",
+  "event": "'programista' typed char by char (11 chars, 2.82..3.57) starting on the spoken 'wpisz'"
+ },
+ {
+  "t": 51.6467,
+  "type": "click",
+  "run": "r14",
+  "event": "'Odbierz' button pressed (scale .96, ink -> orange), released 4.09"
+ },
+ {
+  "t": 53.76,
+  "type": "pop",
+  "run": "r15",
+  "event": "the ring of 23 tiles has merged into the one gstack plugin tile - tile pulses once"
+ },
+ {
+  "t": 55.4967,
+  "type": "pop",
+  "run": "r16",
+  "event": "CEO badge lands (prezesa)"
+ },
+ {
+  "t": 56.0567,
+  "type": "pop",
+  "run": "r16",
+  "event": "EM badge lands (kierownika zespolu)"
+ },
+ {
+  "t": 57.5367,
+  "type": "pop",
+  "run": "r16",
+  "event": "PM badge lands (menedzera)"
+ },
+ {
+  "t": 58.0767,
+  "type": "pop",
+  "run": "r16",
+  "event": "QA badge lands (kontroli jakosci)"
+ },
+ {
+  "t": 58.4667,
+  "type": "chime",
+  "run": "r16",
+  "event": "fourth green check lands - all four role checks lit"
+ }
+]

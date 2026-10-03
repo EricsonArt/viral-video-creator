@@ -1,0 +1,81 @@
+{
+ "id": "r16",
+ "layout": "SPLIT",
+ "frames": 286,
+ "duration_s": 4.766667,
+ "fps": 60,
+ "run_start_on_output_timeline_s": 54.0667,
+ "words_relative_to_run_start": [
+  {
+   "w": "Claude",
+   "t0": -0.034,
+   "t1": 0.206
+  },
+  {
+   "w": "oceni",
+   "t0": 0.206,
+   "t1": 0.446
+  },
+  {
+   "w": "projekt",
+   "t0": 0.446,
+   "t1": 0.646
+  },
+  {
+   "w": "z",
+   "t0": 0.646,
+   "t1": 0.806
+  },
+  {
+   "w": "perspektywy",
+   "t0": 0.806,
+   "t1": 1.286
+  },
+  {
+   "w": "prezesa,",
+   "t0": 1.286,
+   "t1": 1.806
+  },
+  {
+   "w": "kierownika",
+   "t0": 1.806,
+   "t1": 2.126
+  },
+  {
+   "w": "zespołu",
+   "t0": 2.126,
+   "t1": 2.546
+  },
+  {
+   "w": "programistów,",
+   "t0": 2.546,
+   "t1": 3.266
+  },
+  {
+   "w": "menedżera",
+   "t0": 3.286,
+   "t1": 3.706
+  },
+  {
+   "w": "i",
+   "t0": 3.706,
+   "t1": 3.826
+  },
+  {
+   "w": "kontroli",
+   "t0": 3.826,
+   "t1": 4.206
+  },
+  {
+   "w": "jakości.",
+   "t0": 4.206,
+   "t1": 4.726
+  },
+  {
+   "w": "Wszystko",
+   "t0": 4.766,
+   "t1": 5.146
+  }
+ ],
+ "note": "negative t0 = the word begins before the picture cut (J-cut)."
+}

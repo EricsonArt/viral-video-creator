@@ -1,0 +1,46 @@
+{
+ "id": "r13",
+ "layout": "SPLIT",
+ "frames": 122,
+ "duration_s": 2.033333,
+ "fps": 60,
+ "run_start_on_output_timeline_s": 45.6333,
+ "words_relative_to_run_start": [
+  {
+   "w": "Piąta,",
+   "t0": -0.08,
+   "t1": 0.28
+  },
+  {
+   "w": "gstack",
+   "t0": 0.3,
+   "t1": 0.6
+  },
+  {
+   "w": "Stworzona",
+   "t0": 0.6,
+   "t1": 1.12
+  },
+  {
+   "w": "przez",
+   "t0": 1.12,
+   "t1": 1.28
+  },
+  {
+   "w": "Garry'ego",
+   "t0": 1.28,
+   "t1": 1.72
+  },
+  {
+   "w": "Tana",
+   "t0": 1.72,
+   "t1": 2.0
+  },
+  {
+   "w": "A",
+   "t0": 2.0,
+   "t1": 2.24
+  }
+ ],
+ "note": "negative t0 = the word begins before the picture cut (J-cut)."
+}

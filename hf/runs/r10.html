@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>r10 Security Review</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+@font-face{font-family:'JetBrains Mono';font-weight:400;font-style:normal;src:url('../assets_r10/fonts/JetBrainsMono-400.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:700;font-style:normal;src:url('../assets_r10/fonts/JetBrainsMono-700.woff2') format('woff2')}
+#root{position:relative;width:100%;height:100%}
+
+/* inner camera wrapper (same model as the world camera, applied to the product window only) */
+#inner{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0;
+  transform:translate(calc(var(--tx,0)*1px),calc(var(--ty,0)*1px)) scale(var(--s,1));
+  filter:blur(calc(var(--mb,0)*1px))}
+
+/* file card */
+#card{position:absolute;left:90px;top:180px;width:900px;height:920px;border-radius:40px;background:#fff;box-shadow:var(--shadow);overflow:hidden}
+#tabs{position:absolute;left:0;top:0;width:900px;height:96px;background:#F6F6F3;border-bottom:1px solid #EEEEEA}
+#tab{position:absolute;left:28px;top:26px;width:262px;height:70px;border-radius:22px 22px 0 0;background:#fff;display:flex;align-items:center;gap:14px;padding-left:22px}
+#tab span{font-weight:600;font-size:30px;letter-spacing:-.01em;color:#111}
+#tab svg{width:32px;height:32px;fill:none;stroke:#D97757;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ln{position:absolute;left:0;width:900px;height:72px;font-family:'JetBrains Mono',monospace;font-size:30px;line-height:72px;z-index:2}
+.ln .no{position:absolute;left:28px;width:48px;text-align:right;color:#C2C2BD;font-size:26px}
+.ln .code{position:absolute;left:110px;white-space:pre;color:#1B1B1F}
+.k{color:#B25730}.s{color:#248A3D}.f{font-weight:700}.b{font-weight:700}.n3{color:#B25730}
+.cx{display:inline-block;position:relative;width:1ch;height:72px;vertical-align:top}
+.cx i{position:absolute;left:0;top:0;font-style:normal;line-height:72px}
+.cx .o{color:#248A3D}
+.cx .m{opacity:0;color:#9B9BA0}
+.cx .w{opacity:0}
+#scan{position:absolute;left:12px;top:132px;width:876px;height:72px;border-radius:14px;background:#FBEEE8;z-index:1;
+  box-shadow:inset 0 1px 0 rgba(217,119,87,.35),inset 0 -1px 0 rgba(217,119,87,.35)}
+#scan .bar{position:absolute;left:0;top:0;bottom:0;width:6px;background:#D97757;border-radius:14px 0 0 14px}
+#flag{position:absolute;left:12px;top:348px;width:876px;height:72px;border-radius:14px;background:rgba(255,59,48,.075);z-index:1;opacity:0;clip-path:inset(0 100% 0 0 round 14px)}
+#flag .bar{position:absolute;left:0;top:0;bottom:0;width:6px;background:#FF3B30;border-radius:14px 0 0 14px}
+#ul{position:absolute;left:398px;top:402px;width:342px;height:5px;border-radius:3px;background:#FF3B30;z-index:3;transform-origin:0 50%}
+#kb{position:absolute;left:806px;top:344px;width:80px;height:80px;border-radius:50%;background:#fff;z-index:4;
+  box-shadow:0 14px 28px rgba(24,24,32,.16),0 4px 8px rgba(24,24,32,.10);opacity:0}
+#kb .rg{position:absolute;inset:0;border-radius:50%;border:4px solid #FF3B30}
+#kb svg{position:absolute;left:18px;top:18px;width:44px;height:44px}
+#kb .key{fill:none;stroke:#FF3B30;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#kb .sh{opacity:0}
+
+/* publish button */
+#btn{position:absolute;left:380px;top:1052px;width:320px;height:96px;border-radius:48px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;
+  box-shadow:0 30px 60px rgba(24,24,32,.22),0 10px 20px rgba(24,24,32,.14),0 2px 5px rgba(24,24,32,.08);opacity:0}
+#btn span{font-weight:600;font-size:40px;letter-spacing:-.01em;line-height:1}
+#btn svg{width:34px;height:34px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+#rip{position:absolute;left:380px;top:1052px;width:320px;height:96px;border-radius:48px;border:4px solid rgba(52,199,89,.55);opacity:0}
+</style>
+<script src="../vendor/gsap.min.js"></script>
+<script src="../kit/world.js"></script>
+</head>
+<body>
+<div id="root" data-composition-id="r10" data-start="0" data-duration="4.966667" data-width="1080" data-height="1920">
+ <div id="stage"><div id="world"><div id="inner">
+
+  <div id="card">
+    <div id="tabs"><div id="tab"><svg viewBox="0 0 24 24"><path d="M6.5 3h7.2L18.5 7.8V19.5a1.5 1.5 0 0 1-1.5 1.5H6.5A1.5 1.5 0 0 1 5 19.5V4.5A1.5 1.5 0 0 1 6.5 3z"/><path d="M13.5 3.2v4.6h4.8"/><path d="M8.5 12.5h7M8.5 16h5"/></svg><span>config.js</span></div></div>
+    <div id="scan"><div class="bar"></div></div>
+    <div id="flag"><div class="bar"></div></div>
+    <div id="rows"></div>
+    <div id="ul"></div>
+    <div id="kb"><div class="rg"></div>
+      <svg class="key" viewBox="0 0 24 24"><circle cx="7.6" cy="15.4" r="3.8"/><path d="M10.4 12.6 19.6 3.4M16.2 6.8l2.8 2.8M13.6 9.4l2 2"/></svg>
+      <svg class="sh" viewBox="0 0 24 24"><path d="M12 2.8 4.6 5.9v5.6c0 4.5 3 8.1 7.4 9.7 4.4-1.6 7.4-5.2 7.4-9.7V5.9L12 2.8z" fill="#34C759"/><path d="M8.6 12.1l2.5 2.5 4.5-4.7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+
+  <div id="rip"></div>
+  <div id="btn"><span>Publish</span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+
+ </div></div></div>
+</div>
+
+<script>
+/* ---------- build the file (static, deterministic) ---------- */
+const OLD = '"sk-live-9f3a…c2d1"';   // 19 chars
+const NEW = 'process.env.API_KEY';          // 19 chars
+let seed = 7;
+const rnd = () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; };
+const SCR = 'x7#q9$k2@zw5&m3!?v8%';
+const newColor = j => (j < 7 ? '#B25730' : (j === 7 || j === 11) ? '#6B6B70' : '#1B1B1F');
+const newWeight = j => (j >= 12 ? 700 : 400);
+let cells = '';
+for (let j = 0; j < 19; j++) {
+  const sc = SCR[Math.floor(rnd() * SCR.length)];
+  cells += '<span class="cx" id="cx' + j + '"><i class="o">' + OLD[j] + '</i><i class="m">' + sc + '</i><i class="w" style="color:' + newColor(j) + ';font-weight:' + newWeight(j) + '">' + NEW[j] + '</i></span>';
+}
+const ROWS = [
+  '<span class="k">import</span> express <span class="k">from</span> <span class="s">"express"</span>;',
+  '<span class="k">import</span> { charge } <span class="k">from</span> <span class="s">"./pay"</span>;',
+  '',
+  '<span class="k">const</span> <span class="b">API_KEY</span> = ' + cells + ';',
+  '<span class="k">const</span> PORT = <span class="n3">3000</span>;',
+  '',
+  '<span class="k">const</span> app = <span class="f">express</span>();',
+  'app.<span class="f">post</span>(<span class="s">"/pay"</span>, <span class="f">charge</span>(API_KEY));',
+  'app.<span class="f">listen</span>(PORT);'
+];
+(function () {
+  const rows = document.getElementById('rows');
+  ROWS.forEach((h, i) => {
+    const r = document.createElement('div');
+    r.className = 'ln'; r.style.top = (132 + i * 72) + 'px';
+    r.innerHTML = '<span class="no">' + (i + 1) + '</span><span class="code">' + h + '</span>';
+    rows.appendChild(r);
+  });
+})();
+
+/* ---------- timeline ---------- */
+const tl = gsap.timeline({ paused: true });
+// INNER camera only (the world camera stays still). Anchor (540,600): rest = identity.
+const cam = WorldKit.Camera(tl, { cx: 540, cy: 600, s: 1 }, { world: '#inner', ax: 540, ay: 600 });
+
+gsap.set('#ul', { scaleX: 0 });
+gsap.set('#kb', { scale: .5 });
+gsap.set('#kb .sh', { scale: .4, rotation: 18, transformOrigin: '50% 50%' });
+gsap.set('#btn', { y: 18, scale: .96 });
+gsap.set('#rip', { scale: 1 });
+
+/* 1  scan band sweeps the file, line by line (0 - 1.2 s) */
+for (let i = 2; i <= 9; i++) {
+  tl.to('#scan', { y: (i - 1) * 72, duration: .09, ease: 'power2.out' }, 0.02 + (i - 1) * .13);
+}
+tl.to('#scan', { opacity: 0, duration: .16, ease: 'sine.in' }, 1.2);
+
+/* 2  the secret is flagged: red underline + tint + key badge; inner camera pushes onto the line */
+tl.set('#flag', { opacity: 1 }, 1.28);
+tl.fromTo('#flag', { clipPath: 'inset(0 100% 0 0 round 14px)' }, { clipPath: 'inset(0 0% 0 0 round 14px)', duration: .36, ease: 'power2.inOut', immediateRender: false }, 1.28);
+tl.to('#ul', { scaleX: 1, duration: .34, ease: 'power2.out' }, 1.3);
+cam.push(1.36, .6, { cx: 588, cy: 564, s: 1.28 });
+cam.glide(1.96, 1.8, { cx: 586, cy: 566, s: 1.31 });   // barely-there drift while the line is held
+tl.to('#kb', { opacity: 1, scale: 1, duration: .34, ease: 'back.out(1.6)' }, 1.74);
+
+/* 3  secret swapped in place: characters flip through a scramble glyph (2.86 - 3.38 s) */
+for (let j = 0; j < 19; j++) {
+  const t = 2.86 + j * .024;
+  tl.set('#cx' + j + ' .o', { opacity: 0 }, t);
+  tl.set('#cx' + j + ' .m', { opacity: 1 }, t);
+  tl.set('#cx' + j + ' .m', { opacity: 0 }, t + .07);
+  tl.set('#cx' + j + ' .w', { opacity: 1 }, t + .07);
+}
+// red -> green, key -> shield
+tl.to('#ul', { backgroundColor: '#34C759', duration: .25, ease: 'sine.inOut' }, 3.3);
+tl.to('#flag', { backgroundColor: 'rgba(52,199,89,.10)', duration: .25, ease: 'sine.inOut' }, 3.3);
+tl.to('#flag .bar', { backgroundColor: '#34C759', duration: .25, ease: 'sine.inOut' }, 3.3);
+tl.to('#kb .rg', { borderColor: '#34C759', duration: .25, ease: 'sine.inOut' }, 3.3);
+tl.to('#kb .key', { opacity: 0, scale: .4, rotation: -30, transformOrigin: '50% 50%', duration: .2, ease: 'power2.in' }, 3.32);
+tl.to('#kb .sh', { opacity: 1, scale: 1, rotation: 0, duration: .36, ease: 'back.out(1.7)' }, 3.4);
+tl.to('#kb', { scale: 1.1, duration: .16, ease: 'sine.out' }, 3.42);
+tl.to('#kb', { scale: 1, duration: .24, ease: 'sine.inOut' }, 3.58);
+
+/* 4  pull back, Publish appears and is pressed */
+cam.pull(3.78, .6, { cx: 540, cy: 600, s: 1 });
+tl.to('#btn', { opacity: 1, duration: .3, ease: 'power2.out' }, 4.02);
+tl.to('#btn', { y: 0, scale: 1, duration: .45, ease: 'power3.out' }, 4.02);
+tl.to('#btn', { scale: .94, duration: .08, ease: 'power2.out' }, 4.52);
+tl.to('#btn', { scale: 1, duration: .24, ease: 'power3.out' }, 4.6);
+tl.set('#rip', { opacity: .9 }, 4.52);
+tl.to('#rip', { scale: 1.3, opacity: 0, duration: .38, ease: 'power2.out' }, 4.52);
+
+window.__timelines = window.__timelines || {};
+window.__timelines['r10'] = tl;
+</script>
+</body></html>

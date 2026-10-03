@@ -1,0 +1,1314 @@
+[
+ {
+  "t0": 0.016666666666666666,
+  "t1": 0.453,
+  "words": [
+   {
+    "w": "Jak",
+    "hl": false
+   },
+   {
+    "w": "w",
+    "hl": false
+   },
+   {
+    "w": "5",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 0.453,
+  "t1": 1.133,
+  "words": [
+   {
+    "w": "minut",
+    "hl": false
+   },
+   {
+    "w": "zamienić",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 1.133,
+  "t1": 1.553,
+  "words": [
+   {
+    "w": "Claude",
+    "hl": true
+   },
+   {
+    "w": "Code",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 1.553,
+  "t1": 1.993,
+  "words": [
+   {
+    "w": "w",
+    "hl": false
+   },
+   {
+    "w": "zespół",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 1.993,
+  "t1": 3.013,
+  "words": [
+   {
+    "w": "6",
+    "hl": false
+   },
+   {
+    "w": "programistów?",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 3.013,
+  "t1": 4.173,
+  "words": [
+   {
+    "w": "Pierwsza",
+    "hl": false
+   },
+   {
+    "w": "wtyczka",
+    "hl": false
+   },
+   {
+    "w": "Superpowers",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 4.173,
+  "t1": 6.033,
+  "words": [
+   {
+    "w": "127",
+    "hl": false
+   },
+   {
+    "w": "tysięcy",
+    "hl": false
+   },
+   {
+    "w": "gwiazdek",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 6.033,
+  "t1": 6.593,
+  "words": [
+   {
+    "w": "na",
+    "hl": false
+   },
+   {
+    "w": "GitHubie",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 6.593,
+  "t1": 7.213,
+  "words": [
+   {
+    "w": "Claude",
+    "hl": true
+   },
+   {
+    "w": "przestaje",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 7.213,
+  "t1": 7.833,
+  "words": [
+   {
+    "w": "od",
+    "hl": false
+   },
+   {
+    "w": "razu",
+    "hl": false
+   },
+   {
+    "w": "rzucać",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 7.833,
+  "t1": 8.373,
+  "words": [
+   {
+    "w": "się",
+    "hl": false
+   },
+   {
+    "w": "na",
+    "hl": false
+   },
+   {
+    "w": "pisanie",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 8.373,
+  "t1": 8.693,
+  "words": [
+   {
+    "w": "kodu",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 8.693,
+  "t1": 9.693,
+  "words": [
+   {
+    "w": "Zaczyna",
+    "hl": false
+   },
+   {
+    "w": "planować",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 9.693,
+  "t1": 10.393,
+  "words": [
+   {
+    "w": "pisać",
+    "hl": false
+   },
+   {
+    "w": "testy",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 10.393,
+  "t1": 10.893,
+  "words": [
+   {
+    "w": "i",
+    "hl": false
+   },
+   {
+    "w": "sprawdzać",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 10.893,
+  "t1": 11.633,
+  "words": [
+   {
+    "w": "własną",
+    "hl": false
+   },
+   {
+    "w": "pracę",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 11.633,
+  "t1": 12.193,
+  "words": [
+   {
+    "w": "Druga",
+    "hl": false
+   },
+   {
+    "w": "wtyczka",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 12.193,
+  "t1": 12.533,
+  "words": [
+   {
+    "w": "może",
+    "hl": false
+   },
+   {
+    "w": "już",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 12.533,
+  "t1": 13.013,
+  "words": [
+   {
+    "w": "tobie",
+    "hl": false
+   },
+   {
+    "w": "znana",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 13.013,
+  "t1": 13.853,
+  "words": [
+   {
+    "w": "Frontend",
+    "hl": true
+   },
+   {
+    "w": "Design",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 13.853,
+  "t1": 15.713,
+  "words": [
+   {
+    "w": "277",
+    "hl": false
+   },
+   {
+    "w": "tysięcy",
+    "hl": false
+   },
+   {
+    "w": "gwiazdek",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 15.713,
+  "t1": 16.273,
+  "words": [
+   {
+    "w": "na",
+    "hl": false
+   },
+   {
+    "w": "GitHubie",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 16.273,
+  "t1": 17.313,
+  "words": [
+   {
+    "w": "Stworzona",
+    "hl": false
+   },
+   {
+    "w": "przez",
+    "hl": false
+   },
+   {
+    "w": "Anthropic",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 17.313,
+  "t1": 18.133,
+  "words": [
+   {
+    "w": "Eliminuje",
+    "hl": false
+   },
+   {
+    "w": "typowy",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 18.133,
+  "t1": 18.653,
+  "words": [
+   {
+    "w": "wygląd",
+    "hl": false
+   },
+   {
+    "w": "stron",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 18.653,
+  "t1": 19.093,
+  "words": [
+   {
+    "w": "przez",
+    "hl": false
+   },
+   {
+    "w": "AI",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 19.093,
+  "t1": 20.113,
+  "words": [
+   {
+    "w": "Tworzy",
+    "hl": false
+   },
+   {
+    "w": "profesjonalne",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 20.113,
+  "t1": 21.013,
+  "words": [
+   {
+    "w": "interfejsy",
+    "hl": false
+   },
+   {
+    "w": "gotowe",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 21.013,
+  "t1": 21.593,
+  "words": [
+   {
+    "w": "do",
+    "hl": false
+   },
+   {
+    "w": "wdrożenia",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 21.593,
+  "t1": 22.673,
+  "words": [
+   {
+    "w": "Trzecia",
+    "hl": false
+   },
+   {
+    "w": "Code",
+    "hl": true
+   },
+   {
+    "w": "Review",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 22.673,
+  "t1": 23.573,
+  "words": [
+   {
+    "w": "5",
+    "hl": false
+   },
+   {
+    "w": "agentów",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 23.573,
+  "t1": 24.373,
+  "words": [
+   {
+    "w": "pracuje",
+    "hl": false
+   },
+   {
+    "w": "równolegle",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 24.373,
+  "t1": 25.133,
+  "words": [
+   {
+    "w": "Każdy",
+    "hl": false
+   },
+   {
+    "w": "sprawdza",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 25.133,
+  "t1": 25.513,
+  "words": [
+   {
+    "w": "twój",
+    "hl": false
+   },
+   {
+    "w": "kod",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 25.513,
+  "t1": 26.113,
+  "words": [
+   {
+    "w": "z",
+    "hl": false
+   },
+   {
+    "w": "innej",
+    "hl": false
+   },
+   {
+    "w": "strony",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 26.113,
+  "t1": 26.853,
+  "words": [
+   {
+    "w": "Błędy",
+    "hl": false
+   },
+   {
+    "w": "w",
+    "hl": false
+   },
+   {
+    "w": "kodzie",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 26.853,
+  "t1": 27.493,
+  "words": [
+   {
+    "w": "historia",
+    "hl": false
+   },
+   {
+    "w": "zmian",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 27.493,
+  "t1": 28.273,
+  "words": [
+   {
+    "w": "Wszystko",
+    "hl": false
+   },
+   {
+    "w": "na",
+    "hl": false
+   },
+   {
+    "w": "raz",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 28.273,
+  "t1": 29.533,
+  "words": [
+   {
+    "w": "Czwarta",
+    "hl": false
+   },
+   {
+    "w": "Security",
+    "hl": false
+   },
+   {
+    "w": "Review",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 29.533,
+  "t1": 30.193,
+  "words": [
+   {
+    "w": "Przeszukuje",
+    "hl": false
+   },
+   {
+    "w": "cały",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 30.193,
+  "t1": 30.833,
+  "words": [
+   {
+    "w": "twój",
+    "hl": false
+   },
+   {
+    "w": "kod",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 30.833,
+  "t1": 31.293,
+  "words": [
+   {
+    "w": "tak",
+    "hl": false
+   },
+   {
+    "w": "aby",
+    "hl": false
+   },
+   {
+    "w": "nikt",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 31.293,
+  "t1": 31.813,
+  "words": [
+   {
+    "w": "nie",
+    "hl": false
+   },
+   {
+    "w": "skradł",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 31.813,
+  "t1": 32.413,
+  "words": [
+   {
+    "w": "kluczy",
+    "hl": false
+   },
+   {
+    "w": "w",
+    "hl": false
+   },
+   {
+    "w": "API",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 32.413,
+  "t1": 32.853,
+  "words": [
+   {
+    "w": "i",
+    "hl": false
+   },
+   {
+    "w": "abyś",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 32.853,
+  "t1": 33.373,
+  "words": [
+   {
+    "w": "był",
+    "hl": false
+   },
+   {
+    "w": "bezpieczny",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 33.373,
+  "t1": 34.513,
+  "words": [
+   {
+    "w": "zanim",
+    "hl": false
+   },
+   {
+    "w": "cokolwiek",
+    "hl": false
+   },
+   {
+    "w": "opublikujesz",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 34.513,
+  "t1": 34.973,
+  "words": [
+   {
+    "w": "Piąta",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 34.973,
+  "t1": 35.553,
+  "words": [
+   {
+    "w": "najlepsza",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 35.553,
+  "t1": 36.313,
+  "words": [
+   {
+    "w": "Zaraz",
+    "hl": false
+   },
+   {
+    "w": "ci",
+    "hl": false
+   },
+   {
+    "w": "powiem",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 36.313,
+  "t1": 36.913,
+  "words": [
+   {
+    "w": "ale",
+    "hl": false
+   },
+   {
+    "w": "najpierw",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 36.913,
+  "t1": 37.833,
+  "words": [
+   {
+    "w": "Jeśli",
+    "hl": false
+   },
+   {
+    "w": "chcesz",
+    "hl": false
+   },
+   {
+    "w": "pełną",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 37.833,
+  "t1": 38.653,
+  "words": [
+   {
+    "w": "dokładną",
+    "hl": false
+   },
+   {
+    "w": "analizę",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 38.653,
+  "t1": 39.713,
+  "words": [
+   {
+    "w": "twojego",
+    "hl": false
+   },
+   {
+    "w": "całego",
+    "hl": false
+   },
+   {
+    "w": "profilu",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 39.713,
+  "t1": 40.093,
+  "words": [
+   {
+    "w": "Chcesz",
+    "hl": false
+   },
+   {
+    "w": "wiedzieć",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 40.093,
+  "t1": 40.793,
+  "words": [
+   {
+    "w": "co",
+    "hl": false
+   },
+   {
+    "w": "cię",
+    "hl": false
+   },
+   {
+    "w": "blokuje",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 40.793,
+  "t1": 41.573,
+  "words": [
+   {
+    "w": "i",
+    "hl": false
+   },
+   {
+    "w": "chcesz",
+    "hl": false
+   },
+   {
+    "w": "gotowe",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 41.573,
+  "t1": 42.273,
+  "words": [
+   {
+    "w": "wiralowe",
+    "hl": false
+   },
+   {
+    "w": "filmiki",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 42.273,
+  "t1": 42.893,
+  "words": [
+   {
+    "w": "do",
+    "hl": false
+   },
+   {
+    "w": "nagrywania",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 42.893,
+  "t1": 43.873,
+  "words": [
+   {
+    "w": "Zupełnie",
+    "hl": false
+   },
+   {
+    "w": "za",
+    "hl": false
+   },
+   {
+    "w": "darmo",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 43.873,
+  "t1": 44.233,
+  "words": [
+   {
+    "w": "To",
+    "hl": false
+   },
+   {
+    "w": "weź",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 44.233,
+  "t1": 44.533,
+  "words": [
+   {
+    "w": "link",
+    "hl": false
+   },
+   {
+    "w": "w",
+    "hl": false
+   },
+   {
+    "w": "bio",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 44.533,
+  "t1": 44.813,
+  "words": [
+   {
+    "w": "i",
+    "hl": false
+   },
+   {
+    "w": "wpisz",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 44.813,
+  "t1": 45.553,
+  "words": [
+   {
+    "w": "swój",
+    "hl": false
+   },
+   {
+    "w": "nick",
+    "hl": true
+   },
+   {
+    "w": "konta",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 45.553,
+  "t1": 45.933,
+  "words": [
+   {
+    "w": "Piąta",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 45.933,
+  "t1": 46.233,
+  "words": [
+   {
+    "w": "gstack",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 46.233,
+  "t1": 46.913,
+  "words": [
+   {
+    "w": "Stworzona",
+    "hl": false
+   },
+   {
+    "w": "przez",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 46.913,
+  "t1": 47.633,
+  "words": [
+   {
+    "w": "Garry'ego",
+    "hl": false
+   },
+   {
+    "w": "Tana",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 47.633,
+  "t1": 48.133,
+  "words": [
+   {
+    "w": "A",
+    "hl": false
+   },
+   {
+    "w": "i",
+    "hl": false
+   },
+   {
+    "w": "tak",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 48.133,
+  "t1": 48.573,
+  "words": [
+   {
+    "w": "by",
+    "hl": false
+   },
+   {
+    "w": "the",
+    "hl": false
+   },
+   {
+    "w": "way",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 48.573,
+  "t1": 49.093,
+  "words": [
+   {
+    "w": "jeśli",
+    "hl": false
+   },
+   {
+    "w": "chcesz",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 49.093,
+  "t1": 49.793,
+  "words": [
+   {
+    "w": "te",
+    "hl": false
+   },
+   {
+    "w": "wszystkie",
+    "hl": false
+   },
+   {
+    "w": "skille",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 49.793,
+  "t1": 50.073,
+  "words": [
+   {
+    "w": "To",
+    "hl": false
+   },
+   {
+    "w": "weź",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 50.073,
+  "t1": 50.393,
+  "words": [
+   {
+    "w": "link",
+    "hl": false
+   },
+   {
+    "w": "w",
+    "hl": false
+   },
+   {
+    "w": "bio",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 50.393,
+  "t1": 51.293,
+  "words": [
+   {
+    "w": "i",
+    "hl": false
+   },
+   {
+    "w": "wpisz",
+    "hl": false
+   },
+   {
+    "w": "programista",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 51.293,
+  "t1": 51.933,
+  "words": [
+   {
+    "w": "a",
+    "hl": false
+   },
+   {
+    "w": "je",
+    "hl": false
+   },
+   {
+    "w": "dostaniesz",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 51.933,
+  "t1": 52.133,
+  "words": [
+   {
+    "w": "Daje",
+    "hl": false
+   },
+   {
+    "w": "Ci",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 52.133,
+  "t1": 53.133,
+  "words": [
+   {
+    "w": "23",
+    "hl": true
+   },
+   {
+    "w": "umiejętności",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 53.133,
+  "t1": 54.033,
+  "words": [
+   {
+    "w": "w",
+    "hl": false
+   },
+   {
+    "w": "jednej",
+    "hl": false
+   },
+   {
+    "w": "wtyczce",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 54.033,
+  "t1": 54.713,
+  "words": [
+   {
+    "w": "Claude",
+    "hl": false
+   },
+   {
+    "w": "oceni",
+    "hl": false
+   },
+   {
+    "w": "projekt",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 54.713,
+  "t1": 55.873,
+  "words": [
+   {
+    "w": "z",
+    "hl": false
+   },
+   {
+    "w": "perspektywy",
+    "hl": false
+   },
+   {
+    "w": "prezesa",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 55.873,
+  "t1": 56.193,
+  "words": [
+   {
+    "w": "kierownika",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 56.193,
+  "t1": 57.353,
+  "words": [
+   {
+    "w": "zespołu",
+    "hl": false
+   },
+   {
+    "w": "programistów",
+    "hl": true
+   }
+  ]
+ },
+ {
+  "t0": 57.353,
+  "t1": 57.773,
+  "words": [
+   {
+    "w": "menedżera",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 57.773,
+  "t1": 58.833,
+  "words": [
+   {
+    "w": "i",
+    "hl": false
+   },
+   {
+    "w": "kontroli",
+    "hl": false
+   },
+   {
+    "w": "jakości",
+    "hl": false
+   }
+  ]
+ },
+ {
+  "t0": 58.833,
+  "t1": 59.733333333333334,
+  "words": [
+   {
+    "w": "Wszystko",
+    "hl": false
+   },
+   {
+    "w": "działa",
+    "hl": false
+   },
+   {
+    "w": "razem",
+    "hl": true
+   }
+  ]
+ }
+]

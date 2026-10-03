@@ -1,0 +1,56 @@
+{
+ "id": "r02",
+ "layout": "FULLVISUAL",
+ "frames": 214,
+ "duration_s": 3.566667,
+ "fps": 60,
+ "run_start_on_output_timeline_s": 3.0667,
+ "words_relative_to_run_start": [
+  {
+   "w": "Pierwsza",
+   "t0": -0.054,
+   "t1": 0.086
+  },
+  {
+   "w": "wtyczka",
+   "t0": 0.086,
+   "t1": 0.466
+  },
+  {
+   "w": "Superpowers",
+   "t0": 0.466,
+   "t1": 1.106
+  },
+  {
+   "w": "127",
+   "t0": 1.106,
+   "t1": 1.566
+  },
+  {
+   "w": "tysięcy",
+   "t0": 1.566,
+   "t1": 2.566
+  },
+  {
+   "w": "gwiazdek",
+   "t0": 2.566,
+   "t1": 2.966
+  },
+  {
+   "w": "na",
+   "t0": 2.966,
+   "t1": 3.046
+  },
+  {
+   "w": "GitHubie",
+   "t0": 3.046,
+   "t1": 3.526
+  },
+  {
+   "w": "Claude",
+   "t0": 3.526,
+   "t1": 3.626
+  }
+ ],
+ "note": "negative t0 = the word begins before the picture cut (J-cut)."
+}

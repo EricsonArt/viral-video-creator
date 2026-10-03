@@ -1,0 +1,7 @@
+{"run":"r16","events":[
+ {"t":1.43,"type":"pop","note":"CEO badge lands (prezesa)"},
+ {"t":1.99,"type":"pop","note":"EM badge lands (kierownika zespolu)"},
+ {"t":3.47,"type":"pop","note":"PM badge lands (menedzera)"},
+ {"t":4.01,"type":"pop","note":"QA badge lands (kontroli jakosci)"},
+ {"t":4.40,"type":"chime","note":"fourth green check lands - all four role checks lit"}
+]}

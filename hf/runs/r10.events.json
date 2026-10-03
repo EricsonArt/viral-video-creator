@@ -1,0 +1,6 @@
+{"run":"r10","events":[
+ {"t0":0.02,"t1":1.2,"type":"ticks","note":"scan band sweeps the file line by line"},
+ {"t0":2.86,"t1":3.38,"type":"typing","note":"secret string is swapped in place for process.env.API_KEY (character flips)"},
+ {"t":3.42,"type":"chime","note":"red turns green, shield-with-check lands"},
+ {"t":4.52,"type":"click","note":"Publish button pressed"}
+]}

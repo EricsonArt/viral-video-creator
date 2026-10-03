@@ -1,0 +1,66 @@
+{
+ "id": "r06",
+ "layout": "FULLVISUAL",
+ "frames": 258,
+ "duration_s": 4.3,
+ "fps": 60,
+ "run_start_on_output_timeline_s": 13.0333,
+ "words_relative_to_run_start": [
+  {
+   "w": "Frontend",
+   "t0": -0.02,
+   "t1": 0.5
+  },
+  {
+   "w": "Design",
+   "t0": 0.5,
+   "t1": 0.82
+  },
+  {
+   "w": "277",
+   "t0": 0.82,
+   "t1": 1.72
+  },
+  {
+   "w": "tysięcy",
+   "t0": 1.72,
+   "t1": 2.3
+  },
+  {
+   "w": "gwiazdek",
+   "t0": 2.3,
+   "t1": 2.68
+  },
+  {
+   "w": "na",
+   "t0": 2.68,
+   "t1": 2.76
+  },
+  {
+   "w": "GitHubie",
+   "t0": 2.76,
+   "t1": 3.24
+  },
+  {
+   "w": "Stworzona",
+   "t0": 3.24,
+   "t1": 3.5
+  },
+  {
+   "w": "przez",
+   "t0": 3.5,
+   "t1": 3.72
+  },
+  {
+   "w": "Anthropic",
+   "t0": 3.72,
+   "t1": 4.28
+  },
+  {
+   "w": "Eliminuje",
+   "t0": 4.28,
+   "t1": 4.68
+  }
+ ],
+ "note": "negative t0 = the word begins before the picture cut (J-cut)."
+}

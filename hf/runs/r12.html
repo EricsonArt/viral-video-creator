@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>r12 - ClipCash real page capture</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<script src="../vendor/gsap.min.js"></script>
+<script src="../kit/world.js"></script>
+<style>
+/* ---- backdrop: enlarged, blurred, near-white duplicate of the SAME capture (top of the page) ---- */
+#bgdup{position:absolute;left:-400px;top:150px;width:1600px;height:600px;overflow:hidden;
+  filter:blur(40px) saturate(.7) brightness(1.05)}
+#bgdup .pic{position:absolute;left:0;top:0;width:1600px;height:3349px;background:url(../assets_r12/page_base.png) 0 0/100% 100% no-repeat}
+#bgdup .wash{position:absolute;inset:0;background:rgba(255,255,255,.72)}
+
+/* ---- the fixed frame (stationary) ---- */
+#frame{position:absolute;left:24px;top:200px;width:1032px;height:1040px;border-radius:36px;background:#fff;
+  box-shadow:var(--shadow);overflow:hidden;isolation:isolate}
+
+/* ---- inner camera layer: page space = CSS px of the capture (430 x 900), scaled by the Camera ---- */
+#inner{position:absolute;left:0;top:0;width:430px;height:900px;transform-origin:0 0;
+  transform:translate(calc(var(--tx,0)*1px),calc(var(--ty,0)*1px)) scale(var(--s,1));
+  filter:blur(calc(var(--mb,0)*1px / var(--s,1)))}   /* --mb is in SCREEN px: divide by the camera scale because the filter runs before the transform */
+#inner img{position:absolute;display:block;max-width:none}
+#pg{left:0;top:0;width:430px;height:900px}
+.st{left:28px;top:446px;width:374px;height:204px;opacity:0}
+#hl{left:36px;top:624px;width:358px;height:30px;opacity:0;clip-path:inset(0 100% 0 0)}
+#caret{position:absolute;left:85.7px;top:510.8px;width:1.6px;height:22px;border-radius:1px;background:#0b0b0c;opacity:0}
+#spinbox{position:absolute;left:352px;top:512.8px;width:18px;height:18px;border-radius:50%;overflow:hidden;opacity:0}
+#spinbox img{left:0;top:0;width:18px;height:18px}
+</style></head>
+<body>
+<div id="root" data-composition-id="r12" data-start="0" data-duration="5.9" data-width="1080" data-height="1920">
+  <div id="stage"><div id="world">
+    <div id="bgdup"><div class="pic"></div><div class="wash"></div></div>
+    <div id="frame">
+      <div id="inner">
+        <img id="pg" src="../assets_r12/page_base.png" alt="">
+        <img id="hl" src="../assets_r12/s_hl.png" alt="">
+        <img class="st" id="s_t0" src="../assets_r12/s_t0.png" alt="">
+        <img class="st" id="s_t1" src="../assets_r12/s_t1.png" alt="">
+        <img class="st" id="s_t2" src="../assets_r12/s_t2.png" alt="">
+        <img class="st" id="s_t3" src="../assets_r12/s_t3.png" alt="">
+        <img class="st" id="s_t4" src="../assets_r12/s_t4.png" alt="">
+        <img class="st" id="s_t5" src="../assets_r12/s_t5.png" alt="">
+        <img class="st" id="s_t6" src="../assets_r12/s_t6.png" alt="">
+        <img class="st" id="s_t7" src="../assets_r12/s_t7.png" alt="">
+        <img class="st" id="s_t8" src="../assets_r12/s_t8.png" alt="">
+        <img class="st" id="s_t9" src="../assets_r12/s_t9.png" alt="">
+        <img class="st" id="s_press" src="../assets_r12/s_press.png" alt="">
+        <img class="st" id="s_idle" src="../assets_r12/s_idle.png" alt="">
+        <div id="spinbox"><img src="../assets_r12/spinner.png" alt=""></div>
+        <div id="caret"></div>
+      </div>
+    </div>
+  </div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+/* ---- inner camera: absolute scale s = 2.4 (fit the 430px page into the 1032px frame) x zoom; look-at point in page css px ---- */
+const K = 2.4;
+const cam = WorldKit.Camera(tl, { cx: 215, cy: 226.7, s: K }, { world: '#inner', ax: 516, ay: 520 });
+cam.push(0.45, 2.0,  { cx: 215, cy: 382, s: K * 1.17 });   // slow push into headline + sub-copy
+cam.push(2.93, 0.70, { cx: 215, cy: 626, s: K * 1.18 });   // down to "Za darmo . bez logowania..."
+cam.push(4.10, 0.68, { cx: 215, cy: 553.5, s: K * 1.18 });   // settle on the nick input (+ button)
+
+/* ---- highlight band on the "Za darmo" line (real DOM pixels, wiped in left->right like a marker) ---- */
+tl.set('#hl', { opacity: 1 }, 3.30);
+tl.fromTo('#hl', { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 0.48, ease: 'power2.out', immediateRender: false }, 3.34);
+tl.to('#hl', { opacity: 0, duration: 0.35, ease: 'sine.inOut' }, 4.28);
+
+/* ---- typing "twoj_nick" in the REAL input: stacked captures of the real UI swapped at exact times ---- */
+const chars = [4.90, 4.98, 5.055, 5.13, 5.21, 5.285, 5.36, 5.435, 5.51];
+const caretX = [85.719, 92.016, 106.344, 116.469, 120.781, 128.656, 138.703, 142.422, 151.828, 160.656];
+const show = (id, t, on) => tl.set('#' + id, { opacity: on ? 1 : 0 }, t);
+let prev = null;
+function swapTo(id, t) { if (prev) show(prev, t, false); show(id, t, true); prev = id; }
+swapTo('s_t0', 4.80);                                       // focus ring on the real field
+tl.set('#caret', { opacity: 1, left: caretX[0] }, 4.80);
+chars.forEach((t, i) => { swapTo('s_t' + (i + 1), t); tl.set('#caret', { left: caretX[i + 1] }, t); });
+// the field's own loading spinner turns while it "looks the nick up"
+tl.set('#spinbox', { opacity: 1 }, 4.92);
+tl.fromTo('#spinbox img', { rotation: 0 }, { rotation: 360 * 0.72, duration: 0.72, ease: 'none', immediateRender: false }, 4.92);
+tl.set('#spinbox', { opacity: 0 }, 5.64);
+
+/* ---- button press (real :active pixels), release, hold ---- */
+const PRESS = 5.66, RELEASE = 5.80;
+swapTo('s_press', PRESS);
+tl.set('#caret', { opacity: 0 }, PRESS);
+swapTo('s_idle', RELEASE);
+
+window.__timelines['r12'] = tl;
+</script>
+</body></html>

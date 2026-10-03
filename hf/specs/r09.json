@@ -1,0 +1,31 @@
+{
+ "id": "r09",
+ "layout": "FULLCAM",
+ "frames": 76,
+ "duration_s": 1.266667,
+ "fps": 60,
+ "run_start_on_output_timeline_s": 28.3,
+ "words_relative_to_run_start": [
+  {
+   "w": "Czwarta",
+   "t0": -0.027,
+   "t1": 0.313
+  },
+  {
+   "w": "Security",
+   "t0": 0.313,
+   "t1": 0.753
+  },
+  {
+   "w": "Review",
+   "t0": 0.753,
+   "t1": 1.233
+  },
+  {
+   "w": "Przeszukuje",
+   "t0": 1.233,
+   "t1": 1.713
+  }
+ ],
+ "note": "negative t0 = the word begins before the picture cut (J-cut)."
+}

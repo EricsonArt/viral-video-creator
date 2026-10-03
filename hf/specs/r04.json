@@ -1,0 +1,56 @@
+{
+ "id": "r04",
+ "layout": "SPLIT",
+ "frames": 176,
+ "duration_s": 2.933333,
+ "fps": 60,
+ "run_start_on_output_timeline_s": 8.7333,
+ "words_relative_to_run_start": [
+  {
+   "w": "Zaczyna",
+   "t0": -0.04,
+   "t1": 0.34
+  },
+  {
+   "w": "planować,",
+   "t0": 0.34,
+   "t1": 0.92
+  },
+  {
+   "w": "pisać",
+   "t0": 0.96,
+   "t1": 1.3
+  },
+  {
+   "w": "testy",
+   "t0": 1.3,
+   "t1": 1.66
+  },
+  {
+   "w": "i",
+   "t0": 1.66,
+   "t1": 1.76
+  },
+  {
+   "w": "sprawdzać",
+   "t0": 1.76,
+   "t1": 2.16
+  },
+  {
+   "w": "własną",
+   "t0": 2.16,
+   "t1": 2.54
+  },
+  {
+   "w": "pracę",
+   "t0": 2.54,
+   "t1": 2.9
+  },
+  {
+   "w": "Druga",
+   "t0": 2.9,
+   "t1": 3.04
+  }
+ ],
+ "note": "negative t0 = the word begins before the picture cut (J-cut)."
+}

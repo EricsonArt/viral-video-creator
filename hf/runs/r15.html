@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>gstack 23 Skills</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<script src="../vendor/gsap.min.js"></script>
+<script src="../kit/world.js"></script>
+<style>
+  .gs{position:absolute;background:#fff;border-radius:72px;display:flex;align-items:center;justify-content:center}
+  .gs .wm{font-family:'Poppins',system-ui,sans-serif;font-weight:700;color:var(--ink);letter-spacing:-.035em;line-height:1;white-space:nowrap;padding-bottom:.09em}
+  .gs .wm b{font-weight:700;color:var(--clay)}
+
+  #tile{left:240px;top:655px;width:600px;height:230px;z-index:5}
+  #tile .wm{font-size:116px}
+  #num{position:absolute;left:290px;top:325px;width:500px;height:290px;z-index:1;color:var(--clay-ink);font-weight:700;font-size:270px;line-height:290px;letter-spacing:-.04em;text-align:center}
+  #num .n{position:absolute;left:0;top:0;width:500px;text-align:center;opacity:0}
+  .mini{position:absolute;border-radius:30px;box-shadow:0 22px 44px rgba(24,24,32,.11),0 8px 16px rgba(24,24,32,.07),0 1px 3px rgba(24,24,32,.05);display:flex;align-items:center;justify-content:center;z-index:2}
+  .mini svg{width:46%;height:46%;fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.88}
+  .mini.c svg{stroke:var(--clay);opacity:1}
+  .mini.k svg{stroke:#fff;opacity:1}
+</style></head>
+<body>
+<div id="root" data-composition-id="r15" data-start="0" data-duration="2.066667" data-width="1080" data-height="1920">
+  <div id="stage"><div id="world">
+    <div class="mini" id="m0" style="left:490px;top:130px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+    <div class="mini" id="m1" style="left:613.735px;top:148.117px;width:100px;height:100px;background:#FBEEE8"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+    <div class="mini c" id="m2" style="left:727.53px;top:200.81px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+    <div class="mini" id="m3" style="left:821.881px;top:282.594px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+    <div class="mini" id="m4" style="left:891.167px;top:387.063px;width:100px;height:100px;background:#F7F2E8"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+    <div class="mini c" id="m5" style="left:930.935px;top:506.136px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+    <div class="mini" id="m6" style="left:939.021px;top:630.985px;width:100px;height:100px;background:#FBEEE8"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+    <div class="mini" id="m7" style="left:915.124px;top:754.102px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 9.4 7.5 4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+    <div class="mini k" id="m8" style="left:860.322px;top:867.022px;width:100px;height:100px;background:#D97757"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+    <div class="mini" id="m9" style="left:777.929px;top:961.198px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg></div>
+    <div class="mini" id="m10" style="left:673.031px;top:1029.366px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+    <div class="mini c" id="m11" style="left:552.939px;top:1065.38px;width:100px;height:100px;background:#FBEEE8"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+    <div class="mini" id="m12" style="left:427.528px;top:1065.449px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></div>
+    <div class="mini" id="m13" style="left:307.399px;top:1029.566px;width:100px;height:100px;background:#F7F2E8"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg></div>
+    <div class="mini c" id="m14" style="left:202.434px;top:961.513px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg></div>
+    <div class="mini" id="m15" style="left:119.946px;top:867.426px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+    <div class="mini" id="m16" style="left:65.031px;top:754.567px;width:100px;height:100px;background:#FBEEE8"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+    <div class="mini c" id="m17" style="left:41.01px;top:631.476px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+    <div class="mini k" id="m18" style="left:48.971px;top:506.619px;width:100px;height:100px;background:#D97757"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+    <div class="mini" id="m19" style="left:88.62px;top:387.502px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+    <div class="mini c" id="m20" style="left:157.801px;top:282.957px;width:100px;height:100px;background:#FBEEE8"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+    <div class="mini" id="m21" style="left:252.069px;top:201.07px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+    <div class="mini" id="m22" style="left:365.812px;top:148.252px;width:100px;height:100px;background:#FFFFFF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 9.4 7.5 4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+    <div id="num"><span class="n" id="n0" style="opacity:1">0</span><span class="n" id="n1">1</span><span class="n" id="n2">2</span><span class="n" id="n3">3</span><span class="n" id="n4">4</span><span class="n" id="n5">5</span><span class="n" id="n6">6</span><span class="n" id="n7">7</span><span class="n" id="n8">8</span><span class="n" id="n9">9</span><span class="n" id="n10">10</span><span class="n" id="n11">11</span><span class="n" id="n12">12</span><span class="n" id="n13">13</span><span class="n" id="n14">14</span><span class="n" id="n15">15</span><span class="n" id="n16">16</span><span class="n" id="n17">17</span><span class="n" id="n18">18</span><span class="n" id="n19">19</span><span class="n" id="n20">20</span><span class="n" id="n21">21</span><span class="n" id="n22">22</span><span class="n" id="n23">23</span></div>
+    <div id="tile" class="gs float"><div class="wm"><b>g</b>stack</div></div>
+  </div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+const cam = WorldKit.Camera(tl, { cx: 540, cy: 960, s: 1 });
+// one gentle push about the middle of the scene for the whole run
+cam.push(0, 2.0, { cx: 540, cy: 945.238, s: 1.05 });
+
+const T = [{"i":0,"cx":540,"cy":180,"rot":1.708,"rank":22,"dist":590},{"i":1,"cx":663.735,"cy":198.117,"rot":2.455,"rank":20,"dist":585.116},{"i":2,"cx":777.53,"cy":250.81,"rot":-2.522,"rank":19,"dist":570.945},{"i":3,"cx":871.881,"cy":332.594,"rot":1.109,"rank":17,"dist":549.062},{"i":4,"cx":941.167,"cy":437.063,"rot":-3.734,"rank":14,"dist":521.327},{"i":5,"cx":980.935,"cy":556.136,"rot":0.829,"rank":12,"dist":490.063},{"i":6,"cx":989.021,"cy":680.985,"rot":1.981,"rank":11,"dist":457.759},{"i":7,"cx":965.124,"cy":804.102,"rot":-0.377,"rank":8,"dist":426.49},{"i":8,"cx":910.322,"cy":917.022,"rot":3.651,"rank":6,"dist":398.439},{"i":9,"cx":827.929,"cy":1011.198,"rot":-2.435,"rank":4,"dist":375.606},{"i":10,"cx":723.031,"cy":1079.366,"rot":2.519,"rank":3,"dist":359.455},{"i":11,"cx":602.939,"cy":1115.38,"rot":2.166,"rank":0,"dist":351.068},{"i":12,"cx":477.528,"cy":1115.449,"rot":1.445,"rank":1,"dist":351.052},{"i":13,"cx":357.399,"cy":1079.566,"rot":-4.376,"rank":2,"dist":359.408},{"i":14,"cx":252.434,"cy":1011.513,"rot":-0.311,"rank":5,"dist":375.53},{"i":15,"cx":169.946,"cy":917.426,"rot":-1.796,"rank":7,"dist":398.34},{"i":16,"cx":115.031,"cy":804.567,"rot":3.569,"rank":9,"dist":426.373},{"i":17,"cx":91.01,"cy":681.476,"rot":-1.907,"rank":10,"dist":457.634},{"i":18,"cx":98.971,"cy":556.619,"rot":2.298,"rank":13,"dist":489.937},{"i":19,"cx":138.62,"cy":437.502,"rot":2.011,"rank":15,"dist":521.211},{"i":20,"cx":207.801,"cy":332.957,"rot":-2.218,"rank":16,"dist":548.965},{"i":21,"cx":302.069,"cy":251.07,"rot":-4.329,"rank":18,"dist":570.876},{"i":22,"cx":415.812,"cy":198.252,"rot":2.642,"rank":21,"dist":585.08}];
+const HERO = { cx: 540, cy: 770 };
+const TSHOW = [0,0.017,0.033,0.05,0.067,0.067,0.083,0.1,0.117,0.133,0.15,0.167,0.183,0.2,0.217,0.233,0.25,0.267,0.3,0.317,0.35,0.367,0.4,0.467];   // frame-exact time at which the counter first shows value v
+
+// counter: stacked spans toggled at exact times (seek-safe)
+for (let v = 0; v <= 23; v++) {
+  if (v > 0) tl.set('#n' + v, { opacity: 1 }, TSHOW[v]);
+  if (v < 23) tl.set('#n' + v, { opacity: 0 }, TSHOW[v + 1]);
+}
+
+T.forEach(t => {
+  const el = document.getElementById('m' + t.i);
+  gsap.set(el, { rotation: t.rot });
+  // count-up wave: tile #k pulses the moment the counter reaches k+1
+  const tp = TSHOW[t.i + 1];
+  tl.fromTo(el, { scale: 1 }, { scale: 1.1, duration: 0.09, ease: 'power2.out', immediateRender: false }, tp);
+  tl.fromTo(el, { scale: 1.1 }, { scale: 1, duration: 0.24, ease: 'power2.inOut', immediateRender: false }, tp + 0.09);
+  // merge on "w jednej wtyczce": the ring flows into the one plugin tile, bottom first, symmetric
+  const st = 1.08 + 0.20 * t.rank / 22;
+  const fd = 0.60 + t.dist * 0.0002;
+  tl.fromTo(el, { x: 0, y: 0, scale: 1 }, { x: HERO.cx - t.cx, y: HERO.cy - t.cy, scale: 0.55, duration: fd, ease: 'power2.in', immediateRender: false }, st);
+});
+// the plugin tile takes the hit once, then settles
+tl.fromTo('#tile', { scale: 1 }, { scale: 1.045, duration: 0.2, ease: 'power2.out', immediateRender: false }, 1.66);
+tl.fromTo('#tile', { scale: 1.045 }, { scale: 1, duration: 0.2, ease: 'power3.out', immediateRender: false }, 1.86);
+window.__timelines['r15'] = tl;
+</script></body></html>

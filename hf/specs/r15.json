@@ -1,0 +1,51 @@
+{
+ "id": "r15",
+ "layout": "FULLVISUAL",
+ "frames": 124,
+ "duration_s": 2.066667,
+ "fps": 60,
+ "run_start_on_output_timeline_s": 52.0,
+ "words_relative_to_run_start": [
+  {
+   "w": "Daje",
+   "t0": -0.067,
+   "t1": 0.093
+  },
+  {
+   "w": "Ci",
+   "t0": 0.093,
+   "t1": 0.133
+  },
+  {
+   "w": "23",
+   "t0": 0.133,
+   "t1": 0.493
+  },
+  {
+   "w": "umiejętności",
+   "t0": 0.493,
+   "t1": 1.133
+  },
+  {
+   "w": "w",
+   "t0": 1.133,
+   "t1": 1.273
+  },
+  {
+   "w": "jednej",
+   "t0": 1.273,
+   "t1": 1.613
+  },
+  {
+   "w": "wtyczce",
+   "t0": 1.613,
+   "t1": 2.033
+  },
+  {
+   "w": "Claude",
+   "t0": 2.033,
+   "t1": 2.273
+  }
+ ],
+ "note": "negative t0 = the word begins before the picture cut (J-cut)."
+}

@@ -1,0 +1,11 @@
+{
+ "run": "r02",
+ "events": [
+  {
+   "t0": 1.1,
+   "t1": 2.5,
+   "type": "ticks",
+   "note": "star counter rising 0 -> 127k"
+  }
+ ]
+}

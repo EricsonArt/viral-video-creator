@@ -1,0 +1,25 @@
+{
+ "id": "r17",
+ "layout": "FULLCAM",
+ "frames": 54,
+ "duration_s": 0.9,
+ "fps": 60,
+ "run_start_on_output_timeline_s": 58.8333,
+ "words_relative_to_run_start": [
+  {
+   "w": "Wszystko",
+   "t0": -0.0,
+   "t1": 0.38
+  },
+  {
+   "w": "działa",
+   "t0": 0.38,
+   "t1": 0.54
+  },
+  {
+   "w": "razem.",
+   "t0": 0.54,
+   "t1": 0.8
+  }
+ ]
+}

@@ -6,3 +6,20 @@ temp/
 __pycache__/
 *.pyc
 .DS_Store
+
+# --- video-edit pipeline (tools/, hf/, assets/): keep code + small data in git; keep environments, dependencies and heavy media out
+.venv/
+**/node_modules/
+input/
+recovery_parts/
+recovered_renders_and_audio.zip
+hf/renders/
+work/*
+!work/*.json
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.wav
+*.tflite
+*.task

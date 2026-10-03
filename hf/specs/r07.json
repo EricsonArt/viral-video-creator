@@ -1,0 +1,76 @@
+{
+ "id": "r07",
+ "layout": "SPLIT",
+ "frames": 258,
+ "duration_s": 4.3,
+ "fps": 60,
+ "run_start_on_output_timeline_s": 17.3333,
+ "words_relative_to_run_start": [
+  {
+   "w": "Eliminuje",
+   "t0": -0.02,
+   "t1": 0.38
+  },
+  {
+   "w": "typowy",
+   "t0": 0.38,
+   "t1": 0.8
+  },
+  {
+   "w": "wygląd",
+   "t0": 0.8,
+   "t1": 1.14
+  },
+  {
+   "w": "stron",
+   "t0": 1.14,
+   "t1": 1.32
+  },
+  {
+   "w": "przez",
+   "t0": 1.32,
+   "t1": 1.52
+  },
+  {
+   "w": "AI",
+   "t0": 1.52,
+   "t1": 1.76
+  },
+  {
+   "w": "Tworzy",
+   "t0": 1.76,
+   "t1": 2.2
+  },
+  {
+   "w": "profesjonalne",
+   "t0": 2.2,
+   "t1": 2.78
+  },
+  {
+   "w": "interfejsy",
+   "t0": 2.78,
+   "t1": 3.22
+  },
+  {
+   "w": "gotowe",
+   "t0": 3.22,
+   "t1": 3.68
+  },
+  {
+   "w": "do",
+   "t0": 3.68,
+   "t1": 3.84
+  },
+  {
+   "w": "wdrożenia",
+   "t0": 3.84,
+   "t1": 4.26
+  },
+  {
+   "w": "Trzecia",
+   "t0": 4.26,
+   "t1": 4.68
+  }
+ ],
+ "note": "negative t0 = the word begins before the picture cut (J-cut)."
+}

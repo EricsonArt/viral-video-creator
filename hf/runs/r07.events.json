@@ -1,0 +1,4 @@
+{"run":"r07","events":[
+ {"t0":1.9,"t1":3.05,"type":"ticks","note":"page is rebuilt top-to-bottom (generation stream)"},
+ {"t":3.84,"type":"chime","note":"green check on 'Wdrozone' deploy confirmation"}
+]}

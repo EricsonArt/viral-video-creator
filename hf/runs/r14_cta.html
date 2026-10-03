@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>r14 - CTA keyword field</title>
+<script src="../vendor/gsap.min.js"></script>
+<style>
+/* the creator's real fonts (loaded from his site at build time, shipped locally): JetBrains Mono (input) + Onest (button) */
+@font-face{font-family:'JetBrains Mono';font-weight:100 800;font-style:normal;src:url('../assets_r12/fonts/jbmono-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-weight:100 800;font-style:normal;src:url('../assets_r12/fonts/jbmono-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Onest';font-weight:100 900;font-style:normal;src:url('../assets_r12/fonts/onest-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Onest';font-weight:100 900;font-style:normal;src:url('../assets_r12/fonts/onest-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;-webkit-font-smoothing:antialiased}
+#root{position:absolute;left:0;top:0;width:1080px;height:1920px;background:transparent}
+
+/* the field = the site's keyword pill (white, hairline border, focus -> orange border), scaled ~2.35x.
+   Lower-third region x43 y1344 w994 h276 (centre 540,1482) -> pill 920 x 196, centred. */
+#card{position:absolute;left:80px;top:1384px;width:920px;height:196px;border-radius:98px;background:#fff;
+  border:3px solid #FF5A1F;                       /* focused: site uses focus-within:border-accent */
+  box-shadow:0 44px 88px rgba(10,10,14,.20),0 18px 36px rgba(10,10,14,.12),0 3px 8px rgba(10,10,14,.08);
+  opacity:0;transform-origin:50% 50%}
+#label{position:absolute;left:53px;top:36px;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:400;font-size:30px;line-height:36px;
+  letter-spacing:.12em;color:#8A8A8F;white-space:nowrap}
+#typed{position:absolute;left:53px;top:88px;height:68px;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:400;font-size:60px;line-height:68px;
+  letter-spacing:.1em;color:#0B0B0C;white-space:pre}
+#typed span{opacity:0}
+#caret{position:absolute;left:53px;top:93px;width:4px;height:58px;border-radius:2px;background:#0B0B0C;opacity:0}
+#btn{position:absolute;right:25px;top:25px;width:304px;height:140px;border-radius:70px;background:#0B0B0C;color:#fff;opacity:.3;
+  display:flex;align-items:center;justify-content:center;gap:20px;transform-origin:50% 50%;
+  font-family:'Onest',system-ui,sans-serif;font-weight:500;font-size:42px;line-height:1}
+#btn svg{display:block;width:44px;height:44px}
+</style></head>
+<body>
+<div id="root" data-composition-id="r14_cta" data-start="0" data-duration="4.333333" data-width="1080" data-height="1920">
+  <div id="card">
+    <div id="label">WPISZ SŁOWO Z FILMIKU</div>
+    <div id="typed"><span>P</span><span>R</span><span>O</span><span>G</span><span>R</span><span>A</span><span>M</span><span>I</span><span>S</span><span>T</span><span>A</span></div>
+    <div id="caret"></div>
+    <div id="btn"><span>Odbierz</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+/* soft arrival around "...te wszystkie skille" (rel 1.7-2.1 s) */
+tl.fromTo('#card', { opacity: 0, scale: 0.965, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'power2.out', immediateRender: false }, 1.70);
+
+/* caret: deterministic 0.5 s step blink while the field is empty (on 1.80, off 2.30, on 2.80) - then it follows the typing */
+const PITCH = 0.7 * 60;                 // JetBrains Mono advance 0.6em + letter-spacing 0.1em at 60 px
+const X0 = 53;                          // text start inside the pill (padding box)
+tl.set('#caret', { opacity: 1, left: X0 }, 1.80);
+tl.set('#caret', { opacity: 0 }, 2.30);
+tl.set('#caret', { opacity: 1 }, 2.80);
+
+/* typing "programista" (11 chars, one per ~75 ms) starting on the spoken "wpisz" */
+const T = [2.82, 2.895, 2.97, 3.04, 3.12, 3.195, 3.27, 3.34, 3.42, 3.495, 3.57];
+document.querySelectorAll('#typed span').forEach((s, i) => {
+  tl.set(s, { opacity: 1 }, T[i]);
+  tl.set('#caret', { left: X0 + (i + 1) * PITCH }, T[i]);
+});
+/* button wakes up (disabled 30% -> ink) with the first key, like the real field */
+tl.to('#btn', { opacity: 1, duration: 0.18, ease: 'power1.out' }, T[0]);
+
+/* press: ink -> orange, scale .96, input blurs (border back to hairline, caret gone), release */
+const CLICK = 3.98;
+tl.set('#caret', { opacity: 0 }, CLICK);
+tl.to('#card', { borderColor: '#ECECEC', duration: 0.12, ease: 'none' }, CLICK);
+tl.to('#btn', { backgroundColor: '#FF5A1F', duration: 0.04, ease: 'none' }, CLICK);
+tl.to('#btn', { scale: 0.96, duration: 0.09, ease: 'power2.out' }, CLICK);
+tl.to('#btn', { scale: 1, duration: 0.18, ease: 'power2.out' }, CLICK + 0.11);
+
+window.__timelines['r14_cta'] = tl;
+</script>
+</body></html>

@@ -1,0 +1,10 @@
+{
+ "run": "r15",
+ "events": [
+  {
+   "t": 1.76,
+   "type": "pop",
+   "note": "the ring of 23 tiles has merged into the one gstack plugin tile - tile pulses once"
+  }
+ ]
+}

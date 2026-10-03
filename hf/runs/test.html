@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<link rel="stylesheet" href="../kit/kit.css">
+<script src="../vendor/gsap.min.js"></script>
+<script src="../kit/world.js"></script>
+<style>
+.tile{position:absolute;width:720px;height:420px;border-radius:30px;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:64px}
+</style></head>
+<body>
+<div id="root" data-composition-id="test" data-start="0" data-duration="3" data-width="1080" data-height="1920">
+  <div id="stage"><div id="world">
+    <div id="a" class="tile float" style="left:180px;top:500px">Superpowers</div>
+    <div id="b" class="tile float" style="left:180px;top:1100px;opacity:.4;filter:blur(9px)">Frontend Design</div>
+  </div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+const cam = WorldKit.Camera(tl, { cx: 540, cy: 710, s: 1 });
+cam.step(1.0, { cx: 540, cy: 1310, s: 1 });
+WorldKit.dof(tl, '#a', 'back', 1.0, 0.5);
+WorldKit.dof(tl, '#b', 'focus', 1.0, 0.5);
+cam.push(2.0, 0.9, { cx: 540, cy: 1310, s: 1.4 });
+window.__timelines['test'] = tl;
+</script></body></html>

@@ -1,0 +1,4 @@
+{"run":"r12","events":[
+ {"t0":4.90,"t1":5.53,"type":"typing","note":"twoj_nick typed char by char into the real nick input (9 chars, 4.90..5.51)"},
+ {"t":5.66,"type":"click","note":"orange 'Chce moje 3 filmy' button pressed (released 5.80)"}
+]}

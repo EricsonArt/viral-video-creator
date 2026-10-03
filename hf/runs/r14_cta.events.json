@@ -1,0 +1,4 @@
+{"run":"r14_cta","events":[
+ {"t0":2.82,"t1":3.60,"type":"typing","note":"'programista' typed char by char (11 chars, 2.82..3.57) starting on the spoken 'wpisz'"},
+ {"t":3.98,"type":"click","note":"'Odbierz' button pressed (scale .96, ink -> orange), released 4.09"}
+]}

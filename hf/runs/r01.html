@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>Claude Code Intro</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<script src="../vendor/gsap.min.js"></script>
+<script src="../kit/world.js"></script>
+<style>
+  :root{--sh-sm:0 26px 52px rgba(24,24,32,.13),0 10px 20px rgba(24,24,32,.08),0 2px 4px rgba(24,24,32,.05)}
+  #hero{position:absolute;left:190px;top:645px;width:700px;height:240px;border-radius:72px;background:#fff;z-index:5}
+  #hero img{position:absolute;left:60px;top:50%;width:580px;height:auto;display:block;transform:translateY(-50%)}
+  .dev{position:absolute;width:140px;height:140px;border-radius:40px;background:#fff;box-shadow:var(--sh-sm);display:flex;align-items:center;justify-content:center;z-index:2}
+  .dev svg{width:70px;height:70px;fill:none;stroke:var(--ink);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+  .dev.c svg{stroke:var(--clay)}
+</style></head>
+<body class="split-fade">
+<div id="root" data-composition-id="r01" data-start="0" data-duration="3.066667" data-width="1080" data-height="1920">
+  <div id="stage"><div id="world-mask"><div id="world">
+    <div class="dev" id="d0" style="left:60px;top:500.75px"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+    <div class="dev c" id="d1" style="left:224px;top:424.75px"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg></div>
+    <div class="dev" id="d2" style="left:388px;top:386.75px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+    <div class="dev c" id="d3" style="left:552px;top:386.75px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+    <div class="dev" id="d4" style="left:716px;top:424.75px"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></div>
+    <div class="dev c" id="d5" style="left:880px;top:500.75px"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+    <div id="hero" class="float"><img src="../assets_r01/claude_code_lockup.svg" alt="Claude Code"></div>
+  </div></div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+const cam = WorldKit.Camera(tl, { cx: 540, cy: 960, s: 1 });
+// tiny upward glide once the cover title is gone, while the team assembles
+cam.glide(1.2, 1.7, { cy: 990 });
+
+// six developer tiles emerge from behind the lockup tile and fan out into an arc
+const L = [{"i":0,"cx":130,"cy":570.75,"rot":-9},{"i":1,"cx":294,"cy":494.75,"rot":-5.4},{"i":2,"cx":458,"cy":456.75,"rot":-1.8},{"i":3,"cx":622,"cy":456.75,"rot":1.8},{"i":4,"cx":786,"cy":494.75,"rot":5.4},{"i":5,"cx":950,"cy":570.75,"rot":9}];
+const START0 = 1.22, STEP = 0.1, FLIGHT = 0.8;
+L.forEach(t => {
+  const el = document.getElementById('d' + t.i);
+  const t0 = START0 + STEP * t.i;
+  const sx = 540 + (t.i - 2.5) * 34, sy = 765;
+  tl.fromTo(el, { x: sx - t.cx, y: sy - t.cy, scale: 0.5, rotation: 0 },
+                { x: 0, y: 0, duration: FLIGHT, ease: 'power3.out', immediateRender: true }, t0);
+  tl.fromTo(el, { scale: 0.5 }, { scale: 1, duration: FLIGHT * 0.8, ease: 'back.out(1.5)', immediateRender: true }, t0);
+  tl.fromTo(el, { rotation: 0 }, { rotation: t.rot, duration: FLIGHT * 0.9, ease: 'power3.out', immediateRender: true }, t0);
+});
+window.__timelines['r01'] = tl;
+</script></body></html>
